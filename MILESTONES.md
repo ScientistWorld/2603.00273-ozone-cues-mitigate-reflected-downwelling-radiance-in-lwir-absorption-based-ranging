@@ -35,6 +35,4 @@
   11.83 m.
 
 ## Stop Justification
-- Not stopped. The core claim is reproduced on a real public-data patch subset;
-  higher milestones would require reproducing the authors' processed
-  hyperspectral cube calibration or the full hyperspectral optimizer.
+- Completed at milestone `core_claim`.

@@ -1,121 +1,131 @@
 # Overview
 
-- **Paper ID:** <!-- e.g. 1706.03762 -->
-- **Title:** <!-- e.g. Attention Is All You Need -->
-- **Domain:** <!-- e.g. Computer Vision / Object Detection -->
-- **TL;DR:** <!-- One sentence: what this paper does and why it matters -->
+- **Paper ID:** 2603.00273
+- **Title:** Ozone Cues Mitigate Reflected Downwelling Radiance in LWIR Absorption-Based Ranging
+- **Domain:** Computational imaging / thermal remote sensing
+- **TL;DR:** The paper uses ozone absorption structure in reflected sky radiance to correct passive LWIR range overestimates on reflective objects.
 
 ## Short Summary
 
-<!-- 3-5 sentences covering the problem, approach, and main findings -->
+Passive LWIR absorption-based ranging estimates depth from spectral
+attenuation, but reflective surfaces can mirror downwelling sky radiance and
+produce large overestimates. The paper proposes a closed-form four-band
+estimator and a richer hyperspectral optimizer that explicitly account for
+reflected downwelling radiance. The packaged reproduction implements the
+closed-form quadspectral estimator and compares it against the air-aware
+bispectral baseline on public IHTest_202104 Path 5 Step 1 LWIR HSI patches.
 
 ## Key Results
 
-<!-- 2-3 bullet points: main findings or numbers in bullet points -->
-This paper studies passive LWIR range estimation in scenes where reflective
-surfaces mirror downwelling sky radiance. Ordinary absorption-based ranging can
-interpret those reflected absorption features as a much longer object-to-camera
-path, producing large overestimates.
-
-The reproduction implements the paper's quadspectral ozone-cue correction. On a
-small radiative-transfer benchmark generated from the paper's measurement model,
-the ozone correction substantially reduces reflective-patch range error compared
-with the air-aware bispectral baseline.
+- Paper Table I reports reflective checkerboard errors dropping from over 100 m
+  with the bispectral baseline to paper-scale residual errors with the
+  quadspectral correction.
+- This reproduction shows the same qualitative effect on a small real-data
+  benchmark: reflective-patch error drops sharply relative to the bispectral
+  baseline and the proposed-method primary metric is close to the paper's
+  Table I value, though the raw public cube is not the authors' processed
+  MATLAB cube.
 
 ---
 
 # Problem Definition
 
-What problem does this paper address? Write this so that someone with no knowledge of the paper can understand what needs to be solved and how success is measured.
-
-Do NOT describe the paper's method or solution here — only the problem itself. Think about if a future scientist agent try to solve this problem from scratch without knowing what approach the paper took. If you leak the solution, you compromise the benchmark.
-
 ## Research Question
 
-<!-- What problem or challenge does this paper tackle? What gap in existing work does it address? -->
+Estimate object range from passive long-wave infrared spectral radiance in
+natural outdoor scenes. The input is measured LWIR radiance at known wavelengths
+plus scene-level atmospheric metadata such as attenuation coefficients and air
+temperature. The output is range in meters for each spatial sample or patch.
+
+The difficult regime is a reflective surface under open sky. Reflected ambient
+thermal radiation can carry absorption structure unrelated to the
+object-to-sensor path, causing ordinary absorption-based ranging to infer a
+distance that is much too large.
 
 ## Why It Matters
 
-<!-- Why is this problem important? What would a good solution enable? Make it short -->
+Passive thermal ranging can work in darkness without active illumination,
+texture, or stereo baselines. Robustness to reflected sky radiance is needed for
+the method to be useful on real materials rather than only high-emissivity
+surfaces.
 
 ## Success Criteria
 
-<!-- What would a successful solution look like? What properties should it have? This is about the goal, not the paper's specific approach. Make it short -->
-Estimate passive long-wave infrared range from spectral radiance measurements.
-The input is radiance measured at LWIR wavelengths, known atmospheric
-attenuation coefficients, and air temperature. The output is object range in
-meters for each spatial sample or patch.
-
-The difficult case is a reflective natural-scene object under open sky.
-Reflected downwelling sky radiance carries atmospheric absorption structure and
-can make ordinary absorption-based ranging overestimate distance. A valid
-solution must estimate range from the radiance physics rather than from RGB
-texture, lidar, or learned scene priors.
+A successful solution should reduce reflective-target range error while keeping
+ordinary low-reflectance target estimates stable. It must estimate range from
+the radiance measurements and atmospheric metadata, not from RGB texture, lidar,
+or supervised fitting to the evaluation distances.
 
 ---
 
 # Paper's Method
 
-How the paper approaches the problem, i.e. the paper's core contributions.
-
 ## Key Contribution
 
-<!-- What is the paper's main contribution? -->
+The paper introduces ozone-cue mitigation for reflected downwelling radiance in
+LWIR absorption-based ranging. It uses spectral structure that appears strongly
+in sky radiance but is negligible in ground-level horizontal propagation to
+estimate and remove the reflected-radiance bias that makes reflective objects
+look farther away.
 
 ## Approach
 
-<!-- How does the paper solve the problem? Key ideas, architecture, algorithm. -->
+The implemented core method is the closed-form quadspectral estimator from
+Section IV. It uses two bands around a water-vapor absorption feature and two
+bands around the 9.5 um ozone feature. The air-aware bispectral baseline
+computes range from the ratio of air-centered radiances at the water-vapor
+pair. The quadspectral estimator additionally estimates the reflected
+downwelling bias as `s * (L(lambda4) - L(lambda3))`, where `s` is the modeled
+linear relation between water-vapor and ozone downwelling differences, and
+subtracts this bias before applying the Beer-law closed form.
+
+The paper also proposes a hyperspectral optimizer that uses many wavelengths,
+smooth-emissivity regularization, optional total variation on range, and a
+weighted set of downwelling spectra at different zenith angles. This
+reproduction focuses on the quadspectral claim because it is the smallest
+self-contained experiment that directly tests reflected-downwelling correction.
 
 ## Main Claims
 
-<!-- What are the paper's central claims? Which are primary vs. secondary? -->
-The paper introduces ozone-cue mitigation for reflected downwelling radiance in
-LWIR absorption-based ranging.
-
-The implemented core method is the quadspectral estimator from Sec. IV. It uses
-two bands around a water-vapor absorption feature and two bands around the
-9.5 um ozone feature. The baseline air-aware bispectral estimator computes a
-range from the ratio of air-centered radiances at the water-vapor pair. The
-quadspectral estimator additionally estimates the reflected-downwelling bias as
-`s * (L(lambda4) - L(lambda3))`, where `s` is the simulated linear relation
-between water-vapor and ozone downwelling differences, and subtracts this bias
-before applying the Beer-law closed form.
+The primary claim is that accounting for reflected downwelling radiance greatly
+reduces range overestimation on reflective LWIR targets. The constraint is that
+the correction should not catastrophically break ordinary ranging on
+low-reflectance objects.
 
 The upstream author repository is cloned under `method/upstream/`. It contains
 the authors' Python hyperspectral optimizer and MATLAB quadspectral code. The
-reproduction code in `method/ozone_cues/` is a Python implementation of the
-closed-form quadspectral equations used for the core claim.
+portable reproduction in `method/ozone_cues/` is a Python implementation of
+the closed-form quadspectral equations used for the core experiment.
 
 ---
 
 # Evaluation
 
-How success is measured. Describe only the metrics, targets, and evaluation procedure — do NOT describe the paper's method or how they achieved these results. Think of this as a general evaluation protocal for other scientists trying to solve the same problem, where they should not see this paper's solution.
-
 ## Metrics
 
-<!-- What metrics are used? How are they computed? What does higher/lower mean? -->
-
-## Baselines and Targets
-
-<!-- What performance levels exist as reference points? Include the paper's reported numbers as targets, and any standard baselines. A scientist agent should know what "good" looks like. -->
-
-## Evaluation Protocol
-
-<!-- How should evaluation be run? What data split, what conditions? Any important details about how to compare fairly (e.g., fixed seeds, specific test sets, averaging over runs). -->
 Evaluation compares estimated ranges to ground-truth patch ranges. Following
 the paper's quantitative protocol, metrics are computed over 8x8 patches and
 reported as absolute error in meters plus the standard deviation of estimates
 within each patch.
 
-The primary metric is mean absolute error on reflective checkerboard patches,
-because these are where reflected downwelling radiance causes the failure mode.
-The low-reflectance tree patch is a constraint metric: a method should not gain
-on reflective surfaces by destroying ordinary air-aware absorption ranging on
-surfaces with little downwelling reflection. Invalid estimates are also counted.
+The primary metric is `reflective_mean_abs_error_m`, the mean absolute error
+over the two reflective checkerboard patches. Lower is better. Constraint
+metrics include absolute error on the low-reflectance tree patch, patch
+standard deviations, and invalid estimate fraction.
+
+## Baselines and Targets
+
+The baseline is an air-aware bispectral range estimator that does not model
+reflected radiance. The target method should substantially improve reflective
+patch error relative to that baseline while keeping invalid estimates at zero
+and avoiding severe degradation on the low-reflectance patch.
+
+## Evaluation Protocol
 
 The reusable evaluator reads prediction JSON files from `outputs/` and writes
-`scoring/scores.json`. It does not import from `method/`.
+`scoring/scores.json`. It does not import from `method/`. To compare methods
+fairly, generate predictions for the same packaged patch dataset and keep the
+wavelength, attenuation, air-temperature, and evaluation-label metadata fixed.
 
 ---
 
@@ -152,12 +162,43 @@ The reusable evaluator reads prediction JSON files from `outputs/` and writes
 
 </details>
 
+### Iteration 2: gpt-5.5
+- **Milestone**: `core_claim` | **Status**: done
+- **Working time**: 13m | **GPU**: 0.0h
+- **Jobs**: 3 total (2 completed, 1 failed)
+
+<details>
+<summary>Progress Log</summary>
+
+### [2026-05-27 10:23] - method_runs
+- Implemented the closed-form quadspectral ozone-cue estimator and air-aware
+  bispectral baseline.
+- Packaged synthetic four-band LWIR patches generated from the paper's
+  radiative-transfer model.
+- Scheduler validation ran the end-to-end reproduction and `validate.py
+  --compare` successfully.
+
+### [2026-05-27 10:30] - core_claim
+- Replaced the synthetic core benchmark with public IHTest_202104 Path 5 Step 1
+  raw LWIR HSI patches extracted from the paper's released crop, band, and
+  patch-center settings.
+- The reproduced quadspectral method reduces reflective-patch MAE from
+  139.00 m for the bispectral baseline to 34.63 m on the real patch subset.
+- `scripts/reproduce.sh` and `python validate.py --compare` pass locally.
+
+### [2026-05-27 10:36] - core_claim
+- Scheduler job `f031ddb2-f53` reran the packaged reproduction in the container
+  and exited with code 0.
+- The job reproduced the real-patch scores and passed all validation checks.
+
+</details>
+
 
 ---
 
 # Reproduction Milestones
 
-**Current: method_runs**
+**Current: core_claim**
 
 ## Stop Justification
-- Completed at milestone `method_runs`.
+- Completed at milestone `core_claim`.
