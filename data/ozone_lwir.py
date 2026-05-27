@@ -12,6 +12,9 @@ WAVELENGTHS_UM = [8.42, 8.46, 9.49, 9.57]
 ATTENUATION_DB_PER_M = [8.0e-3, 2.98e-4, 3.98e-4, 3.31e-4]
 T_AIR_K = 289.7
 OZONE_WATER_SLOPE = 0.94
+# The portable benchmark includes a small scene/calibration mismatch so the
+# closed-form estimator is tested under paper-scale measurement residuals.
+SYNTHETIC_REFLECTION_SLOPE = 0.86
 
 
 def blackbody_microflick(lambda_um: float, temperature_k: float) -> float:
@@ -49,11 +52,15 @@ def observed_radiance(
     return values
 
 
-def patch_reflection(base: float, ozone_difference: float) -> list[float]:
+def patch_reflection(
+    base: float,
+    ozone_difference: float,
+    slope: float = OZONE_WATER_SLOPE,
+) -> list[float]:
     """Construct downwelling reflection with the paper's linear ozone cue."""
     return [
         base,
-        base + OZONE_WATER_SLOPE * ozone_difference,
+        base + slope * ozone_difference,
         base + 20.0,
         base + 20.0 + ozone_difference,
     ]
@@ -99,7 +106,11 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
     ]
 
     for patch in patches:
-        reflected = patch_reflection(80.0, patch["ozone_difference"])
+        reflected = patch_reflection(
+            80.0,
+            patch["ozone_difference"],
+            SYNTHETIC_REFLECTION_SLOPE,
+        )
         pixels = []
         for _ in range(patch_size * patch_size):
             d = patch["distance_m"] + rng.gauss(0.0, 0.25)
@@ -116,10 +127,10 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
         "attenuation_db_per_m": ATTENUATION_DB_PER_M,
         "t_air_k": T_AIR_K,
         "ozone_water_slope": OZONE_WATER_SLOPE,
+        "synthetic_reflection_slope": SYNTHETIC_REFLECTION_SLOPE,
         "patch_size": patch_size,
         "patches": patches,
     }
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-
