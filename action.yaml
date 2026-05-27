@@ -2,4 +2,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Disjoint salted half-sample train/test split over 3 patch outputs; 22 train metric values, 22 test metric values; quadspectral reflective MAE 10.58m train vs 13.04m test, baseline 138.82m vs 139.18m; caveat: tiny one-scene patch benchmark still permits patch-label shortcuts."
+notes: "Packager audit passed: download.sh has executable public S3 fetches for ignored IH artifacts, URLs resolve, and no committed shared paths were found."
