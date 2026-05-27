@@ -18,8 +18,9 @@
 
 ## Results
 
-Local validation and scheduler job `f031ddb2-f53` write
-`scoring/scores.json` and pass `python validate.py --compare`.
+Local validation writes `scoring/scores.json` and passes
+`python validate.py --compare`. A final CPU scheduler validation is being
+submitted to verify the current pipeline state in-container.
 
 On the packaged real IHTest patch benchmark:
 - Bispectral reflective MAE: 139.00 m
@@ -54,12 +55,20 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
   to execute a nonexistent `method/train.py`. Removed the stale template lines.
 - Retry job `2d92bd6f-811` exited with code 0 in the scheduler container and
   passed all scoring and repository-structure validation checks.
-- Final CPU validation job `f031ddb2-f53` exited with code 0 in the scheduler
-  container after rerunning `scripts/reproduce.sh` and
-  `python validate.py --compare` on the public IHTest patch pipeline.
+- CPU validation job `f031ddb2-f53` exited with code 0 in the scheduler
+  container, but it used an earlier quadspectral calibration state. The current
+  local pipeline has since been rerun and passes validation with the scores
+  recorded above.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.
+- A packaging review identified two robustness issues. `scripts/reproduce.sh`
+  no longer calls the downloader inside compute jobs, and the evaluator now
+  returns a large penalty instead of crashing when a submission produces no
+  valid reflective estimates.
+- The method and baseline scripts now validate the band-count, attenuation
+  ordering, and non-singular water-vapor attenuation difference assumptions
+  used by the paper's closed-form estimator.
 - Raw `collect1` gives a bispectral baseline and quadspectral primary metric
   close to the paper's Table I values after using the paper-released
   downwelling-regression coefficient for the selected band pair.

@@ -1,9 +1,8 @@
 #!/bin/bash
 # Reproduce the paper's results end-to-end.
 #
-# This script runs inside the compute container and should call
-# scripts/baseline.sh and scripts/method.sh to run baselines and
-# the paper's method, each of which calls scripts/evaluate.sh.
+# This script runs inside the compute container and calls scripts/baseline.sh,
+# scripts/method.sh, and scripts/evaluate.sh.
 #
 # Assumes:
 #   - Container is built (environment/container.sif)
@@ -18,7 +17,11 @@ set -e
 
 cd /home/user
 
-bash scripts/download.sh
+if [ ! -f data/synthetic/quadspectral_core.json ]; then
+  echo "Missing data/synthetic/quadspectral_core.json. Run scripts/download.sh on an internet-enabled login node before submitting compute jobs." >&2
+  exit 1
+fi
+
 bash scripts/baseline.sh
 bash scripts/method.sh
 bash scripts/evaluate.sh

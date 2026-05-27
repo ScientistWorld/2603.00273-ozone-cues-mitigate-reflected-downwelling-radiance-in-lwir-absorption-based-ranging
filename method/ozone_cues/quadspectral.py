@@ -20,6 +20,8 @@ def estimate_distance(
     t_air_k: float,
     ozone_water_slope: float,
 ) -> float | None:
+    if len(measurements) != 4 or len(wavelengths_um) != 4 or len(attenuation_db_per_m) != 4:
+        raise ValueError("quadspectral estimation requires exactly four bands")
     l1, l2, l3, l4 = measurements
     bb1 = blackbody_microflick(wavelengths_um[0], t_air_k)
     bb2 = blackbody_microflick(wavelengths_um[1], t_air_k)
@@ -31,6 +33,8 @@ def estimate_distance(
     if gamma <= 0.0 or not math.isfinite(gamma):
         return None
     alpha1, alpha2 = attenuation_db_per_m[0], attenuation_db_per_m[1]
+    if abs(alpha2 - alpha1) < 1.0e-12:
+        raise ValueError("water-vapor band attenuations must be distinct")
     distance = -10.0 * math.log10(gamma) / (alpha2 - alpha1)
     if distance < 0.0 or not math.isfinite(distance):
         return None
@@ -44,6 +48,10 @@ def main() -> None:
     args = parser.parse_args()
 
     data = json.loads(Path(args.data).read_text(encoding="utf-8"))
+    if data["attenuation_db_per_m"][0] <= data["attenuation_db_per_m"][1]:
+        raise ValueError("expected band 1 to be the stronger water-vapor absorption band")
+    if max(data["attenuation_db_per_m"][1:]) / min(data["attenuation_db_per_m"][1:]) > 2.0:
+        raise ValueError("expected bands 2-4 to have similar near-transparent ground attenuation")
     results = {"method": "quadspectral", "patches": []}
     for patch in data["patches"]:
         estimates = [

@@ -3,4 +3,4 @@ set -e
 cd /home/user
 
 bash scripts/reproduce.sh
-python validate.py --compare
+python validate.py --compare --post-reproducer

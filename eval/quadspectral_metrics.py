@@ -48,7 +48,7 @@ def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str
         metrics[metric_name.replace("_abs_error_m", "_std_m")] = stdev(valid)
         if label["type"] == "reflective":
             reflective_errors.extend(abs_errors)
-    metrics["reflective_mean_abs_error_m"] = mean(reflective_errors)
+    metrics["reflective_mean_abs_error_m"] = mean(reflective_errors) if reflective_errors else 1.0e9
     metrics["invalid_fraction"] = invalid_count / total_count if total_count else 1.0
     return metrics
 

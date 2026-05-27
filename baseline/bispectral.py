@@ -19,6 +19,8 @@ def estimate_distance(
     attenuation_db_per_m: list[float],
     t_air_k: float,
 ) -> float | None:
+    if len(measurements) < 2 or len(wavelengths_um) < 2 or len(attenuation_db_per_m) < 2:
+        raise ValueError("bispectral estimation requires at least two bands")
     l1, l2 = measurements[0], measurements[1]
     bb1 = blackbody_microflick(wavelengths_um[0], t_air_k)
     bb2 = blackbody_microflick(wavelengths_um[1], t_air_k)
@@ -29,6 +31,8 @@ def estimate_distance(
     if gamma <= 0.0 or not math.isfinite(gamma):
         return None
     alpha1, alpha2 = attenuation_db_per_m[0], attenuation_db_per_m[1]
+    if abs(alpha2 - alpha1) < 1.0e-12:
+        raise ValueError("water-vapor band attenuations must be distinct")
     distance = -10.0 * math.log10(gamma) / (alpha2 - alpha1)
     if distance < 0.0 or not math.isfinite(distance):
         return None
@@ -42,6 +46,8 @@ def main() -> None:
     args = parser.parse_args()
 
     data = json.loads(Path(args.data).read_text(encoding="utf-8"))
+    if data["attenuation_db_per_m"][0] <= data["attenuation_db_per_m"][1]:
+        raise ValueError("expected band 1 to be the stronger water-vapor absorption band")
     results = {"method": "bispectral", "patches": []}
     for patch in data["patches"]:
         estimates = [
