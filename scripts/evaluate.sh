@@ -26,5 +26,7 @@ cd /home/user
 
 mkdir -p scoring
 
-# TODO: implement evaluation using code in eval/
-# Must write scoring/scores.json at the end
+python eval/quadspectral_metrics.py \
+  --bispectral outputs/bispectral_predictions.json \
+  --quadspectral outputs/quadspectral_predictions.json \
+  --output scoring/scores.json

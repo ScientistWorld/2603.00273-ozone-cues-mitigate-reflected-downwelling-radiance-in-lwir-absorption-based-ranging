@@ -15,3 +15,13 @@ Do NOT describe the paper's method or solution here — only the problem itself.
 ## Success Criteria
 
 <!-- What would a successful solution look like? What properties should it have? This is about the goal, not the paper's specific approach. Make it short -->
+Estimate passive long-wave infrared range from spectral radiance measurements.
+The input is radiance measured at LWIR wavelengths, known atmospheric
+attenuation coefficients, and air temperature. The output is object range in
+meters for each spatial sample or patch.
+
+The difficult case is a reflective natural-scene object under open sky.
+Reflected downwelling sky radiance carries atmospheric absorption structure and
+can make ordinary absorption-based ranging overestimate distance. A valid
+solution must estimate range from the radiance physics rather than from RGB
+texture, lidar, or learned scene priors.

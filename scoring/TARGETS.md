@@ -48,3 +48,15 @@ Delete this comment block and fill in your actual targets below.
 <!-- This is high-level. IT IS ABOUT CONCEPT, NOT NUMBERS. DO NOT INCLUDE ANY ACTUAL VALUES FROM THE PAPER OR YOUR EXPERIMENTS HERE. -->
 
 <!-- This should EXACTLY corresponds to the structure in your scores.json. -->
+# Targets
+
+Optimize `quadspectral_patch_ranges`.
+
+Primary target:
+- Reduce `reflective_mean_abs_error_m` on the reflective checkerboard patches.
+
+Constraint targets:
+- Keep `tree_abs_error_m` low on the low-reflectance patch.
+- Keep `invalid_fraction` at zero.
+- Avoid increasing patch standard deviations (`front_std_m`, `rear_std_m`,
+  `tree_std_m`) through unstable estimates.

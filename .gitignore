@@ -80,6 +80,7 @@ shared/
 
 # Credentials — never commit
 .git-credentials
+.git-shims/
 .env
 .envrc
 .claude/

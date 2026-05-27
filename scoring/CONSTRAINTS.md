@@ -76,3 +76,12 @@ Example checklist (for the sentiment analysis example above):
 ONLY WRITE ABOUT WHAT TO RESTRICT. NEVER WRITE ABOUT WHAT REMAINS OPEN.
 
 -->
+# Constraints
+
+Use the provided four-band LWIR radiance dataset and the same known wavelength,
+attenuation, air-temperature, and ozone/water-vapor slope fields.
+
+Methods may change the range estimator, but evaluation must use only the
+provided radiance measurements and metadata. Do not use the ground-truth patch
+distances during prediction. Do not replace the task with RGB, lidar, or
+scene-label inference.

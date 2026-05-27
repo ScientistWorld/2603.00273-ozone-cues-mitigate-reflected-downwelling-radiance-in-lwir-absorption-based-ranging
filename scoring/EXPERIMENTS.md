@@ -57,3 +57,11 @@ Delete this comment block and fill in your actual experiments below.
 <!-- This is high-level only. Explain WHAT the experiment is trying to show, NOT HOW the method works. -->
 
 <!-- The experiment headings here should EXACTLY match the experiment-name keys in your scores.json. -->
+# Experiments
+
+## quadspectral_patch_ranges
+
+This experiment checks whether a method reduces the large range overestimation
+on reflective targets while preserving reasonable estimates on a low-reflectance
+target. Scores are computed from prediction files over three 8x8 patches:
+front checkerboard, rear checkerboard, and tree.

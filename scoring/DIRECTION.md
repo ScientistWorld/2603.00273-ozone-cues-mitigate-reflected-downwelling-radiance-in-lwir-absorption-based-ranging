@@ -92,3 +92,13 @@ sequence-processing component. ...
 
 Delete this comment block and fill in your actual direction below.
 -->
+# Direction
+
+Work within passive LWIR absorption-based ranging under reflected downwelling
+radiance. Improvements should use radiative-transfer structure, spectral cues,
+better atmospheric/downwelling modeling, or more robust inversion of the same
+measurement family.
+
+Out-of-scope shortcuts include supervised fitting to the ground-truth patch
+distances, using non-LWIR modalities, or adding external scene priors that
+bypass the absorption/radiance problem.

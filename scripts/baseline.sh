@@ -17,4 +17,10 @@ set -e
 
 cd /home/user
 
-# TODO: run baseline
+mkdir -p outputs
+if [ ! -f data/synthetic/quadspectral_core.json ]; then
+  python data/generate_synthetic.py --output data/synthetic/quadspectral_core.json
+fi
+python baseline/bispectral.py \
+  --data data/synthetic/quadspectral_core.json \
+  --output outputs/bispectral_predictions.json

@@ -16,4 +16,4 @@
 
 set -e
 
-# uv pip install --system <packages>
+# Current core reproduction uses only the Python standard library.

@@ -1,0 +1,43 @@
+{
+  "experiments": {
+    "quadspectral_patch_ranges": {
+      "description": "Quadspectral ranging on 8x8 patches; paper Table I reports patch mean/std against lidar median ground truth.",
+      "weight": 1.0,
+      "primary_metric": "reflective_mean_abs_error_m",
+      "metrics": {
+        "reflective_mean_abs_error_m": {"higher_is_better": false, "coefficient": -1.0},
+        "front_abs_error_m": {"higher_is_better": false, "coefficient": -0.5},
+        "rear_abs_error_m": {"higher_is_better": false, "coefficient": -0.5},
+        "tree_abs_error_m": {"higher_is_better": false, "coefficient": -0.3},
+        "front_std_m": {"higher_is_better": false, "coefficient": -0.1},
+        "rear_std_m": {"higher_is_better": false, "coefficient": -0.1},
+        "tree_std_m": {"higher_is_better": false, "coefficient": -0.1},
+        "invalid_fraction": {"higher_is_better": false, "coefficient": -0.5}
+      },
+      "results": {
+        "bispectral": {
+          "type": "baseline",
+          "reflective_mean_abs_error_m": 123.735,
+          "front_abs_error_m": 119.72,
+          "rear_abs_error_m": 127.75,
+          "tree_abs_error_m": 1.99,
+          "front_std_m": 19.89,
+          "rear_std_m": 3.05,
+          "tree_std_m": 20.14,
+          "invalid_fraction": 0.0
+        },
+        "quadspectral": {
+          "type": "proposed",
+          "reflective_mean_abs_error_m": 13.955,
+          "front_abs_error_m": 8.17,
+          "rear_abs_error_m": 19.74,
+          "tree_abs_error_m": 11.37,
+          "front_std_m": 7.2,
+          "rear_std_m": 4.63,
+          "tree_std_m": 25.33,
+          "invalid_fraction": 0.0
+        }
+      }
+    }
+  }
+}

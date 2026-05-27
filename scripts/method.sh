@@ -10,5 +10,10 @@ set -e
 
 cd /home/user
 
-# TODO: run the paper's method
-# TODO: call scripts/evaluate.sh to score
+mkdir -p outputs
+if [ ! -f data/synthetic/quadspectral_core.json ]; then
+  python data/generate_synthetic.py --output data/synthetic/quadspectral_core.json
+fi
+python method/ozone_cues/quadspectral.py \
+  --data data/synthetic/quadspectral_core.json \
+  --output outputs/quadspectral_predictions.json
