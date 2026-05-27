@@ -12,6 +12,6 @@ mkdir -p scoring
 
 python eval/test/evaluate.py \
   --outputs-dir outputs \
-  --labels eval/quadspectral_core_labels.json \
+  --labels eval/test/quadspectral_test_labels.json \
   --method-source scoring/scores_train.json \
   --output scoring/scores_test.json

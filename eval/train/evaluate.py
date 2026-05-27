@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -15,6 +16,7 @@ PATCH_TO_METRIC = {
 
 EXPERIMENT = "quadspectral_patch_ranges"
 SLICE = "train"
+SPLIT_SALT = "researchgym-quadspectral-visible-v2"
 
 
 def mean(values: list[float]) -> float:
@@ -57,16 +59,23 @@ def load_labels(path: Path) -> dict[str, dict[str, float | str]]:
     return {patch["name"]: patch for patch in labels["patches"]}
 
 
-def split_member(index: int, count: int) -> bool:
-    width = math.isqrt(count)
-    if width * width == count:
-        row, col = divmod(index, width)
-        return (row + col) % 2 == 0
-    return index % 2 == 0
+def split_rank(index: int, count: int) -> tuple[int, int]:
+    digest = hashlib.blake2b(
+        f"{SPLIT_SALT}:{count}:{index}".encode("ascii"),
+        digest_size=8,
+    ).digest()
+    return (int.from_bytes(digest, "big"), index)
+
+
+def selected_indices(count: int) -> set[int]:
+    target = count // 2
+    ranked = sorted(range(count), key=lambda index: split_rank(index, count))
+    return set(ranked[:target])
 
 
 def selected_estimates(estimates: list[object]) -> list[object]:
-    return [value for i, value in enumerate(estimates) if split_member(i, len(estimates))]
+    members = selected_indices(len(estimates))
+    return [value for i, value in enumerate(estimates) if i in members]
 
 
 def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str, float]:
@@ -123,7 +132,7 @@ def discover_predictions(outputs_dir: Path) -> dict[str, Path]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--outputs-dir", default="outputs")
-    parser.add_argument("--labels", default="eval/quadspectral_core_labels.json")
+    parser.add_argument("--labels", default="eval/train/quadspectral_train_labels.json")
     parser.add_argument("--output", default="scoring/scores_train.json")
     args = parser.parse_args()
 

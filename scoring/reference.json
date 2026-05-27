@@ -5,13 +5,41 @@
       "weight": 1.0,
       "primary_metric": "reflective_mean_abs_error_m",
       "metrics": {
-        "reflective_mean_abs_error_m": {"higher_is_better": false, "coefficient": -1.0},
-        "front_abs_error_m": {"higher_is_better": false, "coefficient": -0.5},
-        "rear_abs_error_m": {"higher_is_better": false, "coefficient": -0.5},
-        "tree_abs_error_m": {"higher_is_better": false, "coefficient": -0.3},
-        "front_std_m": {"higher_is_better": false, "coefficient": -0.1},
-        "rear_std_m": {"higher_is_better": false, "coefficient": -0.1},
-        "tree_std_m": {"higher_is_better": false, "coefficient": -0.1},
+        "reflective_mean_abs_error_m": {
+          "higher_is_better": false,
+          "coefficient": -1.0,
+          "description": "Mean absolute range error over the reflective checkerboard targets; measures the paper's central claim of correcting reflective-target overestimation."
+        },
+        "front_abs_error_m": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean absolute range error on the nearer reflective checkerboard patch; catches methods that only work at one reflective target distance."
+        },
+        "rear_abs_error_m": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Mean absolute range error on the farther reflective checkerboard patch; catches methods that only work at one reflective target distance."
+        },
+        "tree_abs_error_m": {
+          "higher_is_better": false,
+          "coefficient": -0.3,
+          "description": "Mean absolute range error on the low-reflectance tree patch; discourages improving reflective targets by degrading ordinary low-reflectance scene content."
+        },
+        "front_std_m": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard deviation of range estimates on the nearer reflective patch; penalizes noisy or unstable pixelwise estimates."
+        },
+        "rear_std_m": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard deviation of range estimates on the farther reflective patch; penalizes noisy or unstable pixelwise estimates."
+        },
+        "tree_std_m": {
+          "higher_is_better": false,
+          "coefficient": -0.1,
+          "description": "Standard deviation of range estimates on the low-reflectance patch; catches methods that destabilize non-reflective regions."
+        },
         "reflective_median_abs_error_m": {
           "higher_is_better": false,
           "coefficient": -0.4,
@@ -27,7 +55,11 @@
           "coefficient": -0.2,
           "description": "Absolute signed range bias over reflective target estimates; penalizes systematic over- or under-estimation."
         },
-        "invalid_fraction": {"higher_is_better": false, "coefficient": -0.5}
+        "invalid_fraction": {
+          "higher_is_better": false,
+          "coefficient": -0.5,
+          "description": "Fraction of selected patch estimates that are missing or nonnumeric; prevents methods from hiding hard pixels by omitting predictions."
+        }
       },
       "results": {
         "bispectral": {
