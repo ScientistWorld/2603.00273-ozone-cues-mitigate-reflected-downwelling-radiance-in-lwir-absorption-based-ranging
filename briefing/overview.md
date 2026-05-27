@@ -22,5 +22,6 @@ bispectral baseline on public IHTest_202104 Path 5 Step 1 LWIR HSI patches.
   quadspectral correction.
 - This reproduction shows the same qualitative effect on a small real-data
   benchmark: reflective-patch error drops sharply relative to the bispectral
-  baseline, though the raw public cube leaves more invalid/noisy quadspectral
-  estimates than the paper's processed MATLAB cube.
+  baseline and the proposed-method primary metric is close to the paper's
+  Table I value, though the raw public cube is not the authors' processed
+  MATLAB cube.

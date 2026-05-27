@@ -5,4 +5,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Core claim reproduced and scheduler-validated on public IHTest real LWIR patches; environment packaged with passing reproduce.sh and validate.py --compare."
+notes: "Validation fixed by packaging public IHTest collect0 patches; reproduce.sh and validate.py --compare pass with quadspectral reflective MAE 17.66 m."
