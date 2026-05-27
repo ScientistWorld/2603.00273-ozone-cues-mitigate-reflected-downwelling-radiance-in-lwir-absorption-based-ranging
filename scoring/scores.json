@@ -3,23 +3,23 @@
     "quadspectral_patch_ranges": {
       "results": {
         "bispectral": {
-          "front_abs_error_m": 85.19188071753645,
-          "front_std_m": 4.295315165712962,
-          "rear_abs_error_m": 85.25341796283799,
+          "front_abs_error_m": 85.19188071753643,
+          "front_std_m": 4.295315165712961,
+          "rear_abs_error_m": 85.253417962838,
           "rear_std_m": 3.6575507224324277,
-          "tree_abs_error_m": 1.982603367235526,
-          "tree_std_m": 1.681021570318438,
-          "reflective_mean_abs_error_m": 85.22264934018722,
+          "tree_abs_error_m": 1.9826033672355268,
+          "tree_std_m": 1.6810215703184384,
+          "reflective_mean_abs_error_m": 85.22264934018719,
           "invalid_fraction": 0.0
         },
         "quadspectral": {
-          "front_abs_error_m": 5.971972742861781,
+          "front_abs_error_m": 5.97197274286178,
           "front_std_m": 4.009547570944203,
-          "rear_abs_error_m": 5.858775515733224,
-          "rear_std_m": 3.2416922032586832,
+          "rear_abs_error_m": 5.858775515733225,
+          "rear_std_m": 3.2416922032586837,
           "tree_abs_error_m": 3.763869088812315,
           "tree_std_m": 2.157443525740917,
-          "reflective_mean_abs_error_m": 5.915374129297502,
+          "reflective_mean_abs_error_m": 5.9153741292975015,
           "invalid_fraction": 0.0
         }
       }
