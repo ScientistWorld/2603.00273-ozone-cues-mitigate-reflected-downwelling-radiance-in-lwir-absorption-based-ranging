@@ -15,7 +15,7 @@
 
 ## Results
 
-Local validation writes `scoring/scores.json` and passes
+Local validation and scheduler validation write `scoring/scores.json` and pass
 `python validate.py --compare`.
 
 On the packaged synthetic benchmark:
@@ -30,7 +30,6 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 
 ## Remaining
 
-- Run the packaged pipeline in the scheduler container.
 - A higher milestone would require acquiring the full IHTest_202104 HSI cube
   and reproducing the real patch table, or running the upstream hyperspectral
   optimizer.
@@ -42,6 +41,8 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - Job `ef89eced-1b5` ran the reproduction and validation successfully, but
   exited with code 2 because the template tail of `scripts/run.sh` still tried
   to execute a nonexistent `method/train.py`. Removed the stale template lines.
+- Retry job `2d92bd6f-811` exited with code 0 in the scheduler container and
+  passed all scoring and repository-structure validation checks.
 
 ## Deviations from Paper
 

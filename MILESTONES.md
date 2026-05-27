@@ -32,5 +32,9 @@
 - Scheduler job `ef89eced-1b5` completed the reproduction and `validate.py --compare` successfully.
 - The job failed only after that because stale template commands in `scripts/run.sh` invoked missing `method/train.py`; those lines were removed before resubmission.
 
+### [2026-05-27 11:38] - core_claim
+- Scheduler retry job `2d92bd6f-811` exited with code 0.
+- The packaged CPU reproduction passed `scripts/reproduce.sh`, `validate.py --compare`, import-separation checks, and eval-output checks inside the compute container.
+
 ## Stop Justification
-- Not stopped. Submitting a scheduler smoke job to verify the packaged CPU pipeline in-container.
+- Stopping at `core_claim`: the paper's actual quadspectral ozone-cue computation is implemented and verified end to end on a non-trivial synthetic benchmark generated from the paper's radiative-transfer model. The packaged environment passed scheduler validation; higher milestones would require the unavailable full IHTest_202104 hyperspectral cube or a larger hyperspectral-optimizer reproduction.
