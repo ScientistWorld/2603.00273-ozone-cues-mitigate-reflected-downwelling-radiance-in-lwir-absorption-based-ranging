@@ -17,6 +17,7 @@ PATCH_TO_METRIC = {
 EXPERIMENT = "quadspectral_patch_ranges"
 SLICE = "test"
 SPLIT_SALT = "researchgym-quadspectral-heldout-v2"
+TRAIN_SPLIT_SALT = "researchgym-quadspectral-visible-v2"
 
 
 def mean(values: list[float]) -> float:
@@ -67,9 +68,25 @@ def split_rank(index: int, count: int) -> tuple[int, int]:
     return (int.from_bytes(digest, "big"), index)
 
 
+def train_split_rank(index: int, count: int) -> tuple[int, int]:
+    digest = hashlib.blake2b(
+        f"{TRAIN_SPLIT_SALT}:{count}:{index}".encode("ascii"),
+        digest_size=8,
+    ).digest()
+    return (int.from_bytes(digest, "big"), index)
+
+
+def train_selected_indices(count: int) -> set[int]:
+    target = count // 2
+    ranked = sorted(range(count), key=lambda index: train_split_rank(index, count))
+    return set(ranked[:target])
+
+
 def selected_indices(count: int) -> set[int]:
     target = count // 2
-    ranked = sorted(range(count), key=lambda index: split_rank(index, count))
+    train_members = train_selected_indices(count)
+    candidates = [index for index in range(count) if index not in train_members]
+    ranked = sorted(candidates, key=lambda index: split_rank(index, count))
     return set(ranked[:target])
 
 
