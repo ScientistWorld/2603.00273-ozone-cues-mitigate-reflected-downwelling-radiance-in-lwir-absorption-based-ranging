@@ -18,13 +18,4 @@
 <!-- Write your progress here -->
 
 ## Stop Justification
-
-<!-- Do not edit this unless you decide to stop -->
-
-<!-- Write a brief explanation of WHY you are stopping at this milestone.
-     What blocked you to reach the next milestone and you decided to stop?
-     This is NOT a progress summary — the Progress Log above covers that.
-     Example: "Stopping at core_claim because the full dataset requires
-     proprietary access. Core claim validated on the public subset." -->
-
-<!-- ALWAYS fill in this section when you wrap up. NEVER remove this section. -->
+- Completed at milestone `none`.

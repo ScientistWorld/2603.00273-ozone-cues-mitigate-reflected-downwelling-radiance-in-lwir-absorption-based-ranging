@@ -223,3 +223,10 @@ Thumbs.db
 
 # Core dumps
 core.*
+# Auto-added by swarm
+environment/overlay.img
+jobs/
+tmp/
+protocol.md
+*.egg-info
+core.[0-9]*
