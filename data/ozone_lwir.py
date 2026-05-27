@@ -11,7 +11,9 @@ from pathlib import Path
 WAVELENGTHS_UM = [8.42, 8.46, 9.49, 9.57]
 ATTENUATION_DB_PER_M = [8.0e-3, 2.98e-4, 3.98e-4, 3.31e-4]
 T_AIR_K = 289.7
-OZONE_WATER_SLOPE = 0.94
+# Absolute regression coefficient for the paper's Figure_bispectral_results.m
+# pair_index=5, derived from method/upstream/data/I_downwelling_res.mat.
+OZONE_WATER_SLOPE = 0.7977227816102535
 # The portable benchmark includes a small scene/calibration mismatch so the
 # closed-form estimator is tested under paper-scale measurement residuals.
 SYNTHETIC_REFLECTION_SLOPE = 0.86

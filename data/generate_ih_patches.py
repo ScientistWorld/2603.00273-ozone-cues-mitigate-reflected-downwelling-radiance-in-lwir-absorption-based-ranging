@@ -131,7 +131,7 @@ def extract_dataset(hdr: Path, bsq: Path, output: Path, labels_output: Path, pat
             )
 
     payload = {
-        "description": "Four-band 8x8 patches extracted from public IHTest_202104 Path 5 Step 1 LWIR HSI collect0 using the paper's released MATLAB coordinates.",
+        "description": "Four-band 8x8 patches extracted from public IHTest_202104 Path 5 Step 1 LWIR HSI collect1 using the paper's released MATLAB coordinates.",
         "source": "s3://ihdataset-01/IHTest_202104_DistStA/Path5_DistStA/Path5_Step1_DistStA/",
         "wavelengths_um": selected_wavelengths,
         "attenuation_db_per_m": ATTENUATION_DB_PER_M,
@@ -159,8 +159,8 @@ def extract_dataset(hdr: Path, bsq: Path, output: Path, labels_output: Path, pat
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--hdr", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect0_DistStA.hdr")
-    parser.add_argument("--bsq", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect0_DistStA.bsq")
+    parser.add_argument("--hdr", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.hdr")
+    parser.add_argument("--bsq", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.bsq")
     parser.add_argument("--output", default="data/synthetic/quadspectral_core.json")
     parser.add_argument("--labels-output", default="eval/quadspectral_core_labels.json")
     parser.add_argument("--patch-size", type=int, default=8)

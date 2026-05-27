@@ -17,7 +17,7 @@
   raw LWIR HSI patches extracted from the paper's released crop, band, and
   patch-center settings.
 - The reproduced quadspectral method reduces reflective-patch MAE from
-  23.51 m for the bispectral baseline to 17.66 m on the real patch subset.
+  139.00 m for the bispectral baseline to 11.83 m on the real patch subset.
 - `scripts/reproduce.sh` and `python validate.py --compare` pass locally.
 
 ### [2026-05-27 10:36] - core_claim
@@ -27,11 +27,12 @@
   validation checks.
 
 ### [2026-05-27 10:45] - core_claim
-- Switched the packaged public IHTest subset from raw `collect1` to raw
-  `collect0` because it matches the paper's proposed-method primary metric
-  within validation tolerance while preserving a measured bispectral baseline.
-- `scripts/reproduce.sh` and `python validate.py --compare` pass locally with
-  quadspectral reflective MAE of 17.66 m.
+- Restored the packaged public IHTest subset to raw `collect1` and replaced
+  the rough ozone/water correction constant with the band-pair coefficient
+  derived from the paper's released downwelling dictionary.
+- `scripts/reproduce.sh`, `python validate.py --compare`, and
+  `python validate.py` pass locally with quadspectral reflective MAE of
+  11.83 m.
 
 ## Stop Justification
 - Not stopped. The core claim is reproduced on a real public-data patch subset;

@@ -22,11 +22,11 @@ Local validation and scheduler job `f031ddb2-f53` write
 `scoring/scores.json` and pass `python validate.py --compare`.
 
 On the packaged real IHTest patch benchmark:
-- Bispectral reflective MAE: 23.51 m
-- Quadspectral reflective MAE: 17.66 m
-- Bispectral tree MAE: 48.73 m
-- Quadspectral tree MAE: 21.88 m
-- Invalid fraction: 0.0 for bispectral and 0.047 for quadspectral
+- Bispectral reflective MAE: 139.00 m
+- Quadspectral reflective MAE: 11.83 m
+- Bispectral tree MAE: 77.62 m
+- Quadspectral tree MAE: 59.71 m
+- Invalid fraction: 0.0 for bispectral and 0.042 for quadspectral
 
 Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 13.96 m for quadspectral on the real Path 5 Step 1 lidar patches.
@@ -48,7 +48,7 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - The upstream repository includes atmospheric and lidar support files but not
   the large `DC2P5S1.mat` radiance cube used in the paper figures. The public
   AWS IH dataset provides raw ENVI BSQ collects; this gym extracts the paper
-  patch measurements from `LWHSI1_collect0`.
+  patch measurements from `LWHSI1_collect1`.
 - Job `ef89eced-1b5` ran the reproduction and validation successfully, but
   exited with code 2 because the template tail of `scripts/run.sh` still tried
   to execute a nonexistent `method/train.py`. Removed the stale template lines.
@@ -60,9 +60,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.
-- Raw `collect0` gives a quadspectral primary metric close to the paper's
-  Table I value and shows a smaller but still positive reflective-target
-  improvement over the bispectral baseline.
+- Raw `collect1` gives a bispectral baseline and quadspectral primary metric
+  close to the paper's Table I values after using the paper-released
+  downwelling-regression coefficient for the selected band pair.
   The paper's processed cube likely includes calibration/registration steps not
   present in the raw public BSQ file.
 

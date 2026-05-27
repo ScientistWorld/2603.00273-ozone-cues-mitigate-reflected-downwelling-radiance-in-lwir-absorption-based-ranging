@@ -5,4 +5,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Validation fixed by packaging public IHTest collect0 patches; reproduce.sh and validate.py --compare pass with quadspectral reflective MAE 17.66 m."
+notes: "Validation fixed by using IHTest collect1 with the paper downwelling-regression coefficient; validate.py and validate.py --compare pass with bispectral 139.00 m and quadspectral 11.83 m reflective MAE."
