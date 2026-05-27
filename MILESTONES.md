@@ -19,3 +19,7 @@
 ### [2026-05-27 10:51] - core_claim
 - CPU scheduler job `669d3422-e57` exited with code 0 in the Apptainer environment.
 - The job reran `scripts/run.sh`, regenerated scores, and passed `python validate.py --compare --post-reproducer` with the same reflective-patch core-claim result.
+
+### [2026-05-27 11:10] - core_claim
+- Tightened the default job entrypoint so `scripts/run.sh` runs the full reproduction, train/test slice scoring, and post-reproducer validation.
+- Expanded the main evaluator to report all declared reflective-error summary metrics in `scoring/scores.json`.

@@ -67,6 +67,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - CPU validation job `669d3422-e57` exited with code 0 on the audited current
   state. Its stdout shows scoring consistency checks and all repository
   structure checks passed.
+- Local validation after packaging updates passes `bash scripts/run.sh`, which
+  now runs the full reproduction, train/test slice scoring, and
+  `python validate.py --compare --post-reproducer`.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.

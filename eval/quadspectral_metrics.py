@@ -18,6 +18,30 @@ def mean(values: list[float]) -> float:
     return sum(values) / len(values)
 
 
+def median(values: list[float]) -> float:
+    if not values:
+        return 1.0e9
+    ordered = sorted(values)
+    mid = len(ordered) // 2
+    if len(ordered) % 2:
+        return ordered[mid]
+    return (ordered[mid - 1] + ordered[mid]) / 2.0
+
+
+def percentile(values: list[float], q: float) -> float:
+    if not values:
+        return 1.0e9
+    ordered = sorted(values)
+    if len(ordered) == 1:
+        return ordered[0]
+    pos = (len(ordered) - 1) * q
+    lo = math.floor(pos)
+    hi = math.ceil(pos)
+    if lo == hi:
+        return ordered[lo]
+    return ordered[lo] * (hi - pos) + ordered[hi] * (pos - lo)
+
+
 def stdev(values: list[float]) -> float:
     if len(values) < 2:
         return 0.0
@@ -34,6 +58,7 @@ def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str
     data = json.loads(path.read_text(encoding="utf-8"))
     metrics: dict[str, float] = {}
     reflective_errors = []
+    reflective_signed_errors = []
     invalid_count = 0
     total_count = 0
     for patch in data["patches"]:
@@ -48,7 +73,15 @@ def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str
         metrics[metric_name.replace("_abs_error_m", "_std_m")] = stdev(valid)
         if label["type"] == "reflective":
             reflective_errors.extend(abs_errors)
+            reflective_signed_errors.extend(
+                [v - float(label["distance_m"]) for v in valid]
+            )
     metrics["reflective_mean_abs_error_m"] = mean(reflective_errors) if reflective_errors else 1.0e9
+    metrics["reflective_median_abs_error_m"] = median(reflective_errors)
+    metrics["reflective_p90_abs_error_m"] = percentile(reflective_errors, 0.90)
+    metrics["reflective_abs_bias_m"] = (
+        abs(mean(reflective_signed_errors)) if reflective_signed_errors else 1.0e9
+    )
     metrics["invalid_fraction"] = invalid_count / total_count if total_count else 1.0
     return metrics
 

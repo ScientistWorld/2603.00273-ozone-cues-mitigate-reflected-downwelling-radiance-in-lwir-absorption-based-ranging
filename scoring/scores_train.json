@@ -6,10 +6,10 @@
       "results": {
         "bispectral": {
           "front_abs_error_m": 130.6943062884663,
-          "front_std_m": 31.94944755760367,
+          "front_std_m": 31.949447557603673,
           "rear_abs_error_m": 146.93776338746596,
           "rear_std_m": 3.5035114343105604,
-          "tree_abs_error_m": 84.09123042210045,
+          "tree_abs_error_m": 84.09123042210044,
           "tree_std_m": 32.66183301981673,
           "reflective_mean_abs_error_m": 138.81603483796613,
           "reflective_median_abs_error_m": 146.16513650974792,
@@ -22,7 +22,7 @@
           "front_std_m": 6.206439722697028,
           "rear_abs_error_m": 15.280127622516915,
           "rear_std_m": 5.477441773069892,
-          "tree_abs_error_m": 62.53070769585007,
+          "tree_abs_error_m": 62.530707695850076,
           "tree_std_m": 37.22978709592736,
           "reflective_mean_abs_error_m": 10.579603050199804,
           "reflective_median_abs_error_m": 10.513539507607526,
