@@ -12,6 +12,21 @@
         "front_std_m": {"higher_is_better": false, "coefficient": -0.1},
         "rear_std_m": {"higher_is_better": false, "coefficient": -0.1},
         "tree_std_m": {"higher_is_better": false, "coefficient": -0.1},
+        "reflective_median_abs_error_m": {
+          "higher_is_better": false,
+          "coefficient": -0.4,
+          "description": "Median absolute range error over reflective target estimates; rewards consistent central accuracy without tying scores to published values."
+        },
+        "reflective_p90_abs_error_m": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Ninetieth-percentile absolute range error over reflective target estimates; catches visible-slice methods with a poor error tail."
+        },
+        "reflective_abs_bias_m": {
+          "higher_is_better": false,
+          "coefficient": -0.2,
+          "description": "Absolute signed range bias over reflective target estimates; penalizes systematic over- or under-estimation."
+        },
         "invalid_fraction": {"higher_is_better": false, "coefficient": -0.5}
       },
       "results": {
