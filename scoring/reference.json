@@ -2,6 +2,7 @@
   "experiments": {
     "lwir_reflective_patch_ranges": {
       "description": "LWIR spectral ranging on 8x8 patches; paper Table I reports patch mean/std against lidar median ground truth.",
+      "notes": "Reference values are the paper's Table I patch means/errors. Reproduction scores are computed from the public raw IHTest collect1 because the authors' processed DC2P5S1.mat cube is not released; reflective-target metrics match the core claim closely, while the low-reflectance tree constraint is harder on the raw cube.",
       "weight": 1.0,
       "primary_metric": "reflective_mean_abs_error_m",
       "metrics": {
@@ -43,17 +44,17 @@
         "reflective_median_abs_error_m": {
           "higher_is_better": false,
           "coefficient": -0.4,
-          "description": "Median absolute range error over reflective target estimates; rewards consistent central accuracy without tying scores to published values."
+          "description": "Median absolute range error over reflective target estimates; not reported by the paper, added as a gym robustness metric."
         },
         "reflective_p90_abs_error_m": {
           "higher_is_better": false,
           "coefficient": -0.2,
-          "description": "Ninetieth-percentile absolute range error over reflective target estimates; catches visible-slice methods with a poor error tail."
+          "description": "Ninetieth-percentile absolute range error over reflective target estimates; not reported by the paper, added to catch methods with a poor error tail."
         },
         "reflective_abs_bias_m": {
           "higher_is_better": false,
           "coefficient": -0.2,
-          "description": "Absolute signed range bias over reflective target estimates; penalizes systematic over- or under-estimation."
+          "description": "Absolute signed range bias over reflective target estimates; not reported by the paper, added to penalize systematic over- or under-estimation."
         },
         "invalid_fraction": {
           "higher_is_better": false,

@@ -15,6 +15,10 @@ range error from 139.00 m for the baseline to 11.83 m.
   paths, including the public experiment key and evaluator/data filenames.
 - Minor: `briefing/evaluation.md` described the baseline algorithm more
   specifically than needed for from-scratch mode.
+- Minor: the low-reflectance tree constraint score differs substantially from
+  the paper because this gym uses the public raw IHTest cube rather than the
+  authors' unreleased processed MATLAB cube. The reflective headline remains
+  close to Table I and the limitation is now explicit in `reference.json`.
 - No critical scoring, URL, import-separation, or train/test wiring issues were
   found.
 
@@ -26,6 +30,8 @@ range error from 139.00 m for the baseline to 11.83 m.
   and reference comparison without exposing the paper's target algorithm.
 - Renamed shared data utility code and metadata from method-specific wording to
   neutral LWIR/sky-radiance terminology.
+- Added a `reference.json` note explaining the raw-cube data deviation and
+  marking extra robustness metrics that were not reported by the paper.
 - Verified both `scripts/download.sh` URLs with `curl -I -L --max-time 15`;
   the IHTest header and BSQ files both returned HTTP 200 from S3.
 - Reran `bash scripts/run.sh` and `python validate.py --compare
