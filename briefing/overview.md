@@ -13,12 +13,14 @@ produce large overestimates. The paper proposes a closed-form four-band
 estimator and a richer hyperspectral optimizer that explicitly account for
 reflected downwelling radiance. The packaged reproduction implements the
 closed-form quadspectral estimator and compares it against the air-aware
-bispectral baseline on a portable radiative-transfer benchmark.
+bispectral baseline on public IHTest_202104 Path 5 Step 1 LWIR HSI patches.
 
 ## Key Results
 
 - Paper Table I reports reflective checkerboard errors dropping from over 100 m
   with the bispectral baseline to paper-scale residual errors with the
   quadspectral correction.
-- This reproduction shows the same qualitative effect on a small benchmark:
-  reflective-patch error drops sharply while invalid estimates remain zero.
+- This reproduction shows the same qualitative effect on a small real-data
+  benchmark: reflective-patch error drops sharply relative to the bispectral
+  baseline, though the raw public cube leaves more invalid/noisy quadspectral
+  estimates than the paper's processed MATLAB cube.

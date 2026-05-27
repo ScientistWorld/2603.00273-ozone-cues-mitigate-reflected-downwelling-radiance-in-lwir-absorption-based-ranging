@@ -1,20 +1,20 @@
 {
-  "description": "Evaluation labels for the synthetic four-band LWIR patch benchmark.",
+  "description": "Patch labels from the paper's Table I lidar ground-truth distances.",
   "patches": [
     {
       "name": "front_checkerboard",
       "type": "reflective",
-      "distance_m": 25.0
+      "distance_m": 31.01
     },
     {
       "name": "rear_checkerboard",
       "type": "reflective",
-      "distance_m": 45.0
+      "distance_m": 46.51
     },
     {
       "name": "tree",
       "type": "low_reflectance",
-      "distance_m": 58.0
+      "distance_m": 57.84
     }
   ]
 }

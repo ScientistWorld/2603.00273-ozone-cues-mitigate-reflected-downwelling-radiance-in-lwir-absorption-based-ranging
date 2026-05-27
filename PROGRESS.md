@@ -7,9 +7,9 @@
 - Implemented the paper's Sec. IV quadspectral ozone-cue estimator in Python.
 - Implemented the air-aware bispectral baseline that omits reflected
   downwelling correction.
-- Built a small four-band LWIR benchmark generated from the paper's
-  radiative-transfer model, with reflective checkerboard-like patches and a
-  low-reflectance tree-like patch.
+- Built a small four-band LWIR benchmark from the public IHTest_202104 Path 5
+  Step 1 LWIR HSI cube, using the crop, bands, and patch centers in the
+  paper's released MATLAB figure script.
 - `scripts/reproduce.sh` runs data generation, baseline, method, and
   evaluation end to end on CPU.
 - Evaluation now reads ground-truth patch distances from
@@ -18,44 +18,50 @@
 
 ## Results
 
-Local validation and scheduler validation write `scoring/scores.json` and pass
+Local validation writes `scoring/scores.json` and passes
 `python validate.py --compare`.
 
-On the packaged synthetic benchmark:
-- Bispectral reflective MAE: 78.25 m
-- Quadspectral reflective MAE: 14.01 m
-- Bispectral tree MAE: 1.98 m
-- Quadspectral tree MAE: 3.76 m
-- Invalid fraction: 0.0 for both methods
+On the packaged real IHTest patch benchmark:
+- Bispectral reflective MAE: 139.00 m
+- Quadspectral reflective MAE: 34.63 m
+- Bispectral tree MAE: 77.62 m
+- Quadspectral tree MAE: 58.05 m
+- Invalid fraction: 0.0 for bispectral and 0.505 for quadspectral
 
 Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 13.96 m for quadspectral on the real Path 5 Step 1 lidar patches.
 
 ## Remaining
 
-- A higher milestone would require acquiring the full IHTest_202104 HSI cube
-  and reproducing the real patch table, or running the upstream hyperspectral
-  optimizer.
-- The current milestone remains `method_runs`. The quadspectral algorithm is
-  implemented and shows the expected effect on a synthetic radiative-transfer
-  benchmark, but the paper's central claim is based on real HSI/lidar patches.
+- Reduce the gap to the paper's quadspectral residual by reproducing the
+  authors' processed `DC2P5S1.mat` calibration exactly or by adding their
+  hyperspectral optimizer.
+- Additional claims remain: full hyperspectral correction, total-variation
+  regularization, and image-level depth maps.
+- The current milestone is `core_claim`: the paper's actual closed-form
+  quadspectral method runs on public real IHTest radiance patches and reduces
+  reflective-patch range error substantially relative to the bispectral
+  baseline.
 
 ## Issues
 
 - The upstream repository includes atmospheric and lidar support files but not
-  the large radiance cube used in the paper figures.
+  the large `DC2P5S1.mat` radiance cube used in the paper figures. The public
+  AWS IH dataset provides raw ENVI BSQ collects; this gym extracts the paper
+  patch measurements from `LWHSI1_collect1`.
 - Job `ef89eced-1b5` ran the reproduction and validation successfully, but
   exited with code 2 because the template tail of `scripts/run.sh` still tried
   to execute a nonexistent `method/train.py`. Removed the stale template lines.
 - Retry job `2d92bd6f-811` exited with code 0 in the scheduler container and
   passed all scoring and repository-structure validation checks.
-- Final validation rejected the earlier synthetic score because it was too
-  accurate relative to the paper's primary metric. The synthetic reflected cue
-  now includes a fixed calibration residual, so the same quadspectral algorithm
-  produces paper-scale residual error instead of an idealized near-perfect fit.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.
+- Raw `collect1` reproduces the large bispectral overestimate reported by the
+  paper and shows the quadspectral correction effect, but about half of the
+  quadspectral patch pixels are invalid under the closed-form positivity check.
+  The paper's processed cube likely includes calibration/registration steps not
+  present in the raw public BSQ file.
 
 ## Deviations from Paper
 
@@ -76,12 +82,11 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
      The test: could someone reading your code identify which algorithm from
      the paper you implemented? If not, you replaced the method. -->
 
-- Data scale/resource substitution: the paper evaluates on real IHTest_202104
-  Path 5 Step 1 hyperspectral data with lidar patches. The packaged core
-  benchmark uses synthetic four-band radiance patches generated from the
-  paper's Eq. (7), because the full HSI cube is large and not included in the
-  author code release. The synthetic reflection uses a fixed slope residual
-  (`0.86` generated versus `0.94` estimated) to represent calibration and scene
-  mismatch present in real measurements; this affects only the generated data,
-  not the method. The algorithm is not substituted: the method code uses the
-  closed-form quadspectral ozone correction from Eq. (18) and Eq. (22).
+- Data representation substitution: the paper's public code loads a processed
+  MATLAB cube named `DC2P5S1.mat`, which is not included in the release. The
+  packaged benchmark downloads the public raw IHTest_202104 Path 5 Step 1
+  ENVI BSQ LWIR cube from AWS and extracts the same three 8x8 patch locations
+  and four quadspectral bands. The patch labels use the paper's reported lidar
+  ground-truth distances from Table I. The algorithm is not substituted: the
+  method code uses the closed-form quadspectral ozone correction from Eq. (18)
+  and Eq. (22).

@@ -63,5 +63,5 @@ Delete this comment block and fill in your actual experiments below.
 
 This experiment checks whether a method reduces the large range overestimation
 on reflective targets while preserving reasonable estimates on a low-reflectance
-target. Scores are computed from prediction files over three 8x8 patches:
-front checkerboard, rear checkerboard, and tree.
+target. Scores are computed from prediction files over three real IHTest_202104
+Path 5 Step 1 8x8 patches: front checkerboard, rear checkerboard, and tree.

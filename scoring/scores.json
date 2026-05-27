@@ -3,24 +3,24 @@
     "quadspectral_patch_ranges": {
       "results": {
         "bispectral": {
-          "front_abs_error_m": 78.22971607175046,
-          "front_std_m": 4.099852690912218,
-          "rear_abs_error_m": 78.27769787225118,
-          "rear_std_m": 3.456250497977765,
-          "tree_abs_error_m": 1.982603367235526,
-          "tree_std_m": 1.681021570318438,
-          "reflective_mean_abs_error_m": 78.25370697200083,
+          "front_abs_error_m": 131.94081463705635,
+          "front_std_m": 28.731304626515808,
+          "rear_abs_error_m": 146.05844919343332,
+          "rear_std_m": 3.6543621409726983,
+          "tree_abs_error_m": 77.62483705428649,
+          "tree_std_m": 37.88834838941562,
+          "reflective_mean_abs_error_m": 138.99963191524483,
           "invalid_fraction": 0.0
         },
         "quadspectral": {
-          "front_abs_error_m": 14.002141653465767,
-          "front_std_m": 4.144807265706764,
-          "rear_abs_error_m": 14.019085758002639,
-          "rear_std_m": 3.367507906181933,
-          "tree_abs_error_m": 3.763869088812315,
-          "tree_std_m": 2.157443525740917,
-          "reflective_mean_abs_error_m": 14.010613705734203,
-          "invalid_fraction": 0.0
+          "front_abs_error_m": 27.742583500695694,
+          "front_std_m": 2.576884545162778,
+          "rear_abs_error_m": 42.433147559299535,
+          "rear_std_m": 2.586914951469227,
+          "tree_abs_error_m": 58.04999778397515,
+          "tree_std_m": 44.93254194128934,
+          "reflective_mean_abs_error_m": 34.62878540316624,
+          "invalid_fraction": 0.5052083333333334
         }
       }
     }
