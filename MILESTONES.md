@@ -41,4 +41,4 @@
 - Local `scripts/reproduce.sh` and `python validate.py --compare` now pass with quadspectral reflective MAE 14.01 m and invalid fraction 0.0.
 
 ## Stop Justification
-- Stopping at `core_claim`: the paper's actual quadspectral ozone-cue computation is implemented and verified end to end on a non-trivial synthetic benchmark generated from the paper's radiative-transfer model. The packaged environment passed scheduler validation; higher milestones would require the unavailable full IHTest_202104 hyperspectral cube or a larger hyperspectral-optimizer reproduction.
+- Completed at milestone `core_claim`.

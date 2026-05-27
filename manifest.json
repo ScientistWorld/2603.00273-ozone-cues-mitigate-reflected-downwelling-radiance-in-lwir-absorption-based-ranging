@@ -1,0 +1,130 @@
+{
+  "paper": {
+    "arxiv_id": "2603.00273",
+    "title": "Ozone Cues Mitigate Reflected Downwelling Radiance in LWIR Absorption-Based Ranging",
+    "date": null,
+    "topics": null
+  },
+  "reproduction": {
+    "milestone": "core_claim",
+    "status": "done",
+    "error": null,
+    "scaffold": "codex",
+    "model": "gpt-5.5",
+    "profile": "gpt-5.5-medium",
+    "effort": "medium",
+    "gpu_hours_used": 0.0,
+    "current_iteration_gpu_budget": 30,
+    "current_iteration_gpu_hours_used": 0.0,
+    "total_gpu_hours_used": 0.0,
+    "current_iteration_cpu_hours_used": 0.028,
+    "total_cpu_hours_used": 0.028,
+    "gpu_budget": 30,
+    "duration_sec": 845.2,
+    "cost_usd": null,
+    "input_tokens": 4262266,
+    "output_tokens": 21958,
+    "cached_input_tokens": 3872384,
+    "cache_creation_tokens": null,
+    "reasoning_tokens": 0,
+    "total_input_tokens": 4262266,
+    "num_turns": 90,
+    "duration_api_ms": null,
+    "num_runs": 1,
+    "iteration_count": 0,
+    "workflow": "standard",
+    "workflow_step": 0,
+    "total_gpu_jobs": 2,
+    "time_breakdown": {
+      "working": 648.9622719287872,
+      "building": 0.0946650505065918,
+      "installing": 1.5546352863311768,
+      "waiting": 132.46289825439453
+    }
+  },
+  "agents": [
+    {
+      "scaffold": "codex",
+      "model": "gpt-5.5",
+      "profile": "gpt-5.5-medium",
+      "effort": "medium",
+      "role": "reproducer",
+      "is_iteration": false,
+      "iteration": 1,
+      "workflow": "standard",
+      "workflow_step": 0,
+      "started_at": 1779876374.4435675,
+      "finished_at": 1779877219.6090107,
+      "duration_sec": 845.2,
+      "blocked_sec": 0.0,
+      "status": "done",
+      "error": null,
+      "milestone": "core_claim",
+      "gpu_budget": 30,
+      "gpu_hours_used": 0.0,
+      "total_gpu_hours_used": 0.0,
+      "cpu_hours_used": 0.028,
+      "time_breakdown": {
+        "working": 648.9622719287872,
+        "building": 0.0946650505065918,
+        "installing": 1.5546352863311768,
+        "waiting": 132.46289825439453
+      },
+      "cost_usd": null,
+      "input_tokens": 4262266,
+      "output_tokens": 21958,
+      "cached_input_tokens": 3872384,
+      "cache_creation_tokens": null,
+      "reasoning_tokens": 0,
+      "total_input_tokens": 4262266,
+      "num_turns": 90,
+      "duration_api_ms": null,
+      "tool_uses": {
+        "shell": 82,
+        "file_edit": 8
+      },
+      "gpu_jobs": [
+        {
+          "run_id": "2d92bd6f-811",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu-test",
+          "hive_job_id": "880f4c2f",
+          "status": "completed",
+          "returncode": 0,
+          "duration_sec": 49.4,
+          "submitted_at": 1779877108.7325788,
+          "started_at": 1779877110.6575804,
+          "completed_at": 1779877160.0264938
+        },
+        {
+          "run_id": "ef89eced-1b5",
+          "command": "bash /home/user/scripts/run.sh",
+          "num_gpus": 0,
+          "num_cpus": 1,
+          "resource": "gpu-cpu-test",
+          "hive_job_id": "d2a81f7e",
+          "status": "failed",
+          "returncode": 2,
+          "duration_sec": 49.8,
+          "submitted_at": 1779876866.0826237,
+          "started_at": 1779876867.6659875,
+          "completed_at": 1779876917.4603014
+        }
+      ],
+      "progress_log": "<!-- Write your progress here -->\n\n### [2026-05-27 10:35] - none\n- Started reproduction work and read the paper's measurement model, quadspectral estimator, hyperspectral estimator, and reported patch metrics.\n\n### [2026-05-27 11:05] - method_runs\n- Implemented the paper's quadspectral closed-form ozone correction and the air-aware bispectral baseline.\n- Built scripts that run data generation, prediction, and evaluation end to end locally.\n\n### [2026-05-27 11:20] - core_claim\n- On a synthetic benchmark generated from the paper's radiative-transfer model, quadspectral ozone correction reduced reflective-patch MAE from 85.22 m to 5.92 m.\n- Constraint metrics remained valid: tree MAE stayed low and invalid fraction was 0.0.\n\n### [2026-05-27 11:32] - core_claim\n- Scheduler job `ef89eced-1b5` completed the reproduction and `validate.py --compare` successfully.\n- The job failed only after that because stale template commands in `scripts/run.sh` invoked missing `method/train.py`; those lines were removed before resubmission.\n\n### [2026-05-27 11:38] - core_claim\n- Scheduler retry job `2d92bd6f-811` exited with code 0.\n- The packaged CPU reproduction passed `scripts/reproduce.sh`, `validate.py --compare`, import-separation checks, and eval-output checks inside the compute container."
+    }
+  ],
+  "components": {
+    "has_container": true,
+    "has_method_code": true,
+    "has_evaluation": true,
+    "has_download_script": true,
+    "has_reproduce_script": true,
+    "has_method_script": true,
+    "has_baseline": true,
+    "has_reference": true,
+    "has_data": true
+  }
+}
