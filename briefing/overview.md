@@ -1,23 +1,24 @@
 # Overview
 
-- **Paper ID:** <!-- e.g. 1706.03762 -->
-- **Title:** <!-- e.g. Attention Is All You Need -->
-- **Domain:** <!-- e.g. Computer Vision / Object Detection -->
-- **TL;DR:** <!-- One sentence: what this paper does and why it matters -->
+- **Paper ID:** 2603.00273
+- **Title:** Ozone Cues Mitigate Reflected Downwelling Radiance in LWIR Absorption-Based Ranging
+- **Domain:** Computational imaging / thermal remote sensing
+- **TL;DR:** The paper uses ozone absorption structure in reflected sky radiance to correct passive LWIR range overestimates on reflective objects.
 
 ## Short Summary
 
-<!-- 3-5 sentences covering the problem, approach, and main findings -->
+Passive LWIR absorption-based ranging estimates depth from spectral
+attenuation, but reflective surfaces can mirror downwelling sky radiance and
+produce large overestimates. The paper proposes a closed-form four-band
+estimator and a richer hyperspectral optimizer that explicitly account for
+reflected downwelling radiance. The packaged reproduction implements the
+closed-form quadspectral estimator and compares it against the air-aware
+bispectral baseline on a portable radiative-transfer benchmark.
 
 ## Key Results
 
-<!-- 2-3 bullet points: main findings or numbers in bullet points -->
-This paper studies passive LWIR range estimation in scenes where reflective
-surfaces mirror downwelling sky radiance. Ordinary absorption-based ranging can
-interpret those reflected absorption features as a much longer object-to-camera
-path, producing large overestimates.
-
-The reproduction implements the paper's quadspectral ozone-cue correction. On a
-small radiative-transfer benchmark generated from the paper's measurement model,
-the ozone correction substantially reduces reflective-patch range error compared
-with the air-aware bispectral baseline.
+- Paper Table I reports reflective checkerboard errors dropping from over 100 m
+  with the bispectral baseline to paper-scale residual errors with the
+  quadspectral correction.
+- This reproduction shows the same qualitative effect on a small benchmark:
+  reflective-patch error drops sharply while invalid estimates remain zero.

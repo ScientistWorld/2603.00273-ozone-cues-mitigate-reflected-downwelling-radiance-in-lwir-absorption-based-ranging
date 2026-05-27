@@ -1,0 +1,20 @@
+{
+  "description": "Evaluation labels for the synthetic four-band LWIR patch benchmark.",
+  "patches": [
+    {
+      "name": "front_checkerboard",
+      "type": "reflective",
+      "distance_m": 25.0
+    },
+    {
+      "name": "rear_checkerboard",
+      "type": "reflective",
+      "distance_m": 45.0
+    },
+    {
+      "name": "tree",
+      "type": "low_reflectance",
+      "distance_m": 58.0
+    }
+  ]
+}

@@ -20,11 +20,6 @@
     {
       "name": "front_checkerboard",
       "type": "reflective",
-      "distance_m": 25.0,
-      "temperature_k": 300.0,
-      "emissivity": 0.85,
-      "ozone_difference": 20.0,
-      "noise_std": 0.35,
       "measurements": [
         [
           875.4811209864131,
@@ -415,11 +410,6 @@
     {
       "name": "rear_checkerboard",
       "type": "reflective",
-      "distance_m": 45.0,
-      "temperature_k": 300.0,
-      "emissivity": 0.85,
-      "ozone_difference": 20.0,
-      "noise_std": 0.35,
       "measurements": [
         [
           875.8756988724381,
@@ -810,11 +800,6 @@
     {
       "name": "tree",
       "type": "low_reflectance",
-      "distance_m": 58.0,
-      "temperature_k": 300.0,
-      "emissivity": 0.92,
-      "ozone_difference": 0.0,
-      "noise_std": 0.35,
       "measurements": [
         [
           926.9831007033425,

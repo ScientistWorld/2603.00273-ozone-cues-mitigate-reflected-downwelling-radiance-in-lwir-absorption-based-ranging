@@ -12,6 +12,9 @@
   low-reflectance tree-like patch.
 - `scripts/reproduce.sh` runs data generation, baseline, method, and
   evaluation end to end on CPU.
+- Evaluation now reads ground-truth patch distances from
+  `eval/quadspectral_core_labels.json`; prediction files contain patch names
+  and estimates only.
 
 ## Results
 
@@ -33,6 +36,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - A higher milestone would require acquiring the full IHTest_202104 HSI cube
   and reproducing the real patch table, or running the upstream hyperspectral
   optimizer.
+- The current milestone remains `method_runs`. The quadspectral algorithm is
+  implemented and shows the expected effect on a synthetic radiative-transfer
+  benchmark, but the paper's central claim is based on real HSI/lidar patches.
 
 ## Issues
 
@@ -47,6 +53,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
   accurate relative to the paper's primary metric. The synthetic reflected cue
   now includes a fixed calibration residual, so the same quadspectral algorithm
   produces paper-scale residual error instead of an idealized near-perfect fit.
+- A review identified a label-leak risk: prediction files previously copied
+  patch ground truth from the method input. This is fixed by splitting
+  method-visible radiance inputs from eval-owned labels.
 
 ## Deviations from Paper
 

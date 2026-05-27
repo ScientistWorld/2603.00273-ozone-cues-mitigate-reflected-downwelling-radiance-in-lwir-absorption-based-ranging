@@ -29,6 +29,7 @@ checkpoints/
 # scratch by scripts/download.sh. Everything else under data/ IS tracked.
 data/downloads/
 !data/downloads/.gitkeep
+data/synthetic/*_labels.json
 
 # Container artifacts (multi-GB)
 environment/container.sif

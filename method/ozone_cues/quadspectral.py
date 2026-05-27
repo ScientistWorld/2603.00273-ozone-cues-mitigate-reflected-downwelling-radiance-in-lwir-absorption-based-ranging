@@ -59,8 +59,6 @@ def main() -> None:
         results["patches"].append(
             {
                 "name": patch["name"],
-                "type": patch["type"],
-                "ground_truth_m": patch["distance_m"],
                 "estimates_m": estimates,
             }
         )
@@ -72,4 +70,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

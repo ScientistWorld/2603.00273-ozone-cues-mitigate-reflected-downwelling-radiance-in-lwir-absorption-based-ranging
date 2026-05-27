@@ -105,6 +105,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
         },
     ]
 
+    label_patches = []
     for patch in patches:
         reflected = patch_reflection(
             80.0,
@@ -119,6 +120,15 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
             pixels.append(
                 observed_radiance(d, t, eps, reflected, patch["noise_std"], rng)
             )
+        label_patches.append(
+            {
+                "name": patch["name"],
+                "type": patch["type"],
+                "distance_m": patch["distance_m"],
+            }
+        )
+        for key in ("distance_m", "temperature_k", "emissivity", "ozone_difference", "noise_std"):
+            del patch[key]
         patch["measurements"] = pixels
 
     payload = {
@@ -134,3 +144,10 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+    labels_path = path.with_name(path.stem + "_labels.json")
+    labels_payload = {
+        "description": "Evaluation labels for the synthetic four-band LWIR patch benchmark.",
+        "patches": label_patches,
+    }
+    labels_path.write_text(json.dumps(labels_payload, indent=2) + "\n", encoding="utf-8")

@@ -21,3 +21,5 @@ set -e
 cd /home/user
 
 python data/generate_synthetic.py --output data/synthetic/quadspectral_core.json
+cp data/synthetic/quadspectral_core_labels.json eval/quadspectral_core_labels.json
+rm -f data/synthetic/quadspectral_core_labels.json
