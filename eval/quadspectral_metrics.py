@@ -54,6 +54,24 @@ def load_labels(path: Path) -> dict[str, dict[str, float | str]]:
     return {patch["name"]: patch for patch in labels["patches"]}
 
 
+def method_name(path: Path) -> str:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    name = data.get("method")
+    if isinstance(name, str) and name:
+        return name
+    suffix = "_predictions"
+    return path.stem[: -len(suffix)] if path.stem.endswith(suffix) else path.stem
+
+
+def discover_predictions(outputs_dir: Path) -> dict[str, Path]:
+    predictions: dict[str, Path] = {}
+    for path in sorted(outputs_dir.glob("*_predictions.json")):
+        predictions[method_name(path)] = path
+    if not predictions:
+        raise FileNotFoundError(f"No *_predictions.json files found in {outputs_dir}")
+    return predictions
+
+
 def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str, float]:
     data = json.loads(path.read_text(encoding="utf-8"))
     metrics: dict[str, float] = {}
@@ -88,19 +106,25 @@ def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--bispectral", default="outputs/bispectral_predictions.json")
-    parser.add_argument("--quadspectral", default="outputs/quadspectral_predictions.json")
+    parser.add_argument("--outputs-dir", default="outputs")
+    parser.add_argument("--bispectral", default=None)
+    parser.add_argument("--quadspectral", default=None)
     parser.add_argument("--labels", default="eval/quadspectral_core_labels.json")
     parser.add_argument("--output", default="scoring/scores.json")
     args = parser.parse_args()
     labels = load_labels(Path(args.labels))
+    predictions = discover_predictions(Path(args.outputs_dir))
+    if args.bispectral is not None:
+        predictions["bispectral"] = Path(args.bispectral)
+    if args.quadspectral is not None:
+        predictions["quadspectral"] = Path(args.quadspectral)
 
     scores = {
         "experiments": {
             "quadspectral_patch_ranges": {
                 "results": {
-                    "bispectral": summarize(Path(args.bispectral), labels),
-                    "quadspectral": summarize(Path(args.quadspectral), labels),
+                    name: summarize(path, labels)
+                    for name, path in sorted(predictions.items())
                 }
             }
         }

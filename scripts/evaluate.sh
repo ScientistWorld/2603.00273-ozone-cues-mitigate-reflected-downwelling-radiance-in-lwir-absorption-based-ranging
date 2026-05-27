@@ -27,7 +27,6 @@ cd /home/user
 mkdir -p scoring
 
 python eval/quadspectral_metrics.py \
-  --bispectral outputs/bispectral_predictions.json \
-  --quadspectral outputs/quadspectral_predictions.json \
+  --outputs-dir outputs \
   --labels eval/quadspectral_core_labels.json \
   --output scoring/scores.json

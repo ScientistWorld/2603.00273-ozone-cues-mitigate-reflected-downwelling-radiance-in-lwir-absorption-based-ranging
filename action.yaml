@@ -2,4 +2,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Packager audit passed: download.sh has executable public S3 fetches for ignored IH artifacts, URLs resolve, and no committed shared paths were found."
+notes: "Final verification passed; evaluator is reusable, docs are method-safe, URLs are verified, and core_claim is ready for gym use."

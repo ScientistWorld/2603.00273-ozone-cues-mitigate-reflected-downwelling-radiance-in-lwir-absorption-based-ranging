@@ -23,3 +23,7 @@
 ### [2026-05-27 11:10] - core_claim
 - Tightened the default job entrypoint so `scripts/run.sh` runs the full reproduction, train/test slice scoring, and post-reproducer validation.
 - Expanded the main evaluator to report all declared reflective-error summary metrics in `scoring/scores.json`.
+
+### [2026-05-27 11:13] - core_claim
+- Final verification confirmed the latest CPU test job and local validation pass.
+- Main evaluator now discovers arbitrary prediction files, and method-safe scoring guidance has been cleaned up for future scientist agents.
