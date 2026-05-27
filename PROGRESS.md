@@ -19,8 +19,8 @@
 ## Results
 
 Local validation writes `scoring/scores.json` and passes
-`python validate.py --compare`. A final CPU scheduler validation is being
-submitted to verify the current pipeline state in-container.
+`python validate.py --compare --post-reproducer`. A CPU scheduler validation
+is being submitted to verify the audited current pipeline state in-container.
 
 On the packaged real IHTest patch benchmark:
 - Bispectral reflective MAE: 139.00 m
@@ -46,6 +46,10 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 
 ## Issues
 
+- Continuation audit on 2026-05-27 confirmed the current implementation is the
+  paper's closed-form quadspectral ozone-cue estimator, not a trained surrogate;
+  evaluation remains independent of `method/` and scores are regenerated from
+  prediction files.
 - The upstream repository includes atmospheric and lidar support files but not
   the large `DC2P5S1.mat` radiance cube used in the paper figures. The public
   AWS IH dataset provides raw ENVI BSQ collects; this gym extracts the paper

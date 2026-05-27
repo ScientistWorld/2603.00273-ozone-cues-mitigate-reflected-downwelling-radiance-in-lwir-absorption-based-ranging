@@ -5,4 +5,4 @@ action: submit
 gpus: 0
 test: true
 milestone: core_claim
-notes: "CPU validation of corrected packaging: run the no-network reproduction script and post-reproducer validation for the quadspectral core claim."
+notes: "Continuation audit restored core_claim; run the no-network reproduction script and post-reproducer validation in-container for the current commit."

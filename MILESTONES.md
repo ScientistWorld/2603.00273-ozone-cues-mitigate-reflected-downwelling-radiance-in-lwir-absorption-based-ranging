@@ -11,3 +11,7 @@
 ### [2026-05-27 10:55] - core_claim
 - Ran the end-to-end pipeline on real public IHTest Path 5 Step 1 LWIR patches.
 - Reproduced the paper's central quadspectral effect: reflective-patch error drops sharply relative to the bispectral baseline, with the proposed-method primary metric close to the paper's Table I value.
+
+### [2026-05-27 10:48] - core_claim
+- Audited the continued workspace after milestone reset and confirmed the implementation uses the paper's closed-form quadspectral ozone-cue computation rather than a surrogate.
+- Confirmed evaluation reads method outputs independently, does not import from `method/`, and reproduces the reflective-patch error reduction on the packaged public IHTest patch benchmark.
