@@ -113,12 +113,12 @@ over the two reflective checkerboard patches. Lower is better. Constraint
 metrics include absolute error on the low-reflectance tree patch, patch
 standard deviations, and invalid estimate fraction.
 
-## Baselines and Targets
+## Reference Comparison
 
-The baseline is an air-aware bispectral range estimator that does not model
-reflected radiance. The target method should substantially improve reflective
-patch error relative to that baseline while keeping invalid estimates at zero
-and avoiding severe degradation on the low-reflectance patch.
+Scores include a provided reference baseline and the reproduced paper method.
+A new method should substantially improve reflective patch error relative to
+the baseline while keeping invalid estimates at zero and avoiding severe
+degradation on the low-reflectance patch.
 
 ## Evaluation Protocol
 
@@ -354,6 +354,48 @@ wavelength, attenuation, air-temperature, and evaluation-label metadata fixed.
 ### [2026-05-27 11:13] - core_claim
 - Final verification confirmed the latest CPU test job and local validation pass.
 - Main evaluator now discovers arbitrary prediction files, and method-safe scoring guidance has been cleaned up for future scientist agents.
+
+</details>
+
+### Iteration 9: gpt-5.5 (verifier)
+- **Milestone**: `core_claim` | **Status**: done
+- **Working time**: 11m | **GPU**: 0.0h
+- **Jobs**: 5 total (4 completed, 1 failed)
+
+<details>
+<summary>Progress Log</summary>
+
+### [2026-05-27 10:41] - method_runs
+- Implemented the Section IV air-aware bispectral baseline and quadspectral ozone-cue estimator.
+- Packaged public IHTest_202104 four-band patch extraction, prediction, and evaluation scripts.
+
+### [2026-05-27 10:55] - core_claim
+- Ran the end-to-end pipeline on real public IHTest Path 5 Step 1 LWIR patches.
+- Reproduced the paper's central quadspectral effect: reflective-patch error drops sharply relative to the bispectral baseline, with the proposed-method primary metric close to the paper's Table I value.
+
+### [2026-05-27 10:48] - core_claim
+- Audited the continued workspace after milestone reset and confirmed the implementation uses the paper's closed-form quadspectral ozone-cue computation rather than a surrogate.
+- Confirmed evaluation reads method outputs independently, does not import from `method/`, and reproduces the reflective-patch error reduction on the packaged public IHTest patch benchmark.
+
+### [2026-05-27 10:51] - core_claim
+- CPU scheduler job `669d3422-e57` exited with code 0 in the Apptainer environment.
+- The job reran `scripts/run.sh`, regenerated scores, and passed `python validate.py --compare --post-reproducer` with the same reflective-patch core-claim result.
+
+### [2026-05-27 11:10] - core_claim
+- Tightened the default job entrypoint so `scripts/run.sh` runs the full reproduction, train/test slice scoring, and post-reproducer validation.
+- Expanded the main evaluator to report all declared reflective-error summary metrics in `scoring/scores.json`.
+
+### [2026-05-27 11:13] - core_claim
+- Final verification confirmed the latest CPU test job and local validation pass.
+- Main evaluator now discovers arbitrary prediction files, and method-safe scoring guidance has been cleaned up for future scientist agents.
+
+### [2026-05-27 11:16] - core_claim
+- Re-ran the full local reproduction entrypoint, including train/test scoring and post-reproducer validation.
+- Confirmed the existing scheduler-verified environment remains valid for the paper's Table I quadspectral core claim.
+
+### [2026-05-27 11:20] - core_claim
+- Final verification renamed public experiment/data/evaluator paths to method-neutral LWIR patch-ranging terms.
+- Verified download URLs, reran `scripts/run.sh`, and passed `python validate.py --compare --post-reproducer`.
 
 </details>
 
