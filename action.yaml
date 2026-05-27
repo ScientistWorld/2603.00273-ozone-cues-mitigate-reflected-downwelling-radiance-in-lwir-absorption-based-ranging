@@ -1,3 +1,8 @@
-action: done
-milestone: core_claim
-notes: "Validation fixed: regenerated benchmark now gives paper-scale quadspectral reflective-patch MAE 14.01 m versus bispectral 78.25 m, with invalid_fraction at 0.0; python validate.py --compare passes."
+# IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends. Sleeping blocks the entire pipeline.
+action: pending
+gpus: 1
+test: false
+milestone: method_runs
+notes: ""
