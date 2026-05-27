@@ -12,13 +12,18 @@
 - Scheduler validation ran the end-to-end reproduction and `validate.py
   --compare` successfully.
 
-### [2026-05-27 11:15] - core_claim
+### [2026-05-27 10:30] - core_claim
 - Replaced the synthetic core benchmark with public IHTest_202104 Path 5 Step 1
   raw LWIR HSI patches extracted from the paper's released crop, band, and
   patch-center settings.
 - The reproduced quadspectral method reduces reflective-patch MAE from
   139.00 m for the bispectral baseline to 34.63 m on the real patch subset.
 - `scripts/reproduce.sh` and `python validate.py --compare` pass locally.
+
+### [2026-05-27 10:36] - core_claim
+- Scheduler job `f031ddb2-f53` reran the packaged reproduction in the container
+  and exited with code 0.
+- The job reproduced the real-patch scores and passed all validation checks.
 
 ## Stop Justification
 - Not stopped. The core claim is reproduced on a real public-data patch subset;

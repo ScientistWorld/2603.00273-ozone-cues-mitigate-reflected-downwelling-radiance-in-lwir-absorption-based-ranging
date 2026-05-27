@@ -18,8 +18,8 @@
 
 ## Results
 
-Local validation writes `scoring/scores.json` and passes
-`python validate.py --compare`.
+Local validation and scheduler job `f031ddb2-f53` write
+`scoring/scores.json` and pass `python validate.py --compare`.
 
 On the packaged real IHTest patch benchmark:
 - Bispectral reflective MAE: 139.00 m
@@ -54,6 +54,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
   to execute a nonexistent `method/train.py`. Removed the stale template lines.
 - Retry job `2d92bd6f-811` exited with code 0 in the scheduler container and
   passed all scoring and repository-structure validation checks.
+- Final CPU validation job `f031ddb2-f53` exited with code 0 in the scheduler
+  container after rerunning `scripts/reproduce.sh` and
+  `python validate.py --compare` on the public IHTest patch pipeline.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.

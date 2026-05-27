@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: submit
+action: done
 gpus: 0
-test: true
+test: false
 milestone: core_claim
-notes: "CPU validation of the public IHTest real-patch core reproduction; reruns reproduce.sh and validate.py --compare."
+notes: "Core claim reproduced and scheduler-validated on public IHTest real LWIR patches; environment packaged with passing reproduce.sh and validate.py --compare."
