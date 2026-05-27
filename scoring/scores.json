@@ -1,6 +1,6 @@
 {
   "experiments": {
-    "quadspectral_patch_ranges": {
+    "lwir_reflective_patch_ranges": {
       "results": {
         "bispectral": {
           "front_abs_error_m": 131.94081463705635,

@@ -14,7 +14,7 @@
     0.000331
   ],
   "t_air_k": 289.7,
-  "ozone_water_slope": 0.7977227816102535,
+  "sky_cue_slope": 0.7977227816102535,
   "patch_size": 8,
   "bands_1based": [
     23,

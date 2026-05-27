@@ -26,7 +26,7 @@ cd /home/user
 
 mkdir -p scoring
 
-python eval/quadspectral_metrics.py \
+python eval/lwir_patch_metrics.py \
   --outputs-dir outputs \
-  --labels eval/quadspectral_core_labels.json \
+  --labels eval/lwir_patch_labels.json \
   --output scoring/scores.json

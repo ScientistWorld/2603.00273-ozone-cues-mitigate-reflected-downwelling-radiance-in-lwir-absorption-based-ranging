@@ -12,12 +12,12 @@ over the two reflective checkerboard patches. Lower is better. Constraint
 metrics include absolute error on the low-reflectance tree patch, patch
 standard deviations, and invalid estimate fraction.
 
-## Baselines and Targets
+## Reference Comparison
 
-The baseline is an air-aware bispectral range estimator that does not model
-reflected radiance. The target method should substantially improve reflective
-patch error relative to that baseline while keeping invalid estimates at zero
-and avoiding severe degradation on the low-reflectance patch.
+Scores include a provided reference baseline and the reproduced paper method.
+A new method should substantially improve reflective patch error relative to
+the baseline while keeping invalid estimates at zero and avoiding severe
+degradation on the low-reflectance patch.
 
 ## Evaluation Protocol
 

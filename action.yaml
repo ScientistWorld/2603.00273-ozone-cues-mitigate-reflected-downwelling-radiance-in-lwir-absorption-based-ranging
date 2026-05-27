@@ -2,4 +2,4 @@ action: done
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Re-ran scripts/run.sh locally after an independent paper-method audit; prior CPU scheduler validation and current local validation both pass, so the core_claim reproduction is ready for gym use."
+notes: "Final verification passed: method-neutral public gym files, verified download URLs, scripts/run.sh and post-reproducer validation all pass at core_claim."

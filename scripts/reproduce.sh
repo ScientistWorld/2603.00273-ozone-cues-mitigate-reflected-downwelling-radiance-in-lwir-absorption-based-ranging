@@ -17,8 +17,8 @@ set -e
 
 cd /home/user
 
-if [ ! -f data/synthetic/quadspectral_core.json ]; then
-  echo "Missing data/synthetic/quadspectral_core.json. Run scripts/download.sh on an internet-enabled login node before submitting compute jobs." >&2
+if [ ! -f data/synthetic/lwir_patch_core.json ]; then
+  echo "Missing data/synthetic/lwir_patch_core.json. Run scripts/download.sh on an internet-enabled login node before submitting compute jobs." >&2
   exit 1
 fi
 

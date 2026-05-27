@@ -14,7 +14,7 @@
 #
 # This script downloads the public IHTest_202104 Path 5 Step 1 LWIR HSI
 # collect used by the paper's released example, then extracts the three
-# Table I 8x8 patch measurements needed for the quadspectral reproduction.
+# Table I 8x8 patch measurements used by this benchmark.
 
 set -e
 
@@ -29,5 +29,5 @@ bsq="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_colle
 [ -e "$bsq" ] || curl -L -o "$bsq" "$base_url/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.bsq"
 
 python data/generate_ih_patches.py --hdr "$hdr" --bsq "$bsq" \
-  --output data/synthetic/quadspectral_core.json \
-  --labels-output eval/quadspectral_core_labels.json
+  --output data/synthetic/lwir_patch_core.json \
+  --labels-output eval/lwir_patch_labels.json

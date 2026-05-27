@@ -107,21 +107,14 @@ def summarize(path: Path, labels: dict[str, dict[str, float | str]]) -> dict[str
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--outputs-dir", default="outputs")
-    parser.add_argument("--bispectral", default=None)
-    parser.add_argument("--quadspectral", default=None)
-    parser.add_argument("--labels", default="eval/quadspectral_core_labels.json")
+    parser.add_argument("--labels", default="eval/lwir_patch_labels.json")
     parser.add_argument("--output", default="scoring/scores.json")
     args = parser.parse_args()
     labels = load_labels(Path(args.labels))
     predictions = discover_predictions(Path(args.outputs_dir))
-    if args.bispectral is not None:
-        predictions["bispectral"] = Path(args.bispectral)
-    if args.quadspectral is not None:
-        predictions["quadspectral"] = Path(args.quadspectral)
-
     scores = {
         "experiments": {
-            "quadspectral_patch_ranges": {
+            "lwir_reflective_patch_ranges": {
                 "results": {
                     name: summarize(path, labels)
                     for name, path in sorted(predictions.items())

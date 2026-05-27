@@ -13,7 +13,7 @@
 - `scripts/reproduce.sh` runs data generation, baseline, method, and
   evaluation end to end on CPU.
 - Evaluation now reads ground-truth patch distances from
-  `eval/quadspectral_core_labels.json`; prediction files contain patch names
+  `eval/lwir_patch_labels.json`; prediction files contain patch names
   and estimates only.
 
 ## Results
@@ -73,6 +73,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - Local validation on 2026-05-27 11:16 UTC again passed `bash scripts/run.sh`;
   no new compute submission is needed because the CPU scheduler run already
   validated this reproduction path in the container.
+- Final verification on 2026-05-27 11:20 UTC made public evaluator and data
+  paths method-neutral, verified both S3 download URLs, and reran the full
+  local validation path successfully.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.

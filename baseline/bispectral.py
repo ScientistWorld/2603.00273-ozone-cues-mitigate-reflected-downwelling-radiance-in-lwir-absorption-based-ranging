@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1] / "data"))
-from ozone_lwir import blackbody_microflick  # noqa: E402
+from lwir_physics import blackbody_microflick  # noqa: E402
 
 
 def estimate_distance(
@@ -41,7 +41,7 @@ def estimate_distance(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", default="data/synthetic/quadspectral_core.json")
+    parser.add_argument("--data", default="data/synthetic/lwir_patch_core.json")
     parser.add_argument("--output", default="outputs/bispectral_predictions.json")
     args = parser.parse_args()
 

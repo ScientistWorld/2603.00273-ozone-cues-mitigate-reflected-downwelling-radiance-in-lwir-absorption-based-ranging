@@ -1,7 +1,7 @@
 {
   "experiments": {
-    "quadspectral_patch_ranges": {
-      "description": "Quadspectral ranging on 8x8 patches; paper Table I reports patch mean/std against lidar median ground truth.",
+    "lwir_reflective_patch_ranges": {
+      "description": "LWIR spectral ranging on 8x8 patches; paper Table I reports patch mean/std against lidar median ground truth.",
       "weight": 1.0,
       "primary_metric": "reflective_mean_abs_error_m",
       "metrics": {

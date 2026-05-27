@@ -1,6 +1,6 @@
 # Experiments
 
-## quadspectral_patch_ranges
+## lwir_reflective_patch_ranges
 
 This experiment checks whether range estimates improve on reflective outdoor
 targets while remaining reasonable on nearby low-reflectance scene content.

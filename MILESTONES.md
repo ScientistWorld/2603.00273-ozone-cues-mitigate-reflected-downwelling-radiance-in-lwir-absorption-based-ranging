@@ -31,3 +31,7 @@
 ### [2026-05-27 11:16] - core_claim
 - Re-ran the full local reproduction entrypoint, including train/test scoring and post-reproducer validation.
 - Confirmed the existing scheduler-verified environment remains valid for the paper's Table I quadspectral core claim.
+
+### [2026-05-27 11:20] - core_claim
+- Final verification renamed public experiment/data/evaluator paths to method-neutral LWIR patch-ranging terms.
+- Verified download URLs, reran `scripts/run.sh`, and passed `python validate.py --compare --post-reproducer`.

@@ -11,11 +11,11 @@ set -e
 cd /home/user
 
 mkdir -p outputs
-if [ ! -f data/synthetic/quadspectral_core.json ]; then
+if [ ! -f data/synthetic/lwir_patch_core.json ]; then
   python data/generate_ih_patches.py \
-    --output data/synthetic/quadspectral_core.json \
-    --labels-output eval/quadspectral_core_labels.json
+    --output data/synthetic/lwir_patch_core.json \
+    --labels-output eval/lwir_patch_labels.json
 fi
 python method/ozone_cues/quadspectral.py \
-  --data data/synthetic/quadspectral_core.json \
+  --data data/synthetic/lwir_patch_core.json \
   --output outputs/quadspectral_predictions.json

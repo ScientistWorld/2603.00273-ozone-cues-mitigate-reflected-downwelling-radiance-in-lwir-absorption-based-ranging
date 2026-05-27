@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract the paper's Path 5 Step 1 quadspectral patches from public IH data."""
+"""Extract the paper's Path 5 Step 1 LWIR patch benchmark from public IH data."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import re
 import struct
 from pathlib import Path
 
-from ozone_lwir import ATTENUATION_DB_PER_M, OZONE_WATER_SLOPE, T_AIR_K
+from lwir_physics import ATTENUATION_DB_PER_M, SKY_CUE_SLOPE, T_AIR_K
 
 
 PATCHES = [
@@ -39,7 +39,7 @@ PATCHES = [
 
 # MATLAB figure script settings from the paper's released code:
 # measurements = measurements(1:256, 901:1156, 1:247)
-# pair_index = 5 -> water/clear bands 23/25 and ozone/clear bands 77/81.
+# pair_index = 5 in the released script selects bands 23/25 and 77/81.
 CROP_COL_START_1BASED = 901
 BAND_INDICES_1BASED = [23, 25, 77, 81]
 WAVELENGTH_SHIFT_UM = -0.12
@@ -136,7 +136,7 @@ def extract_dataset(hdr: Path, bsq: Path, output: Path, labels_output: Path, pat
         "wavelengths_um": selected_wavelengths,
         "attenuation_db_per_m": ATTENUATION_DB_PER_M,
         "t_air_k": T_AIR_K,
-        "ozone_water_slope": OZONE_WATER_SLOPE,
+        "sky_cue_slope": SKY_CUE_SLOPE,
         "patch_size": patch_size,
         "bands_1based": BAND_INDICES_1BASED,
         "patches": patches,
@@ -161,8 +161,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--hdr", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.hdr")
     parser.add_argument("--bsq", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.bsq")
-    parser.add_argument("--output", default="data/synthetic/quadspectral_core.json")
-    parser.add_argument("--labels-output", default="eval/quadspectral_core_labels.json")
+    parser.add_argument("--output", default="data/synthetic/lwir_patch_core.json")
+    parser.add_argument("--labels-output", default="eval/lwir_patch_labels.json")
     parser.add_argument("--patch-size", type=int, default=8)
     args = parser.parse_args()
     extract_dataset(Path(args.hdr), Path(args.bsq), Path(args.output), Path(args.labels_output), args.patch_size)

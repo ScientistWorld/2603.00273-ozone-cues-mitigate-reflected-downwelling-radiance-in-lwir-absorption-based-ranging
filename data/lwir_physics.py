@@ -1,4 +1,4 @@
-"""Shared LWIR radiative-transfer utilities for the ozone-cue ranging gym."""
+"""Shared LWIR radiative-transfer utilities for the patch-ranging benchmark."""
 
 from __future__ import annotations
 
@@ -11,9 +11,8 @@ from pathlib import Path
 WAVELENGTHS_UM = [8.42, 8.46, 9.49, 9.57]
 ATTENUATION_DB_PER_M = [8.0e-3, 2.98e-4, 3.98e-4, 3.31e-4]
 T_AIR_K = 289.7
-# Absolute regression coefficient for the paper's Figure_bispectral_results.m
-# pair_index=5, derived from method/upstream/data/I_downwelling_res.mat.
-OZONE_WATER_SLOPE = 0.7977227816102535
+# Atmospheric calibration coefficient for the selected four spectral bands.
+SKY_CUE_SLOPE = 0.7977227816102535
 # The portable benchmark includes a small scene/calibration mismatch so the
 # closed-form estimator is tested under paper-scale measurement residuals.
 SYNTHETIC_REFLECTION_SLOPE = 0.86
@@ -41,7 +40,7 @@ def observed_radiance(
     noise_std: float,
     rng: random.Random,
 ) -> list[float]:
-    """Evaluate Eq. (7) from the paper at the four quadspectral bands."""
+    """Evaluate the radiative-transfer measurement model at four LWIR bands."""
     values = []
     for lambda_um, alpha, reflected in zip(
         WAVELENGTHS_UM, ATTENUATION_DB_PER_M, reflected_radiance
@@ -56,15 +55,15 @@ def observed_radiance(
 
 def patch_reflection(
     base: float,
-    ozone_difference: float,
-    slope: float = OZONE_WATER_SLOPE,
+    sky_band_difference: float,
+    slope: float = SKY_CUE_SLOPE,
 ) -> list[float]:
-    """Construct downwelling reflection with the paper's linear ozone cue."""
+    """Construct reflected sky radiance with a controlled spectral feature."""
     return [
         base,
-        base + slope * ozone_difference,
+        base + slope * sky_band_difference,
         base + 20.0,
-        base + 20.0 + ozone_difference,
+        base + 20.0 + sky_band_difference,
     ]
 
 
@@ -72,9 +71,9 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
     """Create a small benchmark with reflective and low-reflectance patches.
 
     The generated measurements are not copied paper data; they are produced
-    from the same radiative-transfer model and ozone/water-vapor correction
-    assumption used in the paper. This keeps the environment portable while
-    preserving the computation needed to test the quadspectral method.
+    from the same radiative-transfer model family used in the paper. This keeps
+    the environment portable while
+    preserving the physical reflected-radiance challenge used by this benchmark.
     """
     rng = random.Random(seed)
     patches = [
@@ -84,7 +83,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
             "distance_m": 25.0,
             "temperature_k": 300.0,
             "emissivity": 0.85,
-            "ozone_difference": 20.0,
+            "sky_band_difference": 20.0,
             "noise_std": 0.35,
         },
         {
@@ -93,7 +92,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
             "distance_m": 45.0,
             "temperature_k": 300.0,
             "emissivity": 0.85,
-            "ozone_difference": 20.0,
+            "sky_band_difference": 20.0,
             "noise_std": 0.35,
         },
         {
@@ -102,7 +101,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
             "distance_m": 58.0,
             "temperature_k": 300.0,
             "emissivity": 0.92,
-            "ozone_difference": 0.0,
+            "sky_band_difference": 0.0,
             "noise_std": 0.35,
         },
     ]
@@ -111,7 +110,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
     for patch in patches:
         reflected = patch_reflection(
             80.0,
-            patch["ozone_difference"],
+            patch["sky_band_difference"],
             SYNTHETIC_REFLECTION_SLOPE,
         )
         pixels = []
@@ -129,7 +128,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
                 "distance_m": patch["distance_m"],
             }
         )
-        for key in ("distance_m", "temperature_k", "emissivity", "ozone_difference", "noise_std"):
+        for key in ("distance_m", "temperature_k", "emissivity", "sky_band_difference", "noise_std"):
             del patch[key]
         patch["measurements"] = pixels
 
@@ -138,7 +137,7 @@ def write_synthetic_dataset(path: str | Path, seed: int = 7, patch_size: int = 8
         "wavelengths_um": WAVELENGTHS_UM,
         "attenuation_db_per_m": ATTENUATION_DB_PER_M,
         "t_air_k": T_AIR_K,
-        "ozone_water_slope": OZONE_WATER_SLOPE,
+        "sky_cue_slope": SKY_CUE_SLOPE,
         "synthetic_reflection_slope": SYNTHETIC_REFLECTION_SLOPE,
         "patch_size": patch_size,
         "patches": patches,

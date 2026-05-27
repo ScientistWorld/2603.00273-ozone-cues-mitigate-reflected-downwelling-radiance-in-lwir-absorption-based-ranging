@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[2] / "data"))
-from ozone_lwir import blackbody_microflick  # noqa: E402
+from lwir_physics import blackbody_microflick  # noqa: E402
 
 
 def estimate_distance(
@@ -18,14 +18,14 @@ def estimate_distance(
     wavelengths_um: list[float],
     attenuation_db_per_m: list[float],
     t_air_k: float,
-    ozone_water_slope: float,
+    sky_cue_slope: float,
 ) -> float | None:
     if len(measurements) != 4 or len(wavelengths_um) != 4 or len(attenuation_db_per_m) != 4:
         raise ValueError("quadspectral estimation requires exactly four bands")
     l1, l2, l3, l4 = measurements
     bb1 = blackbody_microflick(wavelengths_um[0], t_air_k)
     bb2 = blackbody_microflick(wavelengths_um[1], t_air_k)
-    correction = ozone_water_slope * (l4 - l3)
+    correction = sky_cue_slope * (l4 - l3)
     denominator = l1 - bb1
     if denominator == 0.0:
         return None
@@ -43,7 +43,7 @@ def estimate_distance(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", default="data/synthetic/quadspectral_core.json")
+    parser.add_argument("--data", default="data/synthetic/lwir_patch_core.json")
     parser.add_argument("--output", default="outputs/quadspectral_predictions.json")
     args = parser.parse_args()
 
@@ -60,7 +60,7 @@ def main() -> None:
                 data["wavelengths_um"],
                 data["attenuation_db_per_m"],
                 data["t_air_k"],
-                data["ozone_water_slope"],
+                data["sky_cue_slope"],
             )
             for pixel in patch["measurements"]
         ]

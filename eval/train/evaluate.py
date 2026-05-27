@@ -14,9 +14,9 @@ PATCH_TO_METRIC = {
     "tree": "tree_abs_error_m",
 }
 
-EXPERIMENT = "quadspectral_patch_ranges"
+EXPERIMENT = "lwir_reflective_patch_ranges"
 SLICE = "train"
-SPLIT_SALT = "researchgym-quadspectral-visible-v2"
+SPLIT_SALT = "researchgym-lwir-patch-visible-v2"
 
 
 def mean(values: list[float]) -> float:
@@ -132,7 +132,7 @@ def discover_predictions(outputs_dir: Path) -> dict[str, Path]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--outputs-dir", default="outputs")
-    parser.add_argument("--labels", default="eval/train/quadspectral_train_labels.json")
+    parser.add_argument("--labels", default="eval/train/lwir_patch_train_labels.json")
     parser.add_argument("--output", default="scoring/scores_train.json")
     args = parser.parse_args()
 

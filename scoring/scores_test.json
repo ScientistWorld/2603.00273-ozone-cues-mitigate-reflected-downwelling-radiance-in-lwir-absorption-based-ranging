@@ -1,34 +1,34 @@
 {
   "_slice": "test",
   "experiments": {
-    "quadspectral_patch_ranges": {
+    "lwir_reflective_patch_ranges": {
       "_slice": "test",
       "results": {
         "bispectral": {
-          "front_abs_error_m": 133.18732298564638,
-          "front_std_m": 25.566176141072745,
-          "rear_abs_error_m": 145.17913499940067,
-          "rear_std_m": 3.6426156103023177,
-          "tree_abs_error_m": 71.15844368647252,
-          "tree_std_m": 41.803464134603786,
-          "reflective_mean_abs_error_m": 139.18322899252354,
-          "reflective_median_abs_error_m": 144.05700746094067,
-          "reflective_p90_abs_error_m": 150.4944609561642,
-          "reflective_abs_bias_m": 139.18322899252354,
+          "front_abs_error_m": 132.03740072239503,
+          "front_std_m": 30.32665299366521,
+          "rear_abs_error_m": 146.8626617658217,
+          "rear_std_m": 3.393203970985666,
+          "tree_abs_error_m": 72.99757782876986,
+          "tree_std_m": 39.277423453365735,
+          "reflective_mean_abs_error_m": 139.45003124410837,
+          "reflective_median_abs_error_m": 146.1254365463356,
+          "reflective_p90_abs_error_m": 150.0773330001158,
+          "reflective_abs_bias_m": 139.45003124410837,
           "invalid_fraction": 0.0
         },
         "quadspectral": {
-          "front_abs_error_m": 8.18647213834977,
-          "front_std_m": 8.064694870630023,
-          "rear_abs_error_m": 17.43353923436633,
-          "rear_std_m": 5.553967441743482,
-          "tree_abs_error_m": 56.888961914038674,
-          "tree_std_m": 49.95874179956645,
-          "reflective_mean_abs_error_m": 13.037392582161733,
-          "reflective_median_abs_error_m": 12.102753455930603,
-          "reflective_p90_abs_error_m": 22.237856069431917,
-          "reflective_abs_bias_m": 12.059897373435772,
-          "invalid_fraction": 0.03125
+          "front_abs_error_m": 6.031456748492711,
+          "front_std_m": 7.038443322794433,
+          "rear_abs_error_m": 15.599820537788945,
+          "rear_std_m": 5.188571888376236,
+          "tree_abs_error_m": 55.05542463675228,
+          "tree_std_m": 46.066274662508626,
+          "reflective_mean_abs_error_m": 11.134584102784036,
+          "reflective_median_abs_error_m": 10.856471881490531,
+          "reflective_p90_abs_error_m": 20.690124440484734,
+          "reflective_abs_bias_m": 10.562259236708362,
+          "invalid_fraction": 0.041666666666666664
         }
       }
     }

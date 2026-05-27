@@ -1,6 +1,6 @@
 # Targets
 
-## quadspectral_patch_ranges
+## lwir_reflective_patch_ranges
 
 Primary target:
 - Reduce `reflective_mean_abs_error_m` on the reflective checkerboard patches.
