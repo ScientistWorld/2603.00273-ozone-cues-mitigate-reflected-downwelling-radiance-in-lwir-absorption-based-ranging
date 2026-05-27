@@ -27,3 +27,7 @@
 ### [2026-05-27 11:13] - core_claim
 - Final verification confirmed the latest CPU test job and local validation pass.
 - Main evaluator now discovers arbitrary prediction files, and method-safe scoring guidance has been cleaned up for future scientist agents.
+
+### [2026-05-27 11:16] - core_claim
+- Re-ran the full local reproduction entrypoint, including train/test scoring and post-reproducer validation.
+- Confirmed the existing scheduler-verified environment remains valid for the paper's Table I quadspectral core claim.

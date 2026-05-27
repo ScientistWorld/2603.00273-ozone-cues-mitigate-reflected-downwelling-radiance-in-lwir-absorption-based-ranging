@@ -70,6 +70,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 - Local validation after packaging updates passes `bash scripts/run.sh`, which
   now runs the full reproduction, train/test slice scoring, and
   `python validate.py --compare --post-reproducer`.
+- Local validation on 2026-05-27 11:16 UTC again passed `bash scripts/run.sh`;
+  no new compute submission is needed because the CPU scheduler run already
+  validated this reproduction path in the container.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.
