@@ -1,8 +1,8 @@
 # IMPORTANT: Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends. Sleeping blocks the entire pipeline.
-action: submit
+action: done
 gpus: 0
-test: true
+test: false
 milestone: core_claim
-notes: "Continuation audit restored core_claim; run the no-network reproduction script and post-reproducer validation in-container for the current commit."
+notes: "CPU scheduler job 669d3422-e57 validated the audited reproduction in-container: scripts/run.sh regenerated scores and passed validate.py --compare --post-reproducer. Core claim is restored and packaged."

@@ -19,8 +19,9 @@
 ## Results
 
 Local validation writes `scoring/scores.json` and passes
-`python validate.py --compare --post-reproducer`. A CPU scheduler validation
-is being submitted to verify the audited current pipeline state in-container.
+`python validate.py --compare --post-reproducer`. CPU scheduler job
+`669d3422-e57` also exited with code 0 in the Apptainer environment and passed
+the same reproduction and validation path.
 
 On the packaged real IHTest patch benchmark:
 - Bispectral reflective MAE: 139.00 m
@@ -63,6 +64,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
   container, but it used an earlier quadspectral calibration state. The current
   local pipeline has since been rerun and passes validation with the scores
   recorded above.
+- CPU validation job `669d3422-e57` exited with code 0 on the audited current
+  state. Its stdout shows scoring consistency checks and all repository
+  structure checks passed.
 - A review identified a label-leak risk: prediction files previously copied
   patch ground truth from the method input. This is fixed by splitting
   method-visible radiance inputs from eval-owned labels.

@@ -15,3 +15,7 @@
 ### [2026-05-27 10:48] - core_claim
 - Audited the continued workspace after milestone reset and confirmed the implementation uses the paper's closed-form quadspectral ozone-cue computation rather than a surrogate.
 - Confirmed evaluation reads method outputs independently, does not import from `method/`, and reproduces the reflective-patch error reduction on the packaged public IHTest patch benchmark.
+
+### [2026-05-27 10:51] - core_claim
+- CPU scheduler job `669d3422-e57` exited with code 0 in the Apptainer environment.
+- The job reran `scripts/run.sh`, regenerated scores, and passed `python validate.py --compare --post-reproducer` with the same reflective-patch core-claim result.
