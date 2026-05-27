@@ -28,5 +28,9 @@
 - On a synthetic benchmark generated from the paper's radiative-transfer model, quadspectral ozone correction reduced reflective-patch MAE from 85.22 m to 5.92 m.
 - Constraint metrics remained valid: tree MAE stayed low and invalid fraction was 0.0.
 
+### [2026-05-27 11:32] - core_claim
+- Scheduler job `ef89eced-1b5` completed the reproduction and `validate.py --compare` successfully.
+- The job failed only after that because stale template commands in `scripts/run.sh` invoked missing `method/train.py`; those lines were removed before resubmission.
+
 ## Stop Justification
 - Not stopped. Submitting a scheduler smoke job to verify the packaged CPU pipeline in-container.

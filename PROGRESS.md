@@ -39,6 +39,9 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
 
 - The upstream repository includes atmospheric and lidar support files but not
   the large radiance cube used in the paper figures.
+- Job `ef89eced-1b5` ran the reproduction and validation successfully, but
+  exited with code 2 because the template tail of `scripts/run.sh` still tried
+  to execute a nonexistent `method/train.py`. Removed the stale template lines.
 
 ## Deviations from Paper
 

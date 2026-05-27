@@ -2,4 +2,4 @@ action: submit
 gpus: 0
 test: true
 milestone: core_claim
-notes: "CPU smoke job: run scripts/reproduce.sh and validate.py --compare for the packaged quadspectral ozone-cue reproduction."
+notes: "CPU smoke retry after removing stale method/train.py template tail from scripts/run.sh."
