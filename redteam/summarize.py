@@ -29,6 +29,8 @@ def main():
     cohorts = {
         "all_finite_audit_attempts": [n for n, r in rows.items() if r["finite"]
                                       and n not in ("reference_seed1", "reference_seed2")],
+        "finite_without_empty": [n for n, r in rows.items() if r["finite"]
+                                  and n not in ("reference_seed1", "reference_seed2", "empty_shortcut")],
         "quality_checks": [n for n in rows if n.startswith("better_")]
                           + ["reference_seed0", "weaker_no_sky", "brute_force_physics"],
     }
@@ -47,7 +49,24 @@ def main():
                 if scales[k] > 0 else 0.0
                 for k, spec in specs.items()
             }
-            row[cohort] = {"rank_delta": sum(components.values()), "components": components}
+            row[cohort] = {"rank_delta": sum(components.values()), "components": components,
+                           "population_member": name in members,
+                           "scale_projection": name not in members}
+    for name, row in rows.items():
+        if not row["finite"]:
+            row["quality_checks_with_candidate"] = None
+            continue
+        # This is an actual normalization population containing this attempt,
+        # unlike projecting an unseen shortcut onto control-only scales.
+        members = list(cohorts["quality_checks"])
+        if name not in members:
+            members.append(name)
+        scales = {k: statistics.pstdev(rows[n]["metrics"][k] for n in members) for k in specs}
+        rank = sum(reference_spec.get("weight", 1) * abs(spec["coefficient"])
+                   * (1 if spec["higher_is_better"] else -1)
+                   * (row["metrics"][k]-anchor[k])/scales[k]
+                   for k, spec in specs.items() if scales[k] > 0)
+        row["quality_checks_with_candidate"] = {"members": members, "population_stddev": scales, "rank_delta": rank}
     seeds = [rows[f"reference_seed{s}"] for s in (0, 1, 2)]
     spread = {k: max(row["metrics"][k] for row in seeds)-min(row["metrics"][k] for row in seeds)
               for k in specs}
@@ -83,11 +102,14 @@ def main():
     (AUDIT / "summary.json").write_text(json.dumps(strict(summary), indent=2, allow_nan=False)+"\n")
     with (AUDIT / "summary.csv").open("w", newline="") as fp:
         writer = csv.writer(fp)
-        writer.writerow(["attempt", "rank_delta_all_finite", "rank_delta_quality_scales", *specs])
+        writer.writerow(["attempt", "rank_delta_all_finite", "rank_delta_without_empty", "rank_delta_quality_scales_projection", "rank_delta_quality_plus_candidate", *specs])
         for name, row in rows.items():
             ranks = [row[c]["rank_delta"] if row[c] is not None else "nonfinite" for c in cohorts]
+            if name == "empty_shortcut":
+                ranks[1] = "excluded"
+            ranks.append(row["quality_checks_with_candidate"]["rank_delta"] if row["finite"] else "nonfinite")
             writer.writerow([name, *ranks, *(row["metrics"].get(k) for k in specs)])
-    print("attempt, primary MAE, tree MAE, invalid fraction, all-finite rank delta, quality-scales rank delta")
+    print("attempt, primary MAE, tree MAE, invalid fraction, all-finite rank delta, without-empty rank delta, quality-scales projection")
     for name, row in rows.items():
         a = row["metrics"]
         ranks = [f"{row[c]['rank_delta']:.5f}" if row[c] is not None else "nonfinite" for c in cohorts]

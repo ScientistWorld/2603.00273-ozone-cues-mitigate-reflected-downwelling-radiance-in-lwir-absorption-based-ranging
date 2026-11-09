@@ -1,4 +1,8 @@
-action: submit
+# Once you set action to 'submit' or 'done', STOP immediately.
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends.
+action: pending
 gpus: 0
 test: false
-notes: "Complete quality positive controls with label-free joint quadspectral errors-in-variables fitting and estimate smoothing; rerun hidden test for four variants and update audit ranks. First job confirmed label, constant-output, and prediction-length shortcuts."
+milestone: core_claim
+notes: ""

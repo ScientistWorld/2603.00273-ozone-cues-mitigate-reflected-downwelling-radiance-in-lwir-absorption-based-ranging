@@ -1,0 +1,53 @@
+[hive] This stdout log is managed by Hive.
+[hive] job_id: b13043f3
+[hive] host: node
+[hive] node_id: 9d6ae85c44257ebfe79f2a3020323d5e0d4198429e73a4c0716e7c0e
+[hive] user: nexus/user (remote)
+[hive] resource: gpu-cpu
+[hive] gpus: 0
+[hive] cpus: 1
+[hive] workdir: /home/user
+[hive] timeout_sec: 21600
+[hive] started_at: 2026-11-09 05:44:54 EST
+[hive] command: apptainer exec --containall --cleanenv --env HF_HOME=/home/user/shared/hf_cache --env TRANSFORMERS_CACHE=/home/user/shared/hf_cache --env HF_DATASETS_CACHE=/home/user/shared/hf_cache/datasets --env TORCH_HOME=/home/user/shared/hf_cache/torch --bind /home/user/scratch/AgentWorkspaces/workspaces/2603.00273:/home/user --overlay /home/user/scratch/AgentWorkspaces/workspaces/2603.00273/environment/overlay.img:ro --bind /home/user/scratch/AgentWorkspaces/shared/datasets:/home/user/shared/datasets:ro --bind /home/user/scratch/AgentWorkspaces/shared/models:/home/user/shared/models:ro --bind /home/user/scratch/AgentWorkspaces/shared/hf_cache:/home/user/shared/hf_cache /home/user/scratch/AgentWorkspaces/workspaces/2603.00273/environment/container.sif bash -c 'cd /home/user && bash /home/user/scripts/run.sh'
+reference_seed0: completed (1.04s)
+reference_seed1: completed (0.89s)
+reference_seed2: completed (0.60s)
+better_smooth1: completed (1.23s)
+better_smooth2: completed (1.91s)
+better_patch_pool: completed (2.61s)
+weaker_no_sky: completed (1.92s)
+brute_force_physics: completed (2.02s)
+label_leak_shortcut: completed (2.59s)
+constant40_shortcut: completed (2.43s)
+short_length_shortcut: completed (2.04s)
+null_filter10_shortcut: completed (1.59s)
+null_filter25_shortcut: completed (1.73s)
+null_filter50_shortcut: completed (0.80s)
+score_forgery_shortcut: completed (0.66s)
+baseline_move_shortcut: completed (0.79s)
+zero_shortcut: completed (1.11s)
+empty_shortcut: completed (1.58s)
+nan_shortcut: completed (1.40s)
+infinity_shortcut: completed (1.76s)
+attempt, primary MAE, tree MAE, invalid fraction, all-finite rank delta, quality-scales rank delta
+baseline_move_shortcut, 11.134584102784036, 55.055424636752285, 0.041666666666666664, 0.00000, 0.00000
+better_patch_pool, 12.728248097631347, 52.28925302517927, 0.0, 0.63681, 1.97912
+better_smooth1, 11.717734657035518, 54.17235084383801, 0.020833333333333332, 0.25521, 0.90664
+better_smooth2, 12.177006333873575, 54.404760664872484, 0.0, 0.34343, 1.58249
+brute_force_physics, 12.374687499999997, 54.410937499999996, 0.0, 0.01501, 1.21867
+constant40_shortcut, 7.7499999999999964, 17.840000000000018, 0.0, 0.63681, 3.75846
+empty_shortcut, 1000000000.0, 1000000000.0, 1.0, -13.59917, -100692022.21528
+infinity_shortcut, inf, inf, 0.0, nonfinite, nonfinite
+label_leak_shortcut, 0.0, 0.0, 0.0, 0.63681, 4.94320
+nan_shortcut, nan, nan, 0.0, nonfinite, nonfinite
+null_filter10_shortcut, 10.147200814783911, 63.88928989600067, 0.90625, -0.67814, -26.87074
+null_filter25_shortcut, 9.794195212722466, 65.73574609571156, 0.75, -0.52787, -22.10613
+null_filter50_shortcut, 9.868413927341207, 61.799194172125894, 0.5, -0.28149, -14.21259
+reference_seed0, 11.134584102784036, 55.055424636752285, 0.041666666666666664, 0.00000, 0.00000
+reference_seed1, 11.134584102784036, 55.055424636752285, 0.041666666666666664, 0.00000, 0.00000
+reference_seed2, 11.134584102784036, 55.055424636752285, 0.041666666666666664, 0.00000, 0.00000
+score_forgery_shortcut, 11.134584102784036, 55.055424636752285, 0.041666666666666664, 0.00000, 0.00000
+short_length_shortcut, 10.106356420571398, 63.3573895326372, 0.0, 0.63681, 1.65983
+weaker_no_sky, 139.45003124410837, 72.99757782876986, 0.0, -0.13087, -7.12773
+zero_shortcut, 38.760000000000026, 57.839999999999975, 0.0, 0.63681, 0.20732

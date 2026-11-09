@@ -1,0 +1,13 @@
+{
+  "completed_hidden_test_runs": 24,
+  "all_evaluators_unchanged": true,
+  "all_trial_files_restored": true,
+  "reference_seeds_identical": true,
+  "reported_rank_assertions_passed": true,
+  "job_script_restored_to_start": true,
+  "report": "REDTEAM.md",
+  "all_other_tracked_paths_match_start": true,
+  "preexisting_differences_preserved": true,
+  "scheduler_logs_moved_under_redteam": true,
+  "action_protocol_exception": "action.yaml will be set to done after committing this audit"
+}
