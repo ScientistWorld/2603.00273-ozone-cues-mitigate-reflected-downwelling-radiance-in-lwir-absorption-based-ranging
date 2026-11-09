@@ -1,0 +1,11 @@
+{
+  "variant": "weaker_no_sky",
+  "seed": 0,
+  "test_command": "bash scripts/evaluate_test.sh",
+  "test_arguments": [],
+  "candidate_inputs": "scientist-visible only",
+  "status": "completed",
+  "elapsed_seconds": 1.919267934979871,
+  "evaluator_unchanged": true,
+  "restored_non_audit_files": true
+}

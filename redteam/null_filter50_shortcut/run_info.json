@@ -1,0 +1,11 @@
+{
+  "variant": "null_filter50_shortcut",
+  "seed": 0,
+  "test_command": "bash scripts/evaluate_test.sh",
+  "test_arguments": [],
+  "candidate_inputs": "scientist-visible only",
+  "status": "completed",
+  "elapsed_seconds": 0.796393513912335,
+  "evaluator_unchanged": true,
+  "restored_non_audit_files": true
+}

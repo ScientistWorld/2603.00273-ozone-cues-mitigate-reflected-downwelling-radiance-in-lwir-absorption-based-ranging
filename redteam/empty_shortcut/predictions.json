@@ -1,0 +1,17 @@
+{
+  "method": "quadspectral",
+  "patches": [
+    {
+      "name": "front_checkerboard",
+      "estimates_m": []
+    },
+    {
+      "name": "rear_checkerboard",
+      "estimates_m": []
+    },
+    {
+      "name": "tree",
+      "estimates_m": []
+    }
+  ]
+}

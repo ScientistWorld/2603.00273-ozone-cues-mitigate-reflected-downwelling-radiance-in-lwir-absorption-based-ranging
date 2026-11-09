@@ -1,0 +1,5 @@
+$ /usr/local/bin/python redteam/reference_runner.py 0
+$ bash scripts/baseline.sh
+$ /usr/local/bin/python method/audit_candidate.py short_length_shortcut --seed 0
+$ bash scripts/evaluate_train.sh
+$ bash scripts/evaluate_test.sh

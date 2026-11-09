@@ -1,0 +1,36 @@
+{
+  "_slice": "train",
+  "experiments": {
+    "lwir_reflective_patch_ranges": {
+      "_slice": "train",
+      "results": {
+        "bispectral": {
+          "front_abs_error_m": 131.84422855171763,
+          "front_std_m": 27.529606435664387,
+          "rear_abs_error_m": 145.25423662104492,
+          "rear_std_m": 3.7802693001139107,
+          "tree_abs_error_m": 82.25209627980308,
+          "tree_std_m": 36.30803178600213,
+          "reflective_mean_abs_error_m": 138.5492325863813,
+          "reflective_median_abs_error_m": 144.77539793435477,
+          "reflective_p90_abs_error_m": 149.50358291680953,
+          "reflective_abs_bias_m": 138.5492325863813,
+          "invalid_fraction": 0.0
+        },
+        "quadspectral": {
+          "front_abs_error_m": 9.238559759371435,
+          "front_std_m": 3.609560707223821e-15,
+          "rear_abs_error_m": 16.217936435891257,
+          "rear_std_m": 1.0828682121671462e-14,
+          "tree_abs_error_m": 52.28925302517927,
+          "tree_std_m": 4.331472848668585e-14,
+          "reflective_mean_abs_error_m": 12.728248097631347,
+          "reflective_median_abs_error_m": 12.728248097631345,
+          "reflective_p90_abs_error_m": 16.217936435891254,
+          "reflective_abs_bias_m": 12.728248097631347,
+          "invalid_fraction": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "variant": "baseline_move_shortcut",
+  "seed": 0,
+  "test_command": "bash scripts/evaluate_test.sh",
+  "test_arguments": [],
+  "candidate_inputs": "scientist-visible only",
+  "status": "completed",
+  "elapsed_seconds": 0.7885052838828415,
+  "evaluator_unchanged": true,
+  "restored_non_audit_files": true
+}

@@ -1,0 +1,26 @@
+{
+  "method": "quadspectral",
+  "patches": [
+    {
+      "name": "front_checkerboard",
+      "estimates_m": [
+        27.412326938723446,
+        27.412326938723446
+      ]
+    },
+    {
+      "name": "rear_checkerboard",
+      "estimates_m": [
+        29.894960220133758,
+        29.894960220133758
+      ]
+    },
+    {
+      "name": "tree",
+      "estimates_m": [
+        121.1973895326372,
+        121.1973895326372
+      ]
+    }
+  ]
+}

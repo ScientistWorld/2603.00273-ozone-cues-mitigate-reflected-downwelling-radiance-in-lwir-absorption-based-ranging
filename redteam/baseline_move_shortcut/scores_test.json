@@ -1,0 +1,36 @@
+{
+  "_slice": "test",
+  "experiments": {
+    "lwir_reflective_patch_ranges": {
+      "_slice": "test",
+      "results": {
+        "bispectral": {
+          "front_abs_error_m": 999968.9899999993,
+          "front_std_m": 0.0,
+          "rear_abs_error_m": 999953.4899999993,
+          "rear_std_m": 0.0,
+          "tree_abs_error_m": 999942.16,
+          "tree_std_m": 0.0,
+          "reflective_mean_abs_error_m": 999961.2400000006,
+          "reflective_median_abs_error_m": 999961.24,
+          "reflective_p90_abs_error_m": 999968.99,
+          "reflective_abs_bias_m": 999961.2400000006,
+          "invalid_fraction": 0.0
+        },
+        "quadspectral": {
+          "front_abs_error_m": 6.031456748492711,
+          "front_std_m": 7.038443322794433,
+          "rear_abs_error_m": 15.599820537788945,
+          "rear_std_m": 5.188571888376235,
+          "tree_abs_error_m": 55.055424636752285,
+          "tree_std_m": 46.066274662508626,
+          "reflective_mean_abs_error_m": 11.134584102784036,
+          "reflective_median_abs_error_m": 10.856471881490531,
+          "reflective_p90_abs_error_m": 20.690124440484734,
+          "reflective_abs_bias_m": 10.562259236708362,
+          "invalid_fraction": 0.041666666666666664
+        }
+      }
+    }
+  }
+}

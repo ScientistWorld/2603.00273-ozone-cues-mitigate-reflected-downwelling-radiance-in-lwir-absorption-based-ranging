@@ -1,0 +1,11 @@
+{
+  "variant": "reference",
+  "seed": 2,
+  "test_command": "bash scripts/evaluate_test.sh",
+  "test_arguments": [],
+  "candidate_inputs": "scientist-visible only",
+  "status": "completed",
+  "elapsed_seconds": 0.5955507999751717,
+  "evaluator_unchanged": true,
+  "restored_non_audit_files": true
+}
