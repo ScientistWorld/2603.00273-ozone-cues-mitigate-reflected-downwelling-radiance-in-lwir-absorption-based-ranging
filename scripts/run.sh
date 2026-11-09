@@ -1,8 +1,4 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 cd /home/user
-
-bash scripts/reproduce.sh
-bash scripts/evaluate_train.sh /home/user/checkpoints
-bash scripts/evaluate_test.sh /home/user/checkpoints
-python validate.py --compare --post-reproducer
+bash redteam/run_all.sh

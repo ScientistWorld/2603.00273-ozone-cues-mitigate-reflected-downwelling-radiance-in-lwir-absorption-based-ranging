@@ -1,0 +1,9 @@
+ M README.md
+ M manifest.json
+ D trajectory/session.json
+ D trajectory/turn_0001_raw.jsonl
+ D trajectory/turn_0002_raw.jsonl
+ D trajectory/turn_0003_raw.jsonl
+ D trajectory/turn_0004_raw.jsonl
+ D trajectory/turn_0005_raw.jsonl
+?? redteam/
