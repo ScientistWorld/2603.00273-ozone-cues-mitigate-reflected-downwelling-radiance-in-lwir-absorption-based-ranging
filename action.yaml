@@ -1,8 +1,6 @@
 # Once you set action to 'submit' or 'done', STOP immediately.
 # Do NOT sleep, poll, or wait for jobs. The system reads this file
 # only after your turn ends.
-action: submit
-gpus: 0
-test: false
+action: done
 milestone: core_claim
-notes: "Hardening check: rerun reference + baseline from final code, train/test scoring, full shortcut/variant audit through the hidden test, alternate test sets, determinism check, validate.py"
+notes: "Hardened: hidden simulated held-out test (288 targets, paper's RT model + authors' atmosphere) + real-scene gate; strict evaluator; better variants rank above reference (paired z 4-13), all major shortcuts fail or tie; verified in container job 37ffc6db-e58. See HARDENING.md."
