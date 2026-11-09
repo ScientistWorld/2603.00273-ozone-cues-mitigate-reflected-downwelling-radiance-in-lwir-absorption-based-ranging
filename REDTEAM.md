@@ -96,7 +96,7 @@ scene with three fixed patch distances is not a sufficient ranging task.
 4,001 ranges from 0 to 200 m at 0.05 m spacing for every pixel, minimizing the
 same corrected radiance residual: 768,192 candidate evaluations. It completed
 with reflective MAE **12.3747 m**, tree MAE **54.4109 m**, zero invalid fraction,
-and ranks **A +0.015856 / B -0.095028**. It does **not** solve the test or beat
+and ranks **A +0.015856 / B -0.095034**. It does **not** solve the test or beat
 reference accuracy. This reproduced closed form avoids numerical inversion,
 not a documented combinatorial search; this run provides no evidence that a
 large candidate-search task was scaled down too far. The clear size/diversity
@@ -189,4 +189,3 @@ All experiment artifacts remain under `redteam/`. The temporary method,
 baseline, scoring artifacts, and job script are restored; existing differences
 present at audit start are preserved. `action.yaml` is used only for the required
 submission/completion protocol. No gym scoring or method fix is applied here.
-

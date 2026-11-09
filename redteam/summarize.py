@@ -101,7 +101,7 @@ def main():
         return value
     (AUDIT / "summary.json").write_text(json.dumps(strict(summary), indent=2, allow_nan=False)+"\n")
     with (AUDIT / "summary.csv").open("w", newline="") as fp:
-        writer = csv.writer(fp)
+        writer = csv.writer(fp, lineterminator="\n")
         writer.writerow(["attempt", "rank_delta_all_finite", "rank_delta_without_empty", "rank_delta_quality_scales_projection", "rank_delta_quality_plus_candidate", *specs])
         for name, row in rows.items():
             ranks = [row[c]["rank_delta"] if row[c] is not None else "nonfinite" for c in cohorts]
