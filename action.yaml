@@ -1,5 +1,8 @@
-action: done
+# Once you set action to 'submit' or 'done', STOP immediately.
+# Do NOT sleep, poll, or wait for jobs. The system reads this file
+# only after your turn ends.
+action: pending
 gpus: 0
 test: false
 milestone: core_claim
-notes: "Final verification passed: method-neutral public gym files, verified download URLs, scripts/run.sh and post-reproducer validation all pass at core_claim."
+notes: ""
