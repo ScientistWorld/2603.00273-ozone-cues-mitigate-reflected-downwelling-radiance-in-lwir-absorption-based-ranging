@@ -230,3 +230,27 @@ There is one experiment with weight 1.0. Coefficients:
   public cube.** The reference gets 53.7 m, against the paper's 11.4 m on the
   authors' processed cube, which is not released. This patch is reported
   under `_diagnostics` and is not used.
+
+## Verification
+
+- **Job.** CPU job `37ffc6db-e58` ran `scripts/run.sh` in the gym container
+  (Python 3.11) and exited with code 0. It:
+  - reran the baseline and reference from the final code;
+  - scored the train and test slices;
+  - ran the full audit (`redteam/hardening/run_audit.sh`);
+  - rebuilt the three alternate test sets;
+  - regenerated the simulated data, which matched the committed train/test
+    radiance and label files byte for byte;
+  - repeated the baseline-move check, which left the reference row
+    unchanged;
+  - passed `validate.py --compare --post-reproducer`.
+
+  Every number in this report matches that run.
+- **Rescoring after the job.** The evaluators now average with `math.fsum`,
+  so scores are bit-identical across Python versions. Before the change,
+  Python 3.11 and 3.12 summed differently and the scores differed by about
+  1e-14. The saved outputs were rescored; no method was rerun. The values are
+  unchanged at every reported precision.
+- **What `run.sh` does now.** `scripts/run.sh` reproduces the reference end
+  to end: baseline, method, train and test scoring, and validation. The audit
+  is run separately with `bash redteam/hardening/run_audit.sh`.

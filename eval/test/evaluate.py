@@ -29,7 +29,8 @@ SCORED_METRICS = ("reflective_mae_m", "reflective_patch_abs_error_m", "ordinary_
 
 
 def mean(values: list[float]) -> float:
-    return sum(values) / len(values)
+    # math.fsum is correctly rounded, so scores are bit-identical across Python versions.
+    return math.fsum(values) / len(values)
 
 
 def median(values: list[float]) -> float:
@@ -44,7 +45,7 @@ def stdev(values: list[float]) -> float:
     if len(values) < 2:
         return 0.0
     mu = mean(values)
-    return math.sqrt(sum((v - mu) ** 2 for v in values) / (len(values) - 1))
+    return math.sqrt(math.fsum((v - mu) ** 2 for v in values) / (len(values) - 1))
 
 
 def load_labels(path: Path) -> dict[str, dict]:

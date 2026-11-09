@@ -35,3 +35,6 @@
 ### [2026-05-27 11:20] - core_claim
 - Final verification renamed public experiment/data/evaluator paths to method-neutral LWIR patch-ranging terms.
 - Verified download URLs, reran `scripts/run.sh`, and passed `python validate.py --compare --post-reproducer`.
+
+### [2026-11-09] - core_claim
+- Hardening (iteration 11): hidden simulated held-out test from the paper's radiative-transfer model and the authors' Path 5 Step 1 atmosphere, strict evaluator with validity gates, real-scene transfer gate; reference reproduces the paper's direction (reflective MAE 78.2 m bispectral, ungated, vs 21.3 m quadspectral). Container job 37ffc6db-e58 verified. See HARDENING.md.
