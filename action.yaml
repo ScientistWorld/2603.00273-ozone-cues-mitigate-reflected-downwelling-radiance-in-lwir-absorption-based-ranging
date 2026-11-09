@@ -1,4 +1,4 @@
 action: submit
 gpus: 0
 test: false
-notes: "Run bundled LWIR scoring audit: three reference seeds, genuine denoising improvements, no-correction ablation, exhaustive physical inversion, and artifact/label/coverage/degenerate shortcuts; save each hidden-test result under redteam/."
+notes: "Complete quality positive controls with label-free joint quadspectral errors-in-variables fitting and estimate smoothing; rerun hidden test for four variants and update audit ranks. First job confirmed label, constant-output, and prediction-length shortcuts."

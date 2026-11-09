@@ -1,0 +1,11 @@
+{
+  "variant": "better_local_tls2",
+  "seed": 0,
+  "test_command": "bash scripts/evaluate_test.sh",
+  "test_arguments": [],
+  "candidate_inputs": "scientist-visible only",
+  "status": "completed",
+  "elapsed_seconds": 2.8856905070133507,
+  "evaluator_unchanged": true,
+  "restored_non_audit_files": true
+}
