@@ -29,8 +29,8 @@ def main():
     cohorts = {
         "all_finite_audit_attempts": [n for n, r in rows.items() if r["finite"]
                                       and n not in ("reference_seed1", "reference_seed2")],
-        "quality_checks": ["reference_seed0", "better_smooth1", "better_smooth2", "better_patch_pool",
-                           "weaker_no_sky", "brute_force_physics"],
+        "quality_checks": [n for n in rows if n.startswith("better_")]
+                          + ["reference_seed0", "weaker_no_sky", "brute_force_physics"],
     }
     normalizations = {}
     for cohort, members in cohorts.items():
@@ -64,7 +64,9 @@ def main():
         "rank_caveat": "Future normalization population is not known. Scores below instantiate the specified rank for explicitly listed audit populations; dominance conclusions hold for any positive metric scales.",
         "rank_formula": "sum(experiment_weight * abs(coefficient) * direction * (attempt-reference) / population_stddev)",
         "zero_scale_rule": "Constant metrics contribute zero within that cohort.",
-        "reference_matches_initial_saved_test": anchor == original_anchor,
+        "reference_matches_initial_saved_test_exactly": anchor == original_anchor,
+        "reference_matches_initial_saved_test_at_1e_10": all(abs(anchor[k]-original_anchor[k]) < 1e-10 for k in specs),
+        "reference_max_absolute_roundoff_from_saved_test": max(abs(anchor[k]-original_anchor[k]) for k in specs),
         "reference_metrics_at_lower_bound_zero": [k for k in specs if anchor[k] == 0],
         "seed_metric_max_minus_min": spread,
         "normalizations": normalizations,

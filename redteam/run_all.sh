@@ -2,7 +2,9 @@
 set -euo pipefail
 cd /home/user
 for trial in reference_seed0 reference_seed1 reference_seed2 \
-  better_smooth1 better_smooth2 better_patch_pool weaker_no_sky brute_force_physics \
+  better_smooth1 better_smooth2 better_patch_pool \
+  better_patch_tls better_local_tls1 better_local_tls2 better_estimate_smooth1 \
+  weaker_no_sky brute_force_physics \
   label_leak_shortcut constant40_shortcut short_length_shortcut \
   null_filter10_shortcut null_filter25_shortcut null_filter50_shortcut \
   score_forgery_shortcut baseline_move_shortcut zero_shortcut empty_shortcut \

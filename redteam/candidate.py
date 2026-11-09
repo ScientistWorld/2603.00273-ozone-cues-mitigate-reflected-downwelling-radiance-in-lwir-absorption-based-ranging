@@ -58,6 +58,38 @@ def physical_grid_search(pixel, data):
     return min(candidates, key=lambda d: (target-denominator*10**(-(a2-a1)*d/10))**2)
 
 
+def joint_tls(pixels, data):
+    # Common-range errors-in-variables fit of the *same* quadspectral equation.
+    # x=L1-B1, y=L2-B2-s(L4-L3), y=g*x. Independent, equal band noise
+    # gives Var(y)/Var(x)=1+2*s*s. This is the analytical Deming regression
+    # through the physical origin, followed by the original Beer-law inverse.
+    bb1, bb2 = [blackbody_microflick(w, data["t_air_k"])
+                for w in data["wavelengths_um"][:2]]
+    slope = data["sky_cue_slope"]
+    xy = [(p[0]-bb1, p[1]-bb2-slope*(p[3]-p[2])) for p in pixels]
+    sxx = sum(x*x for x, y in xy)
+    syy = sum(y*y for x, y in xy)
+    sxy = sum(x*y for x, y in xy)
+    ratio = 1+2*slope*slope
+    if sxy <= 0:
+        return 0.0  # Constrained nonnegative-range solution at the boundary.
+    b = syy-ratio*sxx
+    gamma = (b+math.sqrt(b*b+4*ratio*sxy*sxy))/(2*sxy)
+    a1, a2 = data["attenuation_db_per_m"][:2]
+    return max(0.0, -10*math.log10(gamma)/(a2-a1))
+
+
+def local_fit(pixels, width, radius, data):
+    result = []
+    for index in range(len(pixels)):
+        row, col = divmod(index, width)
+        neighbors = [pixels[r*width+c]
+                     for r in range(max(0, row-radius), min(width, row+radius+1))
+                     for c in range(max(0, col-radius), min(width, col+radius+1))]
+        result.append(joint_tls(neighbors, data))
+    return result
+
+
 def visible_generator_labels():
     source = ast.parse(Path("data/generate_ih_patches.py").read_text())
     patches = next(ast.literal_eval(node.value) for node in source.body
@@ -101,6 +133,26 @@ def main():
             # from its mean radiance, without knowing its name or distance.
             pooled = [statistics.mean(p[b] for p in pixels) for b in range(4)]
             values = [estimate(pooled, data)] * len(pixels)
+        elif v == "better_patch_tls":
+            values = [joint_tls(pixels, data)] * len(pixels)
+        elif v.startswith("better_local_tls"):
+            radius = int(v.removeprefix("better_local_tls"))
+            values = local_fit(pixels, data["patch_size"], radius, data)
+        elif v == "better_estimate_smooth1":
+            # Smoothing the noisy physical distances instead of radiances is a
+            # separate, label-free denoising control. Fill invalid pixels with
+            # the local valid-neighbor mean, using a patch mean only if needed.
+            width = data["patch_size"]
+            valid_patch = [x for x in values if x is not None]
+            pooled_estimates = []
+            for index in range(len(values)):
+                row, col = divmod(index, width)
+                neighbors = [values[r*width+c]
+                             for r in range(max(0, row-1), min(width, row+2))
+                             for c in range(max(0, col-1), min(width, col+2))
+                             if values[r*width+c] is not None]
+                pooled_estimates.append(statistics.mean(neighbors or valid_patch))
+            values = pooled_estimates
         elif v == "brute_force_physics":
             values = [physical_grid_search(p, data) for p in pixels]
         elif v == "label_leak_shortcut":
