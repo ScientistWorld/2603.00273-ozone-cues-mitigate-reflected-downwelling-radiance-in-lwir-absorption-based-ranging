@@ -232,3 +232,6 @@ tmp/
 protocol.md
 *.egg-info
 core.[0-9]*
+
+# hardening audit scratch
+redteam/hardening/baseline_move/*_predictions.json

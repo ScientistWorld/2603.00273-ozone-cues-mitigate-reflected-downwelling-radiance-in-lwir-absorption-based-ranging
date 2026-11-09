@@ -1,0 +1,8 @@
+{
+  "description": "Ground-truth proxies for the three real IHTest_202104 Path 5 Step 1 patches: median of the authors' registered lidar map over each 8x8 patch (the values reported as ground truth in the paper's Table I). Hidden test only.",
+  "patches": {
+    "ih_p5s1_a": {"class": "reflective", "distance_m": 31.01},
+    "ih_p5s1_b": {"class": "reflective", "distance_m": 46.51},
+    "ih_p5s1_c": {"class": "ordinary", "distance_m": 57.84}
+  }
+}

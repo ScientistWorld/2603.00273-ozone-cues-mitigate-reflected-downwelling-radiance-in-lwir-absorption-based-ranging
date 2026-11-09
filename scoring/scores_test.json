@@ -5,30 +5,57 @@
       "_slice": "test",
       "results": {
         "bispectral": {
-          "front_abs_error_m": 132.03740072239503,
-          "front_std_m": 30.32665299366521,
-          "rear_abs_error_m": 146.8626617658217,
-          "rear_std_m": 3.393203970985666,
-          "tree_abs_error_m": 72.99757782876986,
-          "tree_std_m": 39.277423453365735,
-          "reflective_mean_abs_error_m": 139.45003124410837,
-          "reflective_median_abs_error_m": 146.1254365463356,
-          "reflective_p90_abs_error_m": 150.0773330001158,
-          "reflective_abs_bias_m": 139.45003124410837,
-          "invalid_fraction": 0.0
+          "reflective_mae_m": 100.0,
+          "reflective_patch_abs_error_m": 100.0,
+          "ordinary_mae_m": 100.0
         },
         "quadspectral": {
-          "front_abs_error_m": 6.031456748492711,
-          "front_std_m": 7.038443322794433,
-          "rear_abs_error_m": 15.599820537788945,
-          "rear_std_m": 5.188571888376236,
-          "tree_abs_error_m": 55.05542463675228,
-          "tree_std_m": 46.066274662508626,
-          "reflective_mean_abs_error_m": 11.134584102784036,
-          "reflective_median_abs_error_m": 10.856471881490531,
-          "reflective_p90_abs_error_m": 20.690124440484734,
-          "reflective_abs_bias_m": 10.562259236708362,
-          "invalid_fraction": 0.041666666666666664
+          "reflective_mae_m": 21.34021173690235,
+          "reflective_patch_abs_error_m": 14.769374424315268,
+          "ordinary_mae_m": 19.91228925312443
+        }
+      },
+      "_diagnostics": {
+        "bispectral": {
+          "ordinary_patch_abs_error_m": 19.63401385568947,
+          "reflective_patch_std_m": 49.79768484055695,
+          "ordinary_patch_std_m": 20.3725726520674,
+          "reflective_invalid_fraction": 0.077880859375,
+          "ordinary_invalid_fraction": 0.032063802083333336,
+          "reflective_constant_guess_mae_m": 49.15527940266927,
+          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "real_reflective_mae_m": 97.33641449939704,
+          "real_low_reflectance_mae_m": 68.15478832509059,
+          "real_reflective_gate_m": 35.0,
+          "run_failed": true,
+          "failure_reasons": [
+            "reflective targets: no better than the best constant range guess",
+            "real scene: reflective-target error above the reflected-sky gate"
+          ],
+          "ungated": {
+            "reflective_mae_m": 78.20294261829339,
+            "reflective_patch_abs_error_m": 80.64393893852564,
+            "ordinary_mae_m": 22.20615302648656
+          }
+        },
+        "quadspectral": {
+          "ordinary_patch_abs_error_m": 15.336261152786669,
+          "reflective_patch_std_m": 33.26292959549581,
+          "ordinary_patch_std_m": 21.355665061584677,
+          "reflective_invalid_fraction": 0.036946614583333336,
+          "ordinary_invalid_fraction": 0.021158854166666668,
+          "reflective_constant_guess_mae_m": 49.15527940266927,
+          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "real_reflective_mae_m": 17.90662084155582,
+          "real_low_reflectance_mae_m": 53.72718190006366,
+          "real_reflective_gate_m": 35.0,
+          "run_failed": false,
+          "failure_reasons": [],
+          "ungated": {
+            "reflective_mae_m": 21.34021173690235,
+            "reflective_patch_abs_error_m": 14.769374424315268,
+            "ordinary_mae_m": 19.91228925312443
+          }
         }
       }
     }

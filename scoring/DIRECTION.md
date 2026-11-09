@@ -3,18 +3,22 @@
 ## Research Problem
 
 Improve passive LWIR absorption-based range estimation in outdoor scenes where
-reflected ambient thermal radiance can make reflective surfaces appear much
-farther away than they are.
+reflected ambient thermal radiance (especially downwelling sky radiance) can
+make reflective surfaces appear much farther away than they are, while keeping
+ordinary low-reflectance content accurate, under low temperature contrast and
+realistic sensor noise.
 
 ## Approach Scope
 
-In-scope improvements should still operate on LWIR spectral radiance and
-physical scene metadata. Acceptable directions include better radiative-transfer
-modeling, improved use of spectral cues, more robust inversion, uncertainty
-handling, or calibration strategies that preserve the same input/output task.
+In-scope improvements operate on the LWIR spectral radiance and the physical
+metadata: better radiative-transfer modelling of emitted and reflected
+radiance, better use of spectral cues across the 96 provided bands, joint
+estimation of range with temperature/emissivity/sky contributions, robust or
+regularised inversion (including spatial priors within a patch), handling of
+pixels where an estimator has no valid solution, and uncertainty handling.
 
 ## Out of Bounds
 
-Do not solve the task by supervised fitting to the evaluation patch distances,
-using non-LWIR modalities, adding external scene priors that bypass the
-radiance problem, or changing the benchmark labels/data to make the task easier.
+Supervised fitting to labelled ranges (train labels included), non-LWIR
+modalities, hard-coded or per-patch ranges, external scene priors that bypass
+the radiance problem, and changes to the benchmark data, labels or evaluators.

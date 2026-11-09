@@ -1,89 +1,67 @@
 {
   "experiments": {
     "lwir_reflective_patch_ranges": {
-      "description": "LWIR spectral ranging on 8x8 patches; paper Table I reports patch mean/std against lidar median ground truth.",
-      "notes": "Reference values are the paper's Table I patch means/errors. Reproduction scores are computed from the public raw IHTest collect1 because the authors' processed DC2P5S1.mat cube is not released; reflective-target metrics match the core claim closely, while the low-reflectance tree constraint is harder on the raw cube.",
+      "description": "Passive LWIR range estimation on 8x8 target patches: held-out simulated reflective and ordinary (low-reflectance) targets built from the measured Path 5 Step 1 atmosphere, plus a real IHTest_202104 Path 5 Step 1 check (gate only).",
+      "notes": "Scored on 288 held-out simulated targets (192 reflective, 96 ordinary; ranges 15-200 m; 96 instrument bands; 1 microflick noise) generated from the paper's radiative-transfer model (Eqs. 7, 23) with the authors' released attenuation and zenith-resolved downwelling spectra. Per-pixel errors are clipped at 100 m and a missing estimate costs 100 m. A run fails (every scored metric set to 100 m) if a submission is malformed (missing/extra-length patches, non-finite or negative ranges), if on either target class it is no better than the best constant range guess, or if its reflective-target error on the real Path 5 Step 1 checkerboards exceeds 60 m. The paper's Table I numbers (real processed cube, three patches) are kept unchanged under _paper_table1; they are not on this gym's scale. The results below are this gym's measured hidden-test values (bispectral is reported as failed by the constant-guess and real-scene gates; its ungated reflective MAE is in scoring/scores_test.json _diagnostics).",
       "weight": 1.0,
-      "primary_metric": "reflective_mean_abs_error_m",
+      "primary_metric": "reflective_mae_m",
       "metrics": {
-        "reflective_mean_abs_error_m": {
+        "reflective_mae_m": {
           "higher_is_better": false,
-          "coefficient": -1.0,
-          "description": "Mean absolute range error over the reflective checkerboard targets; measures the paper's central claim of correcting reflective-target overestimation."
+          "coefficient": 1.0,
+          "description": "Mean per-pixel absolute range error (m) over all reflective-target pixels; the paper's central claim (removing reflected-sky range overestimation). Errors clipped at 100 m, a missing estimate counts 100 m."
         },
-        "front_abs_error_m": {
+        "reflective_patch_abs_error_m": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean absolute range error on the nearer reflective checkerboard patch; catches methods that only work at one reflective target distance."
+          "coefficient": 0.5,
+          "description": "Mean over reflective targets of |patch median estimate - true patch range| (m), clipped at 100 m; the patch-level accuracy reported in the paper's Table I (systematic error left after averaging out pixel noise)."
         },
-        "rear_abs_error_m": {
+        "ordinary_mae_m": {
           "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Mean absolute range error on the farther reflective checkerboard patch; catches methods that only work at one reflective target distance."
-        },
-        "tree_abs_error_m": {
-          "higher_is_better": false,
-          "coefficient": -0.3,
-          "description": "Mean absolute range error on the low-reflectance tree patch; discourages improving reflective targets by degrading ordinary low-reflectance scene content."
-        },
-        "front_std_m": {
-          "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard deviation of range estimates on the nearer reflective patch; penalizes noisy or unstable pixelwise estimates."
-        },
-        "rear_std_m": {
-          "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard deviation of range estimates on the farther reflective patch; penalizes noisy or unstable pixelwise estimates."
-        },
-        "tree_std_m": {
-          "higher_is_better": false,
-          "coefficient": -0.1,
-          "description": "Standard deviation of range estimates on the low-reflectance patch; catches methods that destabilize non-reflective regions."
-        },
-        "reflective_median_abs_error_m": {
-          "higher_is_better": false,
-          "coefficient": -0.4,
-          "description": "Median absolute range error over reflective target estimates; not reported by the paper, added as a gym robustness metric."
-        },
-        "reflective_p90_abs_error_m": {
-          "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Ninetieth-percentile absolute range error over reflective target estimates; not reported by the paper, added to catch methods with a poor error tail."
-        },
-        "reflective_abs_bias_m": {
-          "higher_is_better": false,
-          "coefficient": -0.2,
-          "description": "Absolute signed range bias over reflective target estimates; not reported by the paper, added to penalize systematic over- or under-estimation."
-        },
-        "invalid_fraction": {
-          "higher_is_better": false,
-          "coefficient": -0.5,
-          "description": "Fraction of selected patch estimates that are missing or nonnumeric; prevents methods from hiding hard pixels by omitting predictions."
+          "coefficient": 0.5,
+          "description": "Mean per-pixel absolute range error (m) over low-reflectance (ordinary) target pixels; the constraint that correcting reflective targets must not break ordinary scene content. Same clipping and missing-estimate rule."
         }
       },
       "results": {
         "bispectral": {
           "type": "baseline",
-          "reflective_mean_abs_error_m": 123.735,
-          "front_abs_error_m": 119.72,
-          "rear_abs_error_m": 127.75,
-          "tree_abs_error_m": 1.99,
-          "front_std_m": 19.89,
-          "rear_std_m": 3.05,
-          "tree_std_m": 20.14,
-          "invalid_fraction": 0.0
+          "reflective_mae_m": 100.0,
+          "reflective_patch_abs_error_m": 100.0,
+          "ordinary_mae_m": 100.0
         },
         "quadspectral": {
           "type": "proposed",
-          "reflective_mean_abs_error_m": 13.955,
-          "front_abs_error_m": 8.17,
-          "rear_abs_error_m": 19.74,
-          "tree_abs_error_m": 11.37,
-          "front_std_m": 7.2,
-          "rear_std_m": 4.63,
-          "tree_std_m": 25.33,
-          "invalid_fraction": 0.0
+          "reflective_mae_m": 21.34,
+          "reflective_patch_abs_error_m": 14.769,
+          "ordinary_mae_m": 19.912
+        }
+      },
+      "_paper_table1": {
+        "note": "Paper Table I (quadspectral vs bispectral on the authors' processed Path 5 Step 1 cube, three 8x8 patches, lidar-median ground truth). Errors are |patch mean - ground truth|; std is the within-patch standard deviation. Kept for reference; not on the scored scale.",
+        "metric_names": "reflective_mean_abs_error_m = mean of front/rear errors",
+        "results": {
+          "bispectral": {
+            "type": "baseline",
+            "reflective_mean_abs_error_m": 123.735,
+            "front_abs_error_m": 119.72,
+            "rear_abs_error_m": 127.75,
+            "tree_abs_error_m": 1.99,
+            "front_std_m": 19.89,
+            "rear_std_m": 3.05,
+            "tree_std_m": 20.14,
+            "invalid_fraction": 0.0
+          },
+          "quadspectral": {
+            "type": "proposed",
+            "reflective_mean_abs_error_m": 13.955,
+            "front_abs_error_m": 8.17,
+            "rear_abs_error_m": 19.74,
+            "tree_abs_error_m": 11.37,
+            "front_std_m": 7.2,
+            "rear_std_m": 4.63,
+            "tree_std_m": 25.33,
+            "invalid_fraction": 0.0
+          }
         }
       }
     }

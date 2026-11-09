@@ -1,0 +1,15 @@
+{
+ "split": "real",
+ "description": "Real IHTest_202104 Path 5 Step 1 collect1 radiance (public raw cube), three 8x8 patches.",
+ "radiance_file": "real_radiance.f32",
+ "dtype": "float32",
+ "byte_order": "little",
+ "layout": "[patch][pixel row-major over patch_size x patch_size][band]",
+ "patch_size": 8,
+ "n_bands": 96,
+ "patch_ids": [
+  "ih_p5s1_a",
+  "ih_p5s1_b",
+  "ih_p5s1_c"
+ ]
+}

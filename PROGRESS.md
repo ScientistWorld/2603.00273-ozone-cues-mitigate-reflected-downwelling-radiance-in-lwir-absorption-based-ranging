@@ -119,3 +119,7 @@ Paper Table I reports reflective MAE dropping from 123.74 m for bispectral to
   ground-truth distances from Table I. The algorithm is not substituted: the
   method code uses the closed-form quadspectral ozone correction from Eq. (18)
   and Eq. (22).
+
+### [2026-11-09] - core_claim (hardening, iteration 11)
+- Replaced the three-patch real-scene test (public labels, pixel-half split) with 288 held-out simulated targets built from the paper's radiative-transfer model and the authors' released Path 5 Step 1 atmosphere (96 bands, hidden generator key); the real scene is now a hidden transfer gate (reflective MAE <= 35 m).
+- Evaluator: strict 64-estimate/finite/non-negative checks, null = 100 m, errors clipped at 100 m, constant-guess gate per target class, failed runs get the worst bounded score. Details and audit in HARDENING.md.

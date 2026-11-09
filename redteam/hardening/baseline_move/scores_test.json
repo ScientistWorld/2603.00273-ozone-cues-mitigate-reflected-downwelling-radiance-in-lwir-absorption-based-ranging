@@ -1,0 +1,64 @@
+{
+  "_slice": "test",
+  "experiments": {
+    "lwir_reflective_patch_ranges": {
+      "_slice": "test",
+      "results": {
+        "bispectral": {
+          "reflective_mae_m": 100.0,
+          "reflective_patch_abs_error_m": 100.0,
+          "ordinary_mae_m": 100.0
+        },
+        "reference_quadspectral": {
+          "reflective_mae_m": 21.34021173690235,
+          "reflective_patch_abs_error_m": 14.769374424315268,
+          "ordinary_mae_m": 19.91228925312443
+        }
+      },
+      "_diagnostics": {
+        "bispectral": {
+          "ordinary_patch_abs_error_m": 100.0,
+          "reflective_patch_std_m": 0.0,
+          "ordinary_patch_std_m": 0.0,
+          "reflective_invalid_fraction": 0.0,
+          "ordinary_invalid_fraction": 0.0,
+          "reflective_constant_guess_mae_m": 49.15527940266927,
+          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "real_reflective_mae_m": 100.0,
+          "real_low_reflectance_mae_m": 100.0,
+          "real_reflective_gate_m": 35.0,
+          "run_failed": true,
+          "failure_reasons": [
+            "reflective targets: no better than the best constant range guess",
+            "ordinary targets: no better than the best constant range guess",
+            "real scene: reflective-target error above the reflected-sky gate"
+          ],
+          "ungated": {
+            "reflective_mae_m": 100.0,
+            "reflective_patch_abs_error_m": 100.0,
+            "ordinary_mae_m": 100.0
+          }
+        },
+        "reference_quadspectral": {
+          "ordinary_patch_abs_error_m": 15.336261152786669,
+          "reflective_patch_std_m": 33.26292959549581,
+          "ordinary_patch_std_m": 21.355665061584677,
+          "reflective_invalid_fraction": 0.036946614583333336,
+          "ordinary_invalid_fraction": 0.021158854166666668,
+          "reflective_constant_guess_mae_m": 49.15527940266927,
+          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "real_reflective_mae_m": 17.90662084155582,
+          "real_low_reflectance_mae_m": 53.72718190006366,
+          "real_reflective_gate_m": 35.0,
+          "run_failed": false,
+          "failure_reasons": [],
+          "ungated": {
+            "reflective_mae_m": 21.34021173690235,
+            "reflective_patch_abs_error_m": 14.769374424315268,
+            "ordinary_mae_m": 19.91228925312443
+          }
+        }
+      }
+    }
+  }
+}

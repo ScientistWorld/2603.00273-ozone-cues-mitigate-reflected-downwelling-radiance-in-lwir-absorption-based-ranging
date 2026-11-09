@@ -1,53 +1,34 @@
 #!/usr/bin/env python3
-"""Extract the paper's Path 5 Step 1 LWIR patch benchmark from public IH data."""
+"""Extract the real IHTest_202104 Path 5 Step 1 patches used as the real-scene check.
+
+Reads three 8x8 patches (two calibration checkerboards and a tree, at the
+crop coordinates of the paper's released figure script) from the public
+collect1 LWIR cube and stores bands 1..N in the gym's patch-cube format
+(data/lwir_scenes/real_*). Ground-truth ranges are not stored here.
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 import re
 import struct
 from pathlib import Path
 
-from lwir_physics import ATTENUATION_DB_PER_M, SKY_CUE_SLOPE, T_AIR_K
+from lwir_physics import write_split
 
-
-PATCHES = [
-    {
-        "name": "front_checkerboard",
-        "type": "reflective",
-        "center_row": 187,
-        "center_col": 86,
-        "distance_m": 31.01,
-    },
-    {
-        "name": "rear_checkerboard",
-        "type": "reflective",
-        "center_row": 145,
-        "center_col": 18,
-        "distance_m": 46.51,
-    },
-    {
-        "name": "tree",
-        "type": "low_reflectance",
-        "center_row": 70,
-        "center_col": 160,
-        "distance_m": 57.84,
-    },
+# (patch id, centre row, centre column in the 256-wide crop starting at column 901), 1-based
+REAL_PATCHES = [
+    ("ih_p5s1_a", 187, 86),
+    ("ih_p5s1_b", 145, 18),
+    ("ih_p5s1_c", 70, 160),
 ]
-
-# MATLAB figure script settings from the paper's released code:
-# measurements = measurements(1:256, 901:1156, 1:247)
-# pair_index = 5 in the released script selects bands 23/25 and 77/81.
 CROP_COL_START_1BASED = 901
-BAND_INDICES_1BASED = [23, 25, 77, 81]
-WAVELENGTH_SHIFT_UM = -0.12
 
 
-def parse_envi_header(path: Path) -> dict[str, object]:
+def parse_envi_header(path: Path) -> dict[str, int]:
     text = path.read_text(encoding="utf-8")
-    out: dict[str, object] = {}
+    out: dict[str, int] = {}
     for key in ("samples", "lines", "bands", "data type", "header offset", "byte order"):
         match = re.search(rf"^{re.escape(key)}\s*=\s*([0-9]+)", text, flags=re.MULTILINE)
         if not match:
@@ -56,116 +37,45 @@ def parse_envi_header(path: Path) -> dict[str, object]:
     interleave = re.search(r"^interleave\s*=\s*([A-Za-z]+)", text, flags=re.MULTILINE)
     if not interleave or interleave.group(1).upper() != "BSQ":
         raise ValueError("expected BSQ interleave")
-    wavelengths_match = re.search(r"wavelength\s*=\s*\{([^}]*)\}", text, flags=re.DOTALL)
-    if not wavelengths_match:
-        raise ValueError("missing wavelength list")
-    out["wavelength"] = [
-        float(x)
-        for x in re.findall(r"[-+]?(?:\d+\.\d*|\.\d+|\d+)(?:[Ee][-+]?\d+)?", wavelengths_match.group(1))
-    ]
     return out
-
-
-def read_float32_pixel(fh, band0: int, row0: int, col0: int, lines: int, samples: int) -> float:
-    offset = ((band0 * lines + row0) * samples + col0) * 4
-    fh.seek(offset)
-    raw = fh.read(4)
-    if len(raw) != 4:
-        raise ValueError("unexpected EOF while reading BSQ pixel")
-    value = struct.unpack("<f", raw)[0]
-    if not math.isfinite(value):
-        raise ValueError("non-finite radiance in BSQ file")
-    return value
-
-
-def extract_dataset(hdr: Path, bsq: Path, output: Path, labels_output: Path, patch_size: int) -> None:
-    meta = parse_envi_header(hdr)
-    samples = int(meta["samples"])
-    lines = int(meta["lines"])
-    bands = int(meta["bands"])
-    if int(meta["data type"]) != 4 or int(meta["byte order"]) != 0:
-        raise ValueError("only little-endian float32 ENVI files are supported")
-    expected_size = samples * lines * bands * 4
-    if bsq.stat().st_size != expected_size:
-        raise ValueError(f"unexpected BSQ size: got {bsq.stat().st_size}, expected {expected_size}")
-
-    wavelengths = meta["wavelength"]
-    selected_bands0 = [idx - 1 for idx in BAND_INDICES_1BASED]
-    selected_wavelengths = [
-        round(float(wavelengths[band]) + WAVELENGTH_SHIFT_UM, 6) for band in selected_bands0
-    ]
-
-    half = patch_size // 2
-    patches = []
-    labels = []
-    with bsq.open("rb") as fh:
-        for patch in PATCHES:
-            center_row = int(patch["center_row"])
-            center_col_crop = int(patch["center_col"])
-            center_col_full = CROP_COL_START_1BASED + center_col_crop - 1
-            pixels = []
-            for row_1based in range(center_row - half + 1, center_row + half + 1):
-                for col_1based in range(center_col_full - half + 1, center_col_full + half + 1):
-                    row0 = row_1based - 1
-                    col0 = col_1based - 1
-                    pixels.append(
-                        [
-                            read_float32_pixel(fh, band0, row0, col0, lines, samples)
-                            for band0 in selected_bands0
-                        ]
-                    )
-            patches.append(
-                {
-                    "name": patch["name"],
-                    "type": patch["type"],
-                    "source_center_crop_row_col": [center_row, center_col_crop],
-                    "measurements": pixels,
-                }
-            )
-            labels.append(
-                {
-                    "name": patch["name"],
-                    "type": patch["type"],
-                    "distance_m": patch["distance_m"],
-                }
-            )
-
-    payload = {
-        "description": "Four-band 8x8 patches extracted from public IHTest_202104 Path 5 Step 1 LWIR HSI collect1 using the paper's released MATLAB coordinates.",
-        "source": "s3://ihdataset-01/IHTest_202104_DistStA/Path5_DistStA/Path5_Step1_DistStA/",
-        "wavelengths_um": selected_wavelengths,
-        "attenuation_db_per_m": ATTENUATION_DB_PER_M,
-        "t_air_k": T_AIR_K,
-        "sky_cue_slope": SKY_CUE_SLOPE,
-        "patch_size": patch_size,
-        "bands_1based": BAND_INDICES_1BASED,
-        "patches": patches,
-    }
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    labels_output.parent.mkdir(parents=True, exist_ok=True)
-    labels_output.write_text(
-        json.dumps(
-            {
-                "description": "Patch labels from the paper's Table I lidar ground-truth distances.",
-                "patches": labels,
-            },
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--hdr", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.hdr")
     parser.add_argument("--bsq", default="data/downloads/ihdataset_path5_step1/IHTest_202104_Path5_Step1_LWHSI1_collect1_DistStA.bsq")
-    parser.add_argument("--output", default="data/synthetic/lwir_patch_core.json")
-    parser.add_argument("--labels-output", default="eval/lwir_patch_labels.json")
+    parser.add_argument("--atmosphere", default="data/lwir_scenes/atmosphere.json")
+    parser.add_argument("--output-dir", default="data/lwir_scenes")
     parser.add_argument("--patch-size", type=int, default=8)
     args = parser.parse_args()
-    extract_dataset(Path(args.hdr), Path(args.bsq), Path(args.output), Path(args.labels_output), args.patch_size)
+
+    meta = parse_envi_header(Path(args.hdr))
+    samples, lines = meta["samples"], meta["lines"]
+    if meta["data type"] != 4 or meta["byte order"] != 0 or meta["header offset"] != 0:
+        raise ValueError("only little-endian float32 ENVI files without header offset are supported")
+    bands = json.loads(Path(args.atmosphere).read_text(encoding="utf-8"))["band_index_1based"]
+    half = args.patch_size // 2
+    patches = []
+    with Path(args.bsq).open("rb") as fh:
+        for patch_id, centre_row, centre_col in REAL_PATCHES:
+            col_full = CROP_COL_START_1BASED + centre_col - 1
+            pixels = []
+            for row in range(centre_row - half + 1, centre_row + half + 1):
+                for col in range(col_full - half + 1, col_full + half + 1):
+                    values = []
+                    for band in bands:
+                        fh.seek((((band - 1) * lines + (row - 1)) * samples + (col - 1)) * 4)
+                        values.append(struct.unpack("<f", fh.read(4))[0])
+                    pixels.append(values)
+            patches.append((patch_id, pixels))
+    write_split(
+        args.output_dir,
+        "real",
+        patches,
+        n_bands=len(bands),
+        patch_size=args.patch_size,
+        description="Real IHTest_202104 Path 5 Step 1 collect1 radiance (public raw cube), three 8x8 patches.",
+    )
 
 
 if __name__ == "__main__":

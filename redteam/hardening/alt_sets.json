@@ -1,0 +1,281 @@
+{
+  "alt-key-1": {
+    "reference_quadspectral": {
+      "results": {
+        "reflective_mae_m": 21.028,
+        "reflective_patch_abs_error_m": 13.612,
+        "ordinary_mae_m": 20.492
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 21.028,
+        "reflective_patch_abs_error_m": 13.612,
+        "ordinary_mae_m": 20.492
+      }
+    },
+    "weaker_no_sky_correction": {
+      "results": {
+        "reflective_mae_m": 100.0,
+        "reflective_patch_abs_error_m": 100.0,
+        "ordinary_mae_m": 100.0
+      },
+      "run_failed": true,
+      "ungated": {
+        "reflective_mae_m": 77.877,
+        "reflective_patch_abs_error_m": 79.343,
+        "ordinary_mae_m": 23.462
+      }
+    },
+    "weaker_sky_slope_0p8": {
+      "results": {
+        "reflective_mae_m": 34.171,
+        "reflective_patch_abs_error_m": 31.861,
+        "ordinary_mae_m": 20.603
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 34.171,
+        "reflective_patch_abs_error_m": 31.861,
+        "ordinary_mae_m": 20.603
+      }
+    },
+    "better_aircentred_cue": {
+      "results": {
+        "reflective_mae_m": 19.279,
+        "reflective_patch_abs_error_m": 11.421,
+        "ordinary_mae_m": 16.159
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 19.279,
+        "reflective_patch_abs_error_m": 11.421,
+        "ordinary_mae_m": 16.159
+      }
+    },
+    "better_local_median3x3": {
+      "results": {
+        "reflective_mae_m": 13.83,
+        "reflective_patch_abs_error_m": 10.622,
+        "ordinary_mae_m": 15.227
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 13.83,
+        "reflective_patch_abs_error_m": 10.622,
+        "ordinary_mae_m": 15.227
+      }
+    },
+    "better_patch_median": {
+      "results": {
+        "reflective_mae_m": 10.334,
+        "reflective_patch_abs_error_m": 10.311,
+        "ordinary_mae_m": 15.097
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 10.334,
+        "reflective_patch_abs_error_m": 10.311,
+        "ordinary_mae_m": 15.097
+      }
+    },
+    "better_aircentred_cue_patch_median": {
+      "results": {
+        "reflective_mae_m": 7.785,
+        "reflective_patch_abs_error_m": 7.762,
+        "ordinary_mae_m": 4.626
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 7.785,
+        "reflective_patch_abs_error_m": 7.762,
+        "ordinary_mae_m": 4.626
+      }
+    }
+  },
+  "alt-key-2": {
+    "reference_quadspectral": {
+      "results": {
+        "reflective_mae_m": 21.33,
+        "reflective_patch_abs_error_m": 14.673,
+        "ordinary_mae_m": 16.112
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 21.33,
+        "reflective_patch_abs_error_m": 14.673,
+        "ordinary_mae_m": 16.112
+      }
+    },
+    "weaker_no_sky_correction": {
+      "results": {
+        "reflective_mae_m": 100.0,
+        "reflective_patch_abs_error_m": 100.0,
+        "ordinary_mae_m": 100.0
+      },
+      "run_failed": true,
+      "ungated": {
+        "reflective_mae_m": 77.157,
+        "reflective_patch_abs_error_m": 79.189,
+        "ordinary_mae_m": 18.823
+      }
+    },
+    "weaker_sky_slope_0p8": {
+      "results": {
+        "reflective_mae_m": 33.942,
+        "reflective_patch_abs_error_m": 32.417,
+        "ordinary_mae_m": 16.257
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 33.942,
+        "reflective_patch_abs_error_m": 32.417,
+        "ordinary_mae_m": 16.257
+      }
+    },
+    "better_aircentred_cue": {
+      "results": {
+        "reflective_mae_m": 19.357,
+        "reflective_patch_abs_error_m": 10.28,
+        "ordinary_mae_m": 12.302
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 19.357,
+        "reflective_patch_abs_error_m": 10.28,
+        "ordinary_mae_m": 12.302
+      }
+    },
+    "better_local_median3x3": {
+      "results": {
+        "reflective_mae_m": 14.412,
+        "reflective_patch_abs_error_m": 11.142,
+        "ordinary_mae_m": 13.011
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 14.412,
+        "reflective_patch_abs_error_m": 11.142,
+        "ordinary_mae_m": 13.011
+      }
+    },
+    "better_patch_median": {
+      "results": {
+        "reflective_mae_m": 11.26,
+        "reflective_patch_abs_error_m": 11.248,
+        "ordinary_mae_m": 12.801
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 11.26,
+        "reflective_patch_abs_error_m": 11.248,
+        "ordinary_mae_m": 12.801
+      }
+    },
+    "better_aircentred_cue_patch_median": {
+      "results": {
+        "reflective_mae_m": 8.587,
+        "reflective_patch_abs_error_m": 8.542,
+        "ordinary_mae_m": 3.755
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 8.587,
+        "reflective_patch_abs_error_m": 8.542,
+        "ordinary_mae_m": 3.755
+      }
+    }
+  },
+  "alt-key-3": {
+    "reference_quadspectral": {
+      "results": {
+        "reflective_mae_m": 22.837,
+        "reflective_patch_abs_error_m": 15.056,
+        "ordinary_mae_m": 17.467
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 22.837,
+        "reflective_patch_abs_error_m": 15.056,
+        "ordinary_mae_m": 17.467
+      }
+    },
+    "weaker_no_sky_correction": {
+      "results": {
+        "reflective_mae_m": 100.0,
+        "reflective_patch_abs_error_m": 100.0,
+        "ordinary_mae_m": 100.0
+      },
+      "run_failed": true,
+      "ungated": {
+        "reflective_mae_m": 77.104,
+        "reflective_patch_abs_error_m": 79.266,
+        "ordinary_mae_m": 21.162
+      }
+    },
+    "weaker_sky_slope_0p8": {
+      "results": {
+        "reflective_mae_m": 35.432,
+        "reflective_patch_abs_error_m": 34.769,
+        "ordinary_mae_m": 17.651
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 35.432,
+        "reflective_patch_abs_error_m": 34.769,
+        "ordinary_mae_m": 17.651
+      }
+    },
+    "better_aircentred_cue": {
+      "results": {
+        "reflective_mae_m": 21.347,
+        "reflective_patch_abs_error_m": 12.579,
+        "ordinary_mae_m": 13.395
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 21.347,
+        "reflective_patch_abs_error_m": 12.579,
+        "ordinary_mae_m": 13.395
+      }
+    },
+    "better_local_median3x3": {
+      "results": {
+        "reflective_mae_m": 15.988,
+        "reflective_patch_abs_error_m": 12.028,
+        "ordinary_mae_m": 13.198
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 15.988,
+        "reflective_patch_abs_error_m": 12.028,
+        "ordinary_mae_m": 13.198
+      }
+    },
+    "better_patch_median": {
+      "results": {
+        "reflective_mae_m": 12.019,
+        "reflective_patch_abs_error_m": 12.0,
+        "ordinary_mae_m": 13.161
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 12.019,
+        "reflective_patch_abs_error_m": 12.0,
+        "ordinary_mae_m": 13.161
+      }
+    },
+    "better_aircentred_cue_patch_median": {
+      "results": {
+        "reflective_mae_m": 9.238,
+        "reflective_patch_abs_error_m": 9.21,
+        "ordinary_mae_m": 3.559
+      },
+      "run_failed": false,
+      "ungated": {
+        "reflective_mae_m": 9.238,
+        "reflective_patch_abs_error_m": 9.21,
+        "ordinary_mae_m": 3.559
+      }
+    }
+  }
+}

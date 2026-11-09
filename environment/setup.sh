@@ -16,4 +16,8 @@
 
 set -e
 
-# Current core reproduction uses only the Python standard library.
+
+# The reference method, baseline, data tools and evaluators use only the
+# Python standard library. numpy/scipy are provided for methods that need
+# array maths or numerical optimisation (e.g. multi-band model fitting).
+uv pip install --system numpy scipy

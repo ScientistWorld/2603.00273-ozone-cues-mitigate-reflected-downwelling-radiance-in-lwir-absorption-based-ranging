@@ -1,0 +1,128 @@
+{
+  "better_aircentred_cue_patch_median": {
+    "reflective": {
+      "mean_diff_m": -13.485,
+      "se_m": 1.037,
+      "z": -13.01,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": -15.843,
+      "se_m": 1.012,
+      "z": -15.65,
+      "n": 96
+    }
+  },
+  "better_patch_median": {
+    "reflective": {
+      "mean_diff_m": -9.792,
+      "se_m": 0.97,
+      "z": -10.09,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": -5.486,
+      "se_m": 0.913,
+      "z": -6.01,
+      "n": 96
+    }
+  },
+  "better_local_median3x3": {
+    "reflective": {
+      "mean_diff_m": -6.684,
+      "se_m": 0.55,
+      "z": -12.15,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": -5.348,
+      "se_m": 0.857,
+      "z": -6.24,
+      "n": 96
+    }
+  },
+  "better_aircentred_cue": {
+    "reflective": {
+      "mean_diff_m": -1.586,
+      "se_m": 0.357,
+      "z": -4.44,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": -4.31,
+      "se_m": 0.367,
+      "z": -11.75,
+      "n": 96
+    }
+  },
+  "weaker_sky_slope_0p8": {
+    "reflective": {
+      "mean_diff_m": 13.505,
+      "se_m": 0.653,
+      "z": 20.69,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": 0.134,
+      "se_m": 0.196,
+      "z": 0.68,
+      "n": 96
+    }
+  },
+  "weaker_half_sky_slope": {
+    "reflective": {
+      "mean_diff_m": 34.376,
+      "se_m": 1.26,
+      "z": 27.27,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": 0.665,
+      "se_m": 0.449,
+      "z": 1.48,
+      "n": 96
+    }
+  },
+  "weaker_no_sky_correction": {
+    "reflective": {
+      "mean_diff_m": 56.863,
+      "se_m": 1.704,
+      "z": 33.37,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": 2.294,
+      "se_m": 0.804,
+      "z": 2.85,
+      "n": 96
+    }
+  },
+  "shortcut_train_affine_calibration": {
+    "reflective": {
+      "mean_diff_m": -1.945,
+      "se_m": 0.235,
+      "z": -8.27,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": -2.363,
+      "se_m": 0.375,
+      "z": -6.3,
+      "n": 96
+    }
+  },
+  "shortcut_train_ridge_regression": {
+    "reflective": {
+      "mean_diff_m": 4.595,
+      "se_m": 1.432,
+      "z": 3.21,
+      "n": 192
+    },
+    "ordinary": {
+      "mean_diff_m": 12.298,
+      "se_m": 2.334,
+      "z": 5.27,
+      "n": 96
+    }
+  }
+}
