@@ -10,44 +10,44 @@
           "ordinary_mae_m": 100.0
         },
         "quadspectral": {
-          "reflective_mae_m": 21.598457021690677,
-          "reflective_patch_abs_error_m": 15.815674289942107,
-          "ordinary_mae_m": 17.151721056656484
+          "reflective_mae_m": 21.598457021690674,
+          "reflective_patch_abs_error_m": 15.815674289942109,
+          "ordinary_mae_m": 17.151721056656466
         }
       },
       "_diagnostics": {
         "bispectral": {
-          "ordinary_patch_abs_error_m": 15.515140632556133,
-          "reflective_patch_std_m": 43.45189648170159,
-          "ordinary_patch_std_m": 13.02696120392694,
+          "ordinary_patch_abs_error_m": 15.515140632556145,
+          "reflective_patch_std_m": 43.451896481701574,
+          "ordinary_patch_std_m": 13.026961203926945,
           "reflective_invalid_fraction": 0.08626302083333333,
           "ordinary_invalid_fraction": 0.005859375,
-          "reflective_constant_guess_mae_m": 43.08580317382812,
+          "reflective_constant_guess_mae_m": 43.085803173828054,
           "ordinary_constant_guess_mae_m": 46.6750513671875,
           "run_failed": true,
           "failure_reasons": [
             "reflective targets: no better than the best constant range guess"
           ],
           "ungated": {
-            "reflective_mae_m": 79.49044275912202,
+            "reflective_mae_m": 79.49044275912213,
             "reflective_patch_abs_error_m": 80.53830542694142,
-            "ordinary_mae_m": 18.065101232864766
+            "ordinary_mae_m": 18.065101232864752
           }
         },
         "quadspectral": {
-          "ordinary_patch_abs_error_m": 12.573067540745628,
-          "reflective_patch_std_m": 35.23842176744227,
-          "ordinary_patch_std_m": 15.608127320431755,
+          "ordinary_patch_abs_error_m": 12.573067540745631,
+          "reflective_patch_std_m": 35.238421767442276,
+          "ordinary_patch_std_m": 15.608127320431754,
           "reflective_invalid_fraction": 0.030598958333333332,
           "ordinary_invalid_fraction": 0.0087890625,
-          "reflective_constant_guess_mae_m": 43.08580317382812,
+          "reflective_constant_guess_mae_m": 43.085803173828054,
           "ordinary_constant_guess_mae_m": 46.6750513671875,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 21.598457021690677,
-            "reflective_patch_abs_error_m": 15.815674289942107,
-            "ordinary_mae_m": 17.151721056656484
+            "reflective_mae_m": 21.598457021690674,
+            "reflective_patch_abs_error_m": 15.815674289942109,
+            "ordinary_mae_m": 17.151721056656466
           }
         }
       }

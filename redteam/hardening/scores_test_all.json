@@ -5,29 +5,29 @@
       "_slice": "test",
       "results": {
         "better_aircentred_cue_patch_median": {
-          "reflective_mae_m": 7.855682262306396,
+          "reflective_mae_m": 7.855682262306408,
           "reflective_patch_abs_error_m": 7.822238192287718,
-          "ordinary_mae_m": 4.069235799304331
+          "ordinary_mae_m": 4.069235799304329
         },
         "better_aircentred_cue": {
-          "reflective_mae_m": 19.75416870361622,
-          "reflective_patch_abs_error_m": 10.674389292331396,
-          "ordinary_mae_m": 15.602512462782338
+          "reflective_mae_m": 19.754168703616166,
+          "reflective_patch_abs_error_m": 10.674389292331398,
+          "ordinary_mae_m": 15.60251246278237
         },
         "better_local_median3x3": {
-          "reflective_mae_m": 14.655837782023761,
-          "reflective_patch_abs_error_m": 11.455519491294483,
-          "ordinary_mae_m": 14.563877219854106
+          "reflective_mae_m": 14.655837782023712,
+          "reflective_patch_abs_error_m": 11.455519491294488,
+          "ordinary_mae_m": 14.563877219854112
         },
         "better_patch_median": {
-          "reflective_mae_m": 11.548625127599953,
+          "reflective_mae_m": 11.548625127599976,
           "reflective_patch_abs_error_m": 11.531133856826388,
-          "ordinary_mae_m": 14.42655343609389
+          "ordinary_mae_m": 14.426553436093883
         },
         "reference_quadspectral": {
-          "reflective_mae_m": 21.34021173690235,
-          "reflective_patch_abs_error_m": 14.769374424315268,
-          "ordinary_mae_m": 19.91228925312443
+          "reflective_mae_m": 21.34021173690239,
+          "reflective_patch_abs_error_m": 14.769374424315261,
+          "ordinary_mae_m": 19.912289253124374
         },
         "shortcut_constant40": {
           "reflective_mae_m": 100.0,
@@ -65,14 +65,14 @@
           "ordinary_mae_m": 100.0
         },
         "shortcut_real_label_copy": {
-          "reflective_mae_m": 21.34021173690235,
-          "reflective_patch_abs_error_m": 14.769374424315268,
-          "ordinary_mae_m": 19.91228925312443
+          "reflective_mae_m": 21.34021173690239,
+          "reflective_patch_abs_error_m": 14.769374424315261,
+          "ordinary_mae_m": 19.912289253124374
         },
         "shortcut_score_forgery": {
-          "reflective_mae_m": 21.34021173690235,
-          "reflective_patch_abs_error_m": 14.769374424315268,
-          "ordinary_mae_m": 19.91228925312443
+          "reflective_mae_m": 21.34021173690239,
+          "reflective_patch_abs_error_m": 14.769374424315261,
+          "ordinary_mae_m": 19.912289253124374
         },
         "shortcut_short_length": {
           "reflective_mae_m": 100.0,
@@ -80,9 +80,9 @@
           "ordinary_mae_m": 100.0
         },
         "shortcut_train_affine_calibration": {
-          "reflective_mae_m": 19.395328406673503,
-          "reflective_patch_abs_error_m": 11.206712408245473,
-          "ordinary_mae_m": 17.549076181163553
+          "reflective_mae_m": 19.395328406673528,
+          "reflective_patch_abs_error_m": 11.20671240824547,
+          "ordinary_mae_m": 17.54907618116351
         },
         "shortcut_train_knn_label_copy": {
           "reflective_mae_m": 100.0,
@@ -110,105 +110,105 @@
           "ordinary_mae_m": 100.0
         },
         "weaker_sky_slope_0p8": {
-          "reflective_mae_m": 34.84569446272108,
-          "reflective_patch_abs_error_m": 33.40979217611707,
-          "ordinary_mae_m": 20.046032888441847
+          "reflective_mae_m": 34.84569446272096,
+          "reflective_patch_abs_error_m": 33.40979217611708,
+          "ordinary_mae_m": 20.046032888441843
         }
       },
       "_diagnostics": {
         "better_aircentred_cue_patch_median": {
-          "ordinary_patch_abs_error_m": 4.024633804280381,
-          "reflective_patch_std_m": 0.0,
-          "ordinary_patch_std_m": 0.0,
+          "ordinary_patch_abs_error_m": 4.02463380428038,
+          "reflective_patch_std_m": 8.007374836601841e-14,
+          "ordinary_patch_std_m": 9.116116967814094e-14,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 16.10246305994133,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 16.102463059941332,
           "real_low_reflectance_mae_m": 0.3241698920816418,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 7.855682262306396,
+            "reflective_mae_m": 7.855682262306408,
             "reflective_patch_abs_error_m": 7.822238192287718,
-            "ordinary_mae_m": 4.069235799304331
+            "ordinary_mae_m": 4.069235799304329
           }
         },
         "better_aircentred_cue": {
-          "ordinary_patch_abs_error_m": 4.4808522971613165,
-          "reflective_patch_std_m": 34.806982748823366,
-          "ordinary_patch_std_m": 20.671647535435408,
+          "ordinary_patch_abs_error_m": 4.480852297161317,
+          "reflective_patch_std_m": 34.80698274882338,
+          "ordinary_patch_std_m": 20.6716475354354,
           "reflective_invalid_fraction": 0.039632161458333336,
           "ordinary_invalid_fraction": 0.009765625,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 22.293076460312495,
-          "real_low_reflectance_mae_m": 34.03703055172485,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 22.293076460312502,
+          "real_low_reflectance_mae_m": 34.03703055172484,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 19.75416870361622,
-            "reflective_patch_abs_error_m": 10.674389292331396,
-            "ordinary_mae_m": 15.602512462782338
+            "reflective_mae_m": 19.754168703616166,
+            "reflective_patch_abs_error_m": 10.674389292331398,
+            "ordinary_mae_m": 15.60251246278237
           }
         },
         "better_local_median3x3": {
-          "ordinary_patch_abs_error_m": 14.352386148210245,
-          "reflective_patch_std_m": 17.688650889124283,
-          "ordinary_patch_std_m": 7.528016819045366,
+          "ordinary_patch_abs_error_m": 14.352386148210243,
+          "reflective_patch_std_m": 17.688650889124286,
+          "ordinary_patch_std_m": 7.528016819045363,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 11.837003180719805,
-          "real_low_reflectance_mae_m": 53.782781818903814,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 11.837003180719803,
+          "real_low_reflectance_mae_m": 53.78278181890379,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 14.655837782023761,
-            "reflective_patch_abs_error_m": 11.455519491294483,
-            "ordinary_mae_m": 14.563877219854106
+            "reflective_mae_m": 14.655837782023712,
+            "reflective_patch_abs_error_m": 11.455519491294488,
+            "ordinary_mae_m": 14.563877219854112
           }
         },
         "better_patch_median": {
-          "ordinary_patch_abs_error_m": 14.426539253504634,
-          "reflective_patch_std_m": 0.0,
-          "ordinary_patch_std_m": 0.0,
+          "ordinary_patch_abs_error_m": 14.42653925350463,
+          "reflective_patch_std_m": 8.013902334430678e-14,
+          "ordinary_patch_std_m": 9.231746929353471e-14,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 10.97251305789055,
-          "real_low_reflectance_mae_m": 59.69557850977506,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 10.972513057890536,
+          "real_low_reflectance_mae_m": 59.69557850977514,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 11.548625127599953,
+            "reflective_mae_m": 11.548625127599976,
             "reflective_patch_abs_error_m": 11.531133856826388,
-            "ordinary_mae_m": 14.42655343609389
+            "ordinary_mae_m": 14.426553436093883
           }
         },
         "reference_quadspectral": {
-          "ordinary_patch_abs_error_m": 15.336261152786669,
-          "reflective_patch_std_m": 33.26292959549581,
+          "ordinary_patch_abs_error_m": 15.336261152786667,
+          "reflective_patch_std_m": 33.26292959549584,
           "ordinary_patch_std_m": 21.355665061584677,
           "reflective_invalid_fraction": 0.036946614583333336,
           "ordinary_invalid_fraction": 0.021158854166666668,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 17.90662084155582,
-          "real_low_reflectance_mae_m": 53.72718190006366,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 17.906620841555824,
+          "real_low_reflectance_mae_m": 53.72718190006365,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 21.34021173690235,
-            "reflective_patch_abs_error_m": 14.769374424315268,
-            "ordinary_mae_m": 19.91228925312443
+            "reflective_mae_m": 21.34021173690239,
+            "reflective_patch_abs_error_m": 14.769374424315261,
+            "ordinary_mae_m": 19.912289253124374
           }
         },
         "shortcut_constant40": {
@@ -217,10 +217,10 @@
           "ordinary_patch_std_m": 0.0,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
           "real_reflective_mae_m": 7.749999999999998,
-          "real_low_reflectance_mae_m": 17.840000000000003,
+          "real_low_reflectance_mae_m": 17.840000000000014,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
           "failure_reasons": [
@@ -228,21 +228,21 @@
             "ordinary targets: no better than the best constant range guess"
           ],
           "ungated": {
-            "reflective_mae_m": 55.76210446777344,
-            "reflective_patch_abs_error_m": 55.76634282226562,
-            "ordinary_mae_m": 64.42224016927084
+            "reflective_mae_m": 55.76210446777341,
+            "reflective_patch_abs_error_m": 55.76634282226559,
+            "ordinary_mae_m": 64.42224016927064
           }
         },
         "shortcut_constant_train_median": {
           "ordinary_patch_abs_error_m": 45.69550791015626,
-          "reflective_patch_std_m": 0.0,
-          "ordinary_patch_std_m": 0.0,
+          "reflective_patch_std_m": 1.7187834283014502e-13,
+          "ordinary_patch_std_m": 1.7187834283014487e-13,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 89.29520000000002,
-          "real_low_reflectance_mae_m": 70.21520000000001,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 89.29520000000016,
+          "real_low_reflectance_mae_m": 70.21520000000002,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
           "failure_reasons": [
@@ -251,9 +251,9 @@
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 52.686134692382815,
+            "reflective_mae_m": 52.686134692382836,
             "reflective_patch_abs_error_m": 52.682019425455735,
-            "ordinary_mae_m": 45.70078792317708
+            "ordinary_mae_m": 45.70078792317711
           }
         },
         "shortcut_empty": {
@@ -286,14 +286,14 @@
         },
         "shortcut_null_filter25": {
           "ordinary_patch_abs_error_m": 100.0,
-          "reflective_patch_std_m": 4.058441555617724,
-          "ordinary_patch_std_m": 3.3787668080022955,
+          "reflective_patch_std_m": 4.058441555617723,
+          "ordinary_patch_std_m": 3.378766808002295,
           "reflective_invalid_fraction": 0.75,
           "ordinary_invalid_fraction": 0.75,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 77.74489772913633,
-          "real_low_reflectance_mae_m": 90.50534602220034,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 77.74489772913634,
+          "real_low_reflectance_mae_m": 90.50534602220036,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
           "failure_reasons": [
@@ -302,47 +302,47 @@
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 77.97713040315942,
+            "reflective_mae_m": 77.97713040315945,
             "reflective_patch_abs_error_m": 100.0,
-            "ordinary_mae_m": 78.67839780736203
+            "ordinary_mae_m": 78.67839780736197
           }
         },
         "shortcut_real_label_copy": {
-          "ordinary_patch_abs_error_m": 15.336261152786669,
-          "reflective_patch_std_m": 33.26292959549581,
+          "ordinary_patch_abs_error_m": 15.336261152786667,
+          "reflective_patch_std_m": 33.26292959549584,
           "ordinary_patch_std_m": 21.355665061584677,
           "reflective_invalid_fraction": 0.036946614583333336,
           "ordinary_invalid_fraction": 0.021158854166666668,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
           "real_reflective_mae_m": 0.0,
           "real_low_reflectance_mae_m": 0.0,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 21.34021173690235,
-            "reflective_patch_abs_error_m": 14.769374424315268,
-            "ordinary_mae_m": 19.91228925312443
+            "reflective_mae_m": 21.34021173690239,
+            "reflective_patch_abs_error_m": 14.769374424315261,
+            "ordinary_mae_m": 19.912289253124374
           }
         },
         "shortcut_score_forgery": {
-          "ordinary_patch_abs_error_m": 15.336261152786669,
-          "reflective_patch_std_m": 33.26292959549581,
+          "ordinary_patch_abs_error_m": 15.336261152786667,
+          "reflective_patch_std_m": 33.26292959549584,
           "ordinary_patch_std_m": 21.355665061584677,
           "reflective_invalid_fraction": 0.036946614583333336,
           "ordinary_invalid_fraction": 0.021158854166666668,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 17.90662084155582,
-          "real_low_reflectance_mae_m": 53.72718190006366,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 17.906620841555824,
+          "real_low_reflectance_mae_m": 53.72718190006365,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 21.34021173690235,
-            "reflective_patch_abs_error_m": 14.769374424315268,
-            "ordinary_mae_m": 19.91228925312443
+            "reflective_mae_m": 21.34021173690239,
+            "reflective_patch_abs_error_m": 14.769374424315261,
+            "ordinary_mae_m": 19.912289253124374
           }
         },
         "shortcut_short_length": {
@@ -353,33 +353,33 @@
           "ungated": {}
         },
         "shortcut_train_affine_calibration": {
-          "ordinary_patch_abs_error_m": 9.938882629029704,
-          "reflective_patch_std_m": 31.99093007060046,
+          "ordinary_patch_abs_error_m": 9.93888262902967,
+          "reflective_patch_std_m": 31.99093007060048,
           "ordinary_patch_std_m": 20.535701599937887,
           "reflective_invalid_fraction": 0.036946614583333336,
           "ordinary_invalid_fraction": 0.021158854166666668,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 22.460189456495964,
-          "real_low_reflectance_mae_m": 47.662734618275984,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 22.460189456496053,
+          "real_low_reflectance_mae_m": 47.66273461827593,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 19.395328406673503,
-            "reflective_patch_abs_error_m": 11.206712408245473,
-            "ordinary_mae_m": 17.549076181163553
+            "reflective_mae_m": 19.395328406673528,
+            "reflective_patch_abs_error_m": 11.20671240824547,
+            "ordinary_mae_m": 17.54907618116351
           }
         },
         "shortcut_train_knn_label_copy": {
           "ordinary_patch_abs_error_m": 38.815278671875,
-          "reflective_patch_std_m": 0.0,
-          "ordinary_patch_std_m": 0.0,
+          "reflective_patch_std_m": 9.929256697349067e-14,
+          "ordinary_patch_std_m": 9.250396923150143e-14,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 40.78448468749998,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 40.7844846874999,
           "real_low_reflectance_mae_m": 66.51970718749999,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
@@ -387,42 +387,42 @@
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 47.57254236521403,
-            "reflective_patch_abs_error_m": 47.56942800292969,
-            "ordinary_mae_m": 38.82109225240072
+            "reflective_mae_m": 47.57254236521414,
+            "reflective_patch_abs_error_m": 47.5694280029297,
+            "ordinary_mae_m": 38.82109225240062
           }
         },
         "shortcut_train_ridge_regression": {
-          "ordinary_patch_abs_error_m": 32.20938862749334,
-          "reflective_patch_std_m": 0.0,
-          "ordinary_patch_std_m": 0.0,
+          "ordinary_patch_abs_error_m": 32.20938862749347,
+          "reflective_patch_std_m": 8.321627232075791e-14,
+          "ordinary_patch_std_m": 8.138857292868391e-14,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 38.76,
-          "real_low_reflectance_mae_m": 50.07159280441924,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 38.760000000000105,
+          "real_low_reflectance_mae_m": 50.071592804417946,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
           "failure_reasons": [
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 25.935647445327117,
-            "reflective_patch_abs_error_m": 25.926938459546573,
-            "ordinary_mae_m": 32.21066151971011
+            "reflective_mae_m": 25.935647445326634,
+            "reflective_patch_abs_error_m": 25.926938459546104,
+            "ordinary_mae_m": 32.210661519710264
           }
         },
         "shortcut_zero": {
-          "ordinary_patch_abs_error_m": 83.85808938802083,
+          "ordinary_patch_abs_error_m": 83.85808938802084,
           "reflective_patch_std_m": 0.0,
           "ordinary_patch_std_m": 0.0,
           "reflective_invalid_fraction": 0.0,
           "ordinary_invalid_fraction": 0.0,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 38.76,
-          "real_low_reflectance_mae_m": 57.84,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 38.760000000000105,
+          "real_low_reflectance_mae_m": 57.840000000000046,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
           "failure_reasons": [
@@ -431,21 +431,21 @@
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 75.29403950195312,
-            "reflective_patch_abs_error_m": 75.2961474609375,
-            "ordinary_mae_m": 83.85733974609376
+            "reflective_mae_m": 75.2940395019532,
+            "reflective_patch_abs_error_m": 75.29614746093749,
+            "ordinary_mae_m": 83.85733974609398
           }
         },
         "weaker_half_sky_slope": {
-          "ordinary_patch_abs_error_m": 18.484244694555354,
-          "reflective_patch_std_m": 41.1134976819797,
+          "ordinary_patch_abs_error_m": 18.484244694555347,
+          "reflective_patch_std_m": 41.113497681979695,
           "ordinary_patch_std_m": 19.762442500048817,
           "reflective_invalid_fraction": 0.06461588541666667,
           "ordinary_invalid_fraction": 0.02587890625,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 64.78763857597028,
-          "real_low_reflectance_mae_m": 60.25924206125166,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 64.78763857597029,
+          "real_low_reflectance_mae_m": 60.25924206125165,
           "real_reflective_gate_m": 35.0,
           "run_failed": true,
           "failure_reasons": [
@@ -453,19 +453,19 @@
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 55.71638609096954,
-            "reflective_patch_abs_error_m": 55.10686259887294,
-            "ordinary_mae_m": 20.577584704773606
+            "reflective_mae_m": 55.71638609096959,
+            "reflective_patch_abs_error_m": 55.10686259887289,
+            "ordinary_mae_m": 20.57758470477359
           }
         },
         "weaker_no_sky_correction": {
           "ordinary_patch_abs_error_m": 19.63401385568947,
-          "reflective_patch_std_m": 49.79768484055695,
-          "ordinary_patch_std_m": 20.3725726520674,
+          "reflective_patch_std_m": 49.79768484055691,
+          "ordinary_patch_std_m": 20.372572652067404,
           "reflective_invalid_fraction": 0.077880859375,
           "ordinary_invalid_fraction": 0.032063802083333336,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
           "real_reflective_mae_m": 97.33641449939704,
           "real_low_reflectance_mae_m": 68.15478832509059,
           "real_reflective_gate_m": 35.0,
@@ -475,28 +475,28 @@
             "real scene: reflective-target error above the reflected-sky gate"
           ],
           "ungated": {
-            "reflective_mae_m": 78.20294261829339,
-            "reflective_patch_abs_error_m": 80.64393893852564,
-            "ordinary_mae_m": 22.20615302648656
+            "reflective_mae_m": 78.20294261829322,
+            "reflective_patch_abs_error_m": 80.6439389385257,
+            "ordinary_mae_m": 22.20615302648655
           }
         },
         "weaker_sky_slope_0p8": {
           "ordinary_patch_abs_error_m": 16.293209249093763,
-          "reflective_patch_std_m": 36.27638218017801,
-          "ordinary_patch_std_m": 20.437018236905768,
+          "reflective_patch_std_m": 36.27638218017804,
+          "ordinary_patch_std_m": 20.43701823690577,
           "reflective_invalid_fraction": 0.048502604166666664,
           "ordinary_invalid_fraction": 0.022786458333333332,
-          "reflective_constant_guess_mae_m": 49.15527940266927,
-          "ordinary_constant_guess_mae_m": 43.9253801920573,
-          "real_reflective_mae_m": 24.87867259614282,
-          "real_low_reflectance_mae_m": 55.71882677886747,
+          "reflective_constant_guess_mae_m": 49.155279402669116,
+          "ordinary_constant_guess_mae_m": 43.92538019205742,
+          "real_reflective_mae_m": 24.878672596142813,
+          "real_low_reflectance_mae_m": 55.71882677886748,
           "real_reflective_gate_m": 35.0,
           "run_failed": false,
           "failure_reasons": [],
           "ungated": {
-            "reflective_mae_m": 34.84569446272108,
-            "reflective_patch_abs_error_m": 33.40979217611707,
-            "ordinary_mae_m": 20.046032888441847
+            "reflective_mae_m": 34.84569446272096,
+            "reflective_patch_abs_error_m": 33.40979217611708,
+            "ordinary_mae_m": 20.046032888441843
           }
         }
       }
